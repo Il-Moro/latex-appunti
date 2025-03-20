@@ -1,0 +1,1269 @@
+% Inizio; comandi generali
+\documentclass[a4paper, 11pt]{article}
+
+% Pacchetti per il supporto multilingue
+\usepackage[utf8]{inputenc} % Per la codifica UTF-8
+\usepackage[T1]{fontenc} % Per font corretti con caratteri accentati
+\usepackage[italian]{babel} % Per la lingua italiana
+
+% Font e gestione dei caratteri
+\usepackage{lmodern} % Font Latin Modern scalabile
+\renewcommand{\familydefault}{\rmdefault} % Font roman come predefinito
+\usepackage{setspace} % Per il controllo dell'interlinea
+\setstretch{1} % Interlinea di 1.0
+
+\usepackage{microtype}
+
+% Matematica
+\usepackage{amsmath} % Estensioni matematiche
+\usepackage{amssymb} % Simboli aggiuntivi
+\usepackage{textgreek} % Per lettere greche in modalità testo
+
+% Grafica e immagini
+\usepackage{graphicx} % Per includere immagini
+\usepackage{float} % Per posizionamento accurato degli oggetti flottanti
+
+% Margini e layout della pagina
+\usepackage[left=2cm, right=2cm, top=2cm, bottom=2cm]{geometry} % Margini personalizzati
+
+% Titoli delle sezioni e struttura del documento
+\usepackage{titlesec} % Per personalizzare lo stile dei titoli
+\titleformat{\paragraph}[runin]
+  {\normalfont\normalsize\bfseries}{\theparagraph}{0.5em}{}
+\titlespacing*{\paragraph}{2pt}{0.5em}{0.5em}
+
+% Controllo dell'indentazione del paragrafo
+\setlength{\parindent}{0pt} % Nessuna indentazione della prima riga di ogni paragrafo
+
+% Gestione avanzata dei font
+\usepackage{fix-cm} % Per dimensioni flessibili dei font
+
+% Fine preambolo; inizia il documento
+
+
+\begin{document}
+
+    % Frontespizio
+    \begin{titlepage}
+        \centering
+    
+        % Titolo
+        \vspace{2cm}
+        {\Huge\bfseries Analisi Numerica\par}
+    
+        % Autore
+        \vspace{1cm}
+        {\Large\itshape Appunti di Morello Filippo\par}
+    
+        % Data
+        \vfill
+        {\large II semestre 2025\par}
+    
+    \end{titlepage}
+
+    % Sommario
+    \tableofcontents
+
+    \break
+    
+    \section{Introduzione}
+        \subsection{Esempi introduttivi}
+            \subsubsection*{La compilation ideale}
+            Si vuole realizzare una compilation ideale avendo disposizione dei file musicali e un CD-ROM dalla capacità di $800$ MB. l’indice di
+            gradimento (in una scala da 1 a 10) e l’ingombro in MB di ogni file sono riportati nella tabella seguente: 
+
+            \begin{table}[ht]
+                \centering
+                \begin{tabular}{|c|c|c|c|}
+                \hline
+                \textbf{Canzone} & \textbf{Gradimento} & \textbf{Ingombro} \\ \hline
+                Light my fire    & 8.0                 & 210               \\
+                Fame             & 7.0                 & 190               \\
+                I will survive   & 8.5                 & 235               \\
+                Imagine          & 9.0                 & 250               \\
+                Let it be        & 7.5                 & 200               \\
+                I feel good      & 8.0                 & 220               \\ \hline
+                \end{tabular}
+                \end{table}
+           
+
+            \paragraph{Obiettivo: } Si vuole decidere quali file inserire nel CD in modo tale da massimizzare il gradimento complessivo senza eccedere la capacità del CD
+
+            \paragraph{Soluzione: } Il problema può essere modellato per mezzo di variabili decisionali binarie associate a ogni file musicale in modo tale che assumono valore uno se il file in questione e inserito nel CD valore zero in caso contrario.
+
+            Indicato con gi il gradimento della canzone i-esima, con wi il suo ingombro e con C la capacità del CD il problema può essere formulato per mezzo del seguente problema PLI: 
+
+            Quindi:
+
+
+
+            \[
+                x_i = 
+                \begin{cases}
+                    1 \text{ se la cancone i-esima è inserita nel CD} \\
+                    0 \text{ altriemnti}
+                \end{cases}
+            \]
+
+            
+            \textbf{CONSTRAINTS: }
+            
+            
+            \[
+                210x_1+190x_2+\ldots+220x_6 \leq 800
+            \]
+            
+
+
+            \textbf{funzione di gradimento: }
+            
+
+
+            \[
+                \max_{x} z = 8x_1 + 7x_2+\ldots+8x_6
+            \]
+
+
+            Scritto in modo più compatto:
+            
+            \begin{align}
+                \max_{x} z &= \sum_{i = 1}^{n = 6} g_ix_i \notag \\
+                \sum_{i = 1}^{n = 6} w_ix_i &\leq C = 800 \notag \\
+                x_i &\in {0,1}, \text{ $\forall$ } i = 1,\ldots, n (= 6 )  \notag
+            \end{align}
+
+
+
+            dove n = 6 è ilnumero di file musicali. L’unico vincolo del problema consiste nel fatto che l’ingombro dei file inseriti non deve eccedere la capacità del CD.
+
+            \textbf{OSS: } Questo tipo di problema si chiama problema dello zaino - Knapsack
+
+        
+            \subsubsection*{I treni combinati}
+            Una compagnia ferroviaria deve decidere quanti treni combinati realizzare potendo scegliere tra due diversi modelli DeLuxe e FarWest. La composizione dei due treni è schematizzata nella tabella seguente.
+
+            \begin{table}[ht]
+                \centering
+                \begin{tabular}{|c|c|c|c|}
+                \hline
+                \textbf{Tipo di vagone} & \textbf{DeLuxe} & \textbf{FarWest} & \textbf{Disponibilità} \\ \hline
+                Merci                   & 1               & 3                & 12                     \\ 
+                WLit                    & 1               & 0                & 9                      \\ 
+                Ristorante              & 1               & 0                & 10                     \\ 
+                II Classe               & 2               & 3                & 21                     \\ 
+                I Classe                & 1               & 2                & 10                     \\ 
+                Motrice                 & 1               & 1                & 9                      \\ \hline
+                \end{tabular}
+            \end{table}
+
+            Poiché dobbiamo decidere quanti treni di ciascun tipo realizzare il problema può essere formulato per mezzo di due variabili decisionali $x_1$ e $x_2$ che rappresentano rispettivamente il numero di treni Deluxe e il numero di treni Far West da realizzare: ovviamente tali variabili dovranno risultare intere e non negative
+
+
+            \begin{align*}
+                \text{max } z &= 3000x_1 + 8000x_2 \\
+                x_1 + 2x_2 &\le 10 \\
+                2x_1 + 3x_2 &\le 21 \\
+                x_1 + 3x_2 &\le 12 \\
+                x_1 &\le 9 \\
+                x_1 &\le 10 \\
+                x_1 + x_2 &\le 9 \\
+                x_1 &\ge 0, x_2 \ge 0, \text{ interi}
+            \end{align*}
+
+            \subsubsection*{La raffineria}
+            Una raffineria miscela quattro tipi di petrolio greggio in diverse proporzioni per ottenere tre diversi tipi di benzina: normale, blu super e V-power. La massima quantità disponibile di ciascun componente greggio e il corrispondente costo di acquisto sono indicati nella seguente tabella:
+
+            \begin{table}[ht]
+                \centering
+                \begin{tabular}{|l|r|r|}
+                \hline
+                \textbf{Componente} & \textbf{Disponibilità massima (barili)} & \textbf{Costo (€)} \\ \hline
+                P1                  & 500                                   & 9                  \\ 
+                P2                  & 2400                                  & 7                  \\ 
+                P3                  & 4000                                  & 12                 \\ 
+                P4                  & 1500                                  & 6                  \\ \hline
+                \end{tabular}
+            \end{table}
+
+            \paragraph{}
+            Per poter soddisfare le specifiche qualitative dei diversi tipi di benzina è necessario rispettare dei limiti assegnati circa la percentuale di ciascun componente impiegato. Tali limiti, insieme ai prezzi di vendita dei diversi tipi di benzina, sono indicati nella tabella che segue:
+
+            \begin{table}[ht]
+                \centering
+                \begin{tabular}{|l|l|r|}
+                \hline
+                \textbf{Benzina} & \textbf{Specifiche qualitative} & \textbf{Prezzo (€ barile)} \\ \hline
+                Normale          & almeno il 20\% di P2, al massimo il 30\% di P3 & 12 \\ 
+                Blu super        & almeno il 40\% di P3                          & 18 \\ 
+                V-power          & al massimo il 50\% di P2                     & 10 \\ \hline
+                \end{tabular}
+            \end{table}
+
+            Si vuole determinare la miscela ottimale dei quattro componenti che massimizza il guadagno
+            totale derivante dalla vendita delle benzine.
+
+            \paragraph{}
+            Poiché dobbiamo decidere quale quantità di ogni componente greggio usare nella produzione di ciascun tipo di benzina, nella formulazione sono necessarie delle variabili a due indici: $x_{ij}=$ barili di componente greggio i usati nella produzione di benzina di tipo j.
+            
+            \begin{align*}
+                \text{max } z &= \sum_{i=1}^{4} \sum_{j=1}^{3} p_j x_{ij} - \sum_{i=1}^{4} \sum_{j=1}^{3} c_i x_{ij} \\
+                x_{21} &\geq 0,2 \sum_{i=1}^{4} x_{i1} \\
+                x_{31} &\leq 0,3 \sum_{i=1}^{4} x_{i1} \\
+                x_{32} &\geq 0,4 \sum_{i=1}^{4} x_{i2} \\
+                x_{23} &\leq 0,5 \sum_{i=1}^{4} x_{i3} \\
+                \sum_{j=1}^{3} x_{ij} &\le d_i \quad \text{for } i = 1, ..., 4 \\
+                x_{ij} &\ge 0 \quad \text{for } i = 1, ..., 4, \quad j = 1, ..., 3
+            \end{align*}
+            
+            dove $c_i$ e $d_i$ indicano rispettivamente il costo e la disponibilità del componente greggio i, e $p_j$
+            indica il prezzo di vendita della benzina j.
+
+
+
+            
+            \subsubsection*{La turnazione degli infermieri}
+            Un ospedale deve organizzare i turni settimanali degli infermieri in modo da minimizzare il numero totale di persone coinvolte. Per soddisfare le esigenze di servizio occorre garantire ogni giorno la presenza di un numero minimo di infermieri (vedi tabella).
+
+            begin{document}
+
+            \begin{table}[ht]
+                \centering
+                \begin{tabular}{|l|*{7}{c|}}
+                \hline
+                \textbf{Giorno}     & \textbf{LUN} & \textbf{MAR} & \textbf{MER} & \textbf{GIO} & \textbf{VEN} & \textbf{SAB} & \textbf{DOM} \\ \hline
+                \textbf{Infermieri} & 17           & 13           & 15           & 19           & 14           & 16           & 11           \\ \hline
+                \end{tabular}
+            \end{table}
+
+            I turni degli infermieri consistono in cinque giorni consecutivi di lavoro seguiti da due giorni di riposo (per esempio venerdì, sabato, domenica, lunedì, e martedì lavoro; mercoledì e giovedì
+            riposo).
+
+
+            Il problema può essere modellato mediante le variabili decisionali $x_{i}$ che rappresentano il numero di persone che iniziano il turno di lavoro il giorno i per $i=1,...,7$
+            
+            \begin{align*}
+                \text{min } z &= \sum_{i=1}^{7} x_i \\
+                x_1 + x_4 + x_5 + x_6 + x_7 &\ge 17 \\
+                x_1 + x_2 + x_5 + x_6 + x_7 &\ge 13 \\
+                x_1 + x_2 + x_3 + x_6 + x_7 &\ge 15 \\
+                x_1 + x_2 + x_3 + x_4 + x_7 &\ge 19 \\
+                x_1 + x_2 + x_3 + x_4 + x_5 &\ge 14 \\
+                x_2 + x_3 + x_4 + x_5 + x_6 &\ge 16 \\
+                x_3 + x_4 + x_5 + x_6 + x_7 &\ge 11 \\
+                x_i &\ge 0 \text{ e intero, per } i = 1,\ldots,7
+            \end{align*}
+            
+            dove i vincoli impongono la presenza del numero minimo di infermieri per ciascun giorno della
+            settimana.
+            
+            \subsubsection*{La campagna pubblicitaria}
+
+            Un’agenzia di pubblicità deve realizzare una campagna promozionale avendo disposizione due mezzi: gli annunci radiofonici e quelli su carta stampata.
+            
+            \paragraph{}
+            Sono ammessi annunci radiofonici con durata di frazione di minuto e annunci sul giornale di frazione di pagina. Le stazioni radiofoniche private praticano sconti in base alla quantità di minuti richiesti: il costo al minuto è di 100 meno 2per ogni minuto utilizzato (p. e., il costo al minuto qualora se ne richiedono tre è di 94). Inoltre, le emittenti possono fornire al massimo 30 minuti di annunci in totale.
+
+            \paragraph{}
+            I giornali invece richiedono un prezzo standard di 200 per pagina. Per vincoli contrattuali almeno un terzo della spesa deve consistere in annunci sui giornali. In base ai risultati statistici si stima che tramite un minuto di annunci radiofonici si raggiungono 100.000 persone e tramite un annuncio su una pagina di giornale 15.000 persone. 
+            
+            L’agenzia deve raggiungere almeno 3 milioni di persone minimizzando i costi della campagna.
+
+            \paragraph{}
+            Introduciamo le variabili decisionali $x_1$ e $x_2$ che rappresentano il numero di minuti e il numero di pagine di giornale utilizzati nella
+            campagna.
+            
+            \begin{align*}
+                \text{min } f(x) &= (100 - 2x_1)x_1 + 200x_2 \\
+                100x_1 + 15x_2 &\ge 3000 \\
+                200x_2 &\ge \frac{1}{3}((100 - 2x_1)x_1 + 200x_2) \\
+                0 &\le x_1 \le 30, \quad x_2 \ge 0
+            \end{align*}
+            
+            Come si vede si tratta di un problema di programmazione non
+            lineare.
+            
+            \subsubsection*{Radioterapia}
+
+            La radioterapia prevede l’utilizzo di raggio esterno per far passare le radiazioni ionizzanti
+            attraverso il corpo del paziente, danneggiando sia i tessuti cancerosi che quelli sani.
+            
+            \paragraph{}
+            Normalmente, diversi fasci vengono amministrati con precisione da diverse angolazioni in
+            un piano bidimensionale. A causa, ogni raggio fornisce più radiazioni al tessuto vicino al punto di ingresso rispetto al tessuto vicino al punto di uscita. La dispersione causa anche una certa quantità di radiazione al tessuto al di fuori del percorso diretto del raggio.
+            
+            \paragraph{}
+            Poiché le cellule tumorali sono tipicamente microscopicamente intervallati tra cellule sane,
+            il dosaggio di radiazioni in tutto la regione del tumore deve essere abbastanza grande da
+            uccidere le cellule maligne, che sono più radiosensibili, ma abbastanza piccolo da risparmiare le cellule sane.
+            
+            \paragraph{}
+            Allo stesso tempo, la dose che colpisce i tessuti critici non deve superare i livelli di
+            tolleranza stabiliti, al fine di prevenire complicazioni che possono essere più gravi della
+            malattia stessa. Per la stessa ragione, la dose totale all’intera parte sana deve essere ridotta
+            al minimo.
+
+            \paragraph{}
+            L’obiettivo del progetto è selezionare la combinazione di raggi da utilizzare, e l’intensità di ciascuno, per generare la migliore distribuzione possibile della dose. (L’intensità della dose in qualsiasi punto del corpo viene misurata in unità chiamate kilorad.)
+
+            \begin{table}[ht]
+                \centering
+                \begin{tabular}{|l|c|c|c|}
+                \hline
+                \textbf{Area}               & \textbf{Raggio 1} & \textbf{Raggio 2} & \textbf{Dosaggio medio (Kilorad)} \\ \hline
+                Anatomia sana & 0.4  & 0.5  & minimizzare \\ 
+                Tessuti critici & 0.3  & 0.1  & $\le$ 2.7 \\ 
+                Regione tumorale & 0.5  & 0.5  & = 6.0 \\ 
+                Nucleo del tumore & 0.6  & 0.4  & $\ge$ 0.6 \\ \hline
+                \end{tabular}
+            \end{table}
+
+            \paragraph{}
+            Le due variabili decisionali $x_1$ e $x_2$ rappresentano la dose (in kilorad) al punto di ingresso per il raggio 1 e il raggio 2, rispettivamente.
+            
+            \begin{align*}
+                \text{min } z = 0.4x_1 + 0.5x_2 \\
+                0.3x_1 + 0.1x_2 \le 2.7 \\
+                0.5x_1 + 0.5x_2 = 6 \\
+                0.6x_1 + 0.4x_2 \ge 0.6 \\
+                x_1, x_2 \ge 0
+            \end{align*}
+
+        \pagebreak
+
+
+
+
+
+
+
+
+        
+    \subsection{Problemi di ottimizzazione}
+        Un \textbf{problema di ottimizzazione} (optimisation problem) è definito specificando:
+
+        \begin{itemize}
+            \item Un insieme $E$: gli elementi di $E$ sono chiamati \textbf{soluzioni} (o decisioni alternative)
+            \item un sottoinsieme $F \subseteq  E$ chiamato \textbf{regione ammissibile} (feasible set): i suoi elementi sono soluzioni ammissibili. Al contrario gli elementi in $E\setminus F$ sono gli elementi non ammissibili (unfeasible). 
+            La relazione $x \in F$ si chiama vincolo (constraint)
+            \item una funzione $f : E \to \mathbb{R}$, chiamata funzione obiettivo (onjective funztion) da minimizzare o massimizzare in base al problema in questione. 
+        \end{itemize}
+
+        \paragraph{}
+        \textbf{def. Soluzione ottima} (optimal solution): ogni elemento $x^*\in F$ tale che $f(x^*) \le f(y), \forall$ $y \in F$ per un problema di minimizzazione, oppure $x^*\in F$ tale che $f(x^*) \ge f(y), \forall$ $y \in F$  per un problema di massimizzazione, si chiama ottimo o soluzione ottima (optimal solution). Il valore $v = f(x^*)$ della funzione obiettivo in corrispondenza della soluzione ottima si chiama valore ottimo (optimal value).
+
+        \begin{table}[ht]
+            \centering
+            \begin{tabular}{c|c}
+                Problema di minimizzazione: & Problema di massimizzazione: \\
+                $v = \min_{x \in F} f(x)$   & $v = \max_{x \in F} f(x)$ \\   
+            \end{tabular}
+        \end{table}  
+
+        \paragraph{}
+        \textbf{def. problema equivalente} (problem equivalence): un problema di minimizzazione può essere trasformato in uno di massimizzazione (e viceversa) sostituendo semplicemente ad $f$ con $-f$
+
+        \subsubsection*{Classificazione problemi di ottimo:}
+            \paragraph{}
+            \textbf{Continuos optimisation problems} (problemi di ottimizzazione continui): le variabili possono assumere tutti i valori reali, $x \in \mathbb{R}^n$. Inoltre distinguiamo:
+            
+            \begin{itemize}
+                \item constrained optimisation (ottimizzazione vincolata) se $F \subseteq \mathbb{R}^n$
+                \item unconstrained optimisation (ottimizzazione non vincolata) se $F = \mathbb{R}^n$
+            \end{itemize}
+
+            \paragraph{}
+            \textbf{Discrete optimisation problems} (problemi di ottimizzazione discreti): le variabili possono assumere valori solamente interi, $x \in \mathbb{Z}^n$. Distinguiamo:
+            \begin{itemize}
+                \item integer programming (programmazione intera) se $F \subseteq \mathbb{R}^n$
+                \item binary (o boolean) programming (programmazione booleana o binaria) se $F = \mathbb{R}^n$ 
+            \end{itemize} 
+
+            \paragraph{}
+            \textbf{Mixed optimisation problems} (problemi di ottimizzazione mista): quando solamente alcune variabili sono vincolate a essere intere
+            
+        \subsubsection{Esempio 1: Production Planning}
+        Un'industria chimica produce 4 tipi di fertilizzanti: Tipo 1, Tipo 2, Tipo 3 e Tipo 4, la cui lavorazione viene effettuata da due reparti dell'industria: il reparto di produzione e il reparto di confezionamento. Per ottenere un fertilizzante pronto per la vendita, è necessaria la lavorazione in entrambi i reparti. La seguente tabella mostra, per ciascun tipo di fertilizzante, i tempi (in ore) necessari per la lavorazione in ciascun reparto al fine di ottenere una tonnellata di fertilizzante pronta per la vendita.
+
+        \begin{table}[ht]
+            \centering
+            \begin{tabular}{|l|c|c|c|c|}
+            \hline
+            \textbf{Reparto}            & \textbf{Tipo 1} & \textbf{Tipo 2} & \textbf{Tipo 3} & \textbf{Tipo 4} \\ \hline
+            Produzione                  & 2.0             & 1.5             & 0.5             & 2.5             \\ 
+            Confezionamento             & 0.5             & 0.25            & 0.25            & 1.0             \\ \hline
+            \end{tabular}
+        \end{table}
+
+
+        Dopo aver dedotto il costo della materia prima, ogni tonnellata di fertilizzante produce i seguenti profitti (prezzi espressi in euro per tonnellata)
+
+        \begin{table}[ht]
+            \centering
+            \begin{tabular}{|c|c|c|c|c|}
+            \hline
+            \textbf{Tipo di Fertilizzante} & \textbf{Tipo 1} & \textbf{Tipo 2} & \textbf{Tipo 3} & \textbf{Tipo 4} \\ \hline
+            \textbf{Profitto (€)}          & 250             & 230             & 110             & 350             \\ \hline
+            \end{tabular}
+        \end{table}
+        Determina le quantità che devono essere prodotte settimanalmente di ciascun tipo di fertilizzante al fine di massimizzare il profitto complessivo, sapendo che ogni settimana, il reparto di produzione e il reparto di confezionamento hanno una capacità lavorativa massima di 100 e 50 ore, rispettivamente.
+
+        \paragraph{}
+        \textbf{Variabili di decisione}: La scelta più naturale è introdurre quattro variabili reali (x1, x2, x3, x4) che rappresentano la quantità di prodotto di Tipo 1, Tipo 2, Tipo 3 e Tipo 4, rispettivamente, da produrre in una settimana.
+        \paragraph{}
+        \textbf{Funzione obiettivo}: Ogni tonnellata di fertilizzante contribuisce al profitto totale, che può essere espresso come
+
+        \begin{align*}
+            250x_1+230x_2+110x_3+350x_4
+        \end{align*}
+
+        L'obiettivo dell'industria chimica è scegliere i valori appropriati di $x_1, x_2, x_3, x_4$ per massimizzare il profitto espresso.
+
+        \paragraph{}
+        \textbf{Constraints}: Ovviamente, la capacità produttiva della fabbrica limita i valori che possono assumere le variabili $x_j$, con $j = 1,\ldots,4$ Infatti, esiste una capacità lavorativa massima in ore settimanali per ciascun reparto. In particolare, ci sono al massimo 100 ore a settimana per il reparto di produzione e, poiché ogni tonnellata di fertilizzante di Tipo 1 utilizza il reparto di produzione per 2 ore, ogni tonnellata di fertilizzante di Tipo 2 utilizza il reparto di produzione per 1.5 ore e così via per gli altri tipi di fertilizzanti, si dovrà avere:
+
+        \begin{align*}
+            2x_1+1.5x_2+0.5x_3+2.5x_4 \le 100
+        \end{align*}
+
+        Ragionando allo stesso modo per il reparto di confezionamento, otteniamo:
+
+        \begin{align*}
+            0.5x_1+0.25x_2+0.25x_3+x_4 \le 50
+        \end{align*}
+
+        Queste due espressioni costituiscono i vincoli del modello. È inoltre necessario esplicitare i vincoli dovuti al fatto che le variabili $x_j$, $j = 1,...,4$, che rappresentano quantità di prodotto, non possono essere negative e pertanto devono essere aggiunti vincoli di non negatività: $x1 \ge 0, x2 \ge 0, x3 \ge 0, x4 \ge 0$.
+
+
+        \begin{align*}
+            \max_{x} z = 250x_1 + 230x_2 + 110x_3 + 350x_4 \\ 
+            2x_1 + 1.5x_2 + 0.5x_3 + 2.5x_4 \leq 100 \\
+            0.5x_1 + 0.25x_2 + 0.25x_3 + x_4 \leq 50 \\
+            x_1, x_2, x_3, x_4 \geq 0
+        \end{align*}
+            
+        L'insieme delle soluzioni ammissibili \( F \) è definito come:
+        
+        \[
+        F = \left\{ x \in \mathbb{R}^4 \mid 
+        \begin{aligned}
+            2x_1 + 1.5x_2 + 0.5x_3 + 2.5x_4 & \leq 100 \\
+            0.5x_1 + 0.25x_2 + 0.25x_3 + x_4 & \leq 50 \\
+            x_1, x_2, x_3, x_4 & \geq 0
+        \end{aligned}
+        \right\}
+        \]
+
+        \subsubsection{Esempio 2: capital budget}
+        Supponiamo di dover investire 1000 sul mercato finanziario. Assumiamo anche che il mercato offra tre diversi tipi di investimento (A, B, C), ciascuno caratterizzato da un prezzo di acquisto e da un rendimento netto, che sono riassunti nella seguente tabella:
+
+        \begin{table}[ht]
+            \centering
+            \begin{tabular}{|l|c|c|c|}
+            \hline
+            \textbf{}              & \textbf{A} & \textbf{B} & \textbf{C} \\ \hline
+            \textbf{Prezzo d'acquisto (€)} & 750         & 200         & 800         \\ 
+            \textbf{Rendimento (\%)}       & 20          & 5           & 10          \\ \hline
+            \end{tabular}
+        \end{table}
+
+        Si desidera decidere quali investimenti effettuare per massimizzare il rendimento, sapendo che gli investimenti A, B, C non possono essere effettuati in modo parziale, cioè non sono divisibili.
+
+
+        \paragraph{}
+        \textbf{Variabili di decisione}: La scelta più naturale è introdurre tre variabili binarie $(x_A, x_B, x_C)$ dove:
+
+        \[
+            x_i = 
+            \begin{cases} 
+                0 & \text{se l'investimento } i \text{ non viene effettuato} \\
+                1 & \text{se l'investimento } i \text{ viene effettuato}
+            \end{cases}
+        \]
+
+        \textbf{Funzione obiettivo}: L'obiettivo è massimizzare il rendimento totale, cioè:
+
+        \[
+            20x_A+5x_B+10x_C
+        \]
+
+        \textbf{Vincoli}: Il costo totale non deve superare 1000, cioè:
+
+        \[
+            750x_A+200x_B+800x_C \le 1000
+        \]
+
+        \paragraph{}
+        Il problema nell'insieme diventa:
+
+        \begin{align*}
+            \max_{x} z = 20x_A + 5x_B + 10x_C \\
+            750x_A+200x_B+800x_C \le 1000 \\
+            x_i \in \{0, 1\}, \quad i = A, B, C
+        \end{align*}
+           
+        \paragraph{}
+        L'insieme ammissibile \( F \) è definito come:
+
+        \[
+            F = \left\{ x \in \{0, 1\}^3 \mid 750x_A + 200x_B + 800x_C \leq 1000 \right\}
+        \]
+            
+
+
+
+
+
+
+
+        
+
+
+    \subsection{Funzioni}
+        \subsubsection{Convessità}
+            \paragraph{}
+            \textbf{def. convessità:} una funzione $f(x)$ si dice funzione convessa se per ogni coppia $x_1$ e $x_2$ di valori con $x_1 \le x_2$ si ha:
+            
+            \begin{align}
+                f(\lambda x_2 + (1- \lambda) x_1) \le \lambda f(x_2) + (1-\lambda)f(x_1) \notag
+            \end{align}
+
+            per ogni valore $lambda$ tale che $0 \le \lambda \le 1$
+
+            \paragraph{} Inoltre $f$ si dice che è:
+            \begin{enumerate}
+                \item \textbf{strettamente convessa} se si può sostituire $\le$ con $<$
+                \item \textbf{concava} se si invertono i segni di disuguaglianza alla definizione di funzione convessa
+                \item \textbf{strettamente concava} se si può sostituire al segno di $\ge$ con il segno di $>$ 
+            \end{enumerate}
+
+            \paragraph{}
+            \textbf{Oss: } una funzione lineare è sia concava che convessa
+
+            \subsubsection*{Test di convessità}
+            Sia $f(x)$ una funzione di una sola variabile che ammette derivata seconda per tutti i possibili valori di x. Allora $f(x)$ è:
+            
+            \begin{itemize}
+                \item \textbf{convessa}: se e solo se $\frac{d^2 f(x)}{dx^2} \ge 0$ per ogni possibile valore di x.
+                \item \textbf{strettamente convessa}: se $\frac{d^2 f(x)}{dx^2} > 0$ per ogni possibile valore di x.
+                \item \textbf{concava}: se $\frac{d^2 f(x)}{dx^2} \le 0$ per ogni possibile valore di x.
+                \item \textbf{strettamente concava}: se $\frac{d^2 f(x)}{dx^2} < 0$ per ogni possibile valore di x.
+            \end{itemize}
+
+            \paragraph{}
+            \textbf{Oss:} una funzione strettamente convessa è anche convessa, ma una funzione convessa non è strettamente convessa se la sua derivata seconda è uguale a zero per alcuni valori di x. 
+            Analogamente una funzione strettamente concava è concava, ma non vale il viceversa.
+
+            \paragraph{}
+            \textbf{def. insieme convesso}: Un insieme convesso è un insieme di punti tale che, per ogni coppia di punti dell'insieme, il segmento che li congiunge è interamente contenuto nell'insieme.
+
+            \paragraph{}
+            \textbf{th.}: l'intersezione di insiemi convesi è un insieme convesso.
+            \paragraph{}
+            \textbf{def punti estremi}: un punto estremo è un punto dell'insieme che non appartiene ad alcun segmento congiungente altri due punti distinti dell'insieme. 
+
+            \paragraph{}
+            \textbf{Oss}: non tutti gli insiemi convessi hanno punti estremi 
+
+        \subsubsection{Derivate}
+        Si consideri una funzione di una sola variabile e derivabile. Condizione necessaria affinchèà una aparticolare soluzione $x = x^*$ si un minimo o un massimo è che:
+
+        \begin{align}
+            \frac{df(f)}{dx} = 0 \text{ in $x = x^*$} \notag
+        \end{align}
+
+        Per avere maggiori informazioni sui punti critici è necessario esaminare la derivata seconda. 
+
+        \paragraph{}
+        \textbf{Oss:} se la funzione non è derivabile in tutto il suo dominio la proprietà enunciata non vale
+
+
+        \subsubsection{Massimi e minimi}
+        Se: 
+        
+        \begin{align*}
+            \frac{d^2f(x)}{dx^2} \ge 0 \text{ in $x = x^*$}
+        \end{align*}
+
+        allora $x^*$ è almeno un \textbf{minimo locale}, cioè $f(x*) \le f(x)$ $\forall$ $x$ sufficientemente vicino a $x^*$. 
+
+        In altre parole $x^*$ è un minimo se $f(x)$ è strettamente convessa in un intorno odi $x^*$.
+
+        \paragraph{}
+        Analogamente, una condizione sufficiente affinché $x^*$ sia un massimo locale (supponendo che soddisfi la condizione necessaria) è che $f(x)$ sia concava in un intorno di $x^*$ (cioè la derivata seconda è negativa in $x^*$).
+
+        Se la derivata seconda è nulla è necessario esaminare le derivate di ordine superiore (in questo caso il punto potrebbe anche essere un
+        punto di flesso).
+
+        \paragraph{}
+        \textbf{Oss: } Se il dominio è limitato è necessario controllare gli estremi dell’intervallo.
+
+        Per determinare un \textbf{minimo globale} (cioè una soluzione \( x^* \) tale che \( f(x^*) \leq f(x) \) per ogni \( x \)), è necessario:
+
+        \begin{itemize}
+            \item Confrontare i \textbf{minimi locali} e identificare quello per il quale si ha il più piccolo valore di \( f(x) \).
+            \item Verificare che questo valore sia minore di \( f(x) \) per \( x \to -\infty \) e \( x \to +\infty \) (oppure agli estremi del dominio della funzione, se questa è definita in un intervallo limitato).
+        \end{itemize}
+
+        Se queste condizioni sono soddisfatte, allora il punto identificato è un \textbf{minimo globale}.
+
+        Il \textbf{massimo globale} è determinato in modo analogo
+
+        \paragraph{}
+        \textbf{Oss: } se $f(x)$ è una funzione convessa, allora una qualunque soluzione $x^*$ tale che 
+
+        \begin{align*}
+            \frac{df(x)}{dx} = 0 \text{ in $x = x^*$}
+        \end{align*}
+
+        è automaticamente un minimo globale.
+        In altre parole questa condizione è non solo necessaria ma anche sufficente per un minimo globale diuna funzione convessa.
+
+        Questa soluzione non deve necessariamente essere unica perchè la funzione potrebbe rimanare costante in un certo intervallo nel quale la sua derivata è nulla.
+
+        D’altra parte se $f(x)$ è strettamente convessa allora questa soluzione deve essere l’unico minimo globale.
+
+        Analogamente, se \( f(x) \) è una funzione concava, allora la condizione
+
+
+        \[
+            \frac{df(x)}{dx} = 0 \quad \text{in } x = x^*
+        \]
+
+
+        è sia necessaria che sufficiente affinché \( x^* \) sia un massimo globale.
+
+        \paragraph{}
+        \textbf{Oss: }  Se la funzione non è strettamente concava o strettamente convessa ci possono essere infinite soluzioni ottime, rispettivamente massimi
+        e minimi globali.
+
+        
+
+    \section{Programmazione lineare}
+        \subsection{LP properties: Proportionality}
+        \subsection{LP properties: Fixed charge}
+        \subsection{LP properties: Additivity}
+        \subsection{LP properties: Divisibily (or Continuity)}
+        \subsection{LP properties: Certainty}
+        \subsection{Esiti possibili in un LP}
+        \subsubsection{Key Theorem}
+    \section{Algoritmo del simplesso}   
+    
+    
+
+
+
+    \section{Soluzioni base}
+        \subsection{Forma standard}
+            Un qualuqnue problema di programmazione lineare può essere sempre formulato in FORMA STANDARD:
+            \begin{align}
+               \max{z} &= c^{T}x \notag \\
+                Ax &= b, \text{ ($b \geq 0$)} \notag \\
+                x & \geq 0 \notag 
+            \end{align}
+
+            \paragraph{Th. } $\forall$ PL $\exists$ PL' in forma standard
+
+            \paragraph{}
+            Dato il problema: 
+            \begin{align}
+                \max{z} &= cx \notag \\
+                 Ax &= b, \text{ } A \in M_{m,n}(\mathbb{R}) \notag \\
+                 x & \geq 0 \notag 
+            \end{align}
+            
+            Si suppnga il $rango(A)$ = m, $m < n$, eventualmente riordinando le colonne, si può pore 
+            \[
+                A = [B|N]
+            \]
+
+            dove 
+            \begin{itemize}
+                \item B è una matrice nonsingolare $m \cdot m$ detta MATRICE DELLE COLONNE BASE 
+                \item N è una matrice $m \cdot (n-m)$, MATRICE DELLE COLONNE FUORI BASE
+            \end{itemize}
+
+            La matrice B è composta da m colonne di A linearmente indipendenti che formano 
+            una base nello spazio vettoriale ad m dimensioni delle colonne di A.
+
+
+
+            \paragraph{}
+            Sia:
+
+
+            \[
+                x = 
+                \begin{pmatrix}
+                    x_1 \\
+                    \ldots \\
+                    x_n
+                \end{pmatrix}
+                \in \mathbb{R}^n
+            \]
+
+            In corripondenza di una scelta B e di N si può partizionare anche il vettore delle x:
+
+            \[ x = 
+            \begin{bmatrix}
+                x_B \\
+                x_N
+            \end{bmatrix}
+            \]
+
+            \begin{itemize}
+                \item $x_B$, costituito da $m$ componenti, è detto vettore delle variabili base (vettore base)
+                \item $x_N$, costituito da $n-m$ componenti, è detto vettore delle variabili fuori base
+            \end{itemize}
+
+
+
+            \paragraph{}
+            Il sistema di equazizoni lineari $Ax = b$ si può scrivere come:
+            
+            \begin{align}
+                [B|N] 
+                \begin{bmatrix}
+                    x_B \\
+                    x_N 
+                \end{bmatrix} &= b
+                \implies B x_B + N x_N = b \notag \\
+                x_B &= B^{-1} b -B^{-1} N x_N \notag 
+            \end{align}
+
+            Dove $A = B|N$, B con $m$ elementi, invertibile, quindi $\exists$ $B^{-1}$, N di $(n-m)$ elementi.
+            
+
+            \paragraph{}
+            Per ogni base B (matrice di base) ogni soluzione del sistema $Ax = b$ corrisponde a determinare il valore per $m$ variabuli $x_B$ avendo fissato arbitrariarmente il valore per le restanti $n-m$ varibiabili $x_N$.
+
+            Una scelta particolarmente importante è porre $x_N = 0$, da cui si ottiene la corrispondente soluzione base: 
+            
+            \[ 
+                x = 
+                \begin{bmatrix}
+                    x_B \\
+                    x_N
+                \end{bmatrix}
+                = 
+                \begin{bmatrix}
+                    B^{-1}b \\
+                    0
+                \end{bmatrix}
+            \]
+
+
+
+            se $B^{-1} b \geq 0$ si ottiene una soluzione di base ammissibile (BFS) per il sistema $Ax = b$, $x \geq 0$
+
+
+            \paragraph{}
+            \textbf{Dato il problema $Ax = b,x \geq 0$, una soluzione x è un vertice del
+            poliedro $P(A, b)$ se e solo se x è una BFS} (soluzione della base ammissibile)
+
+            Un punto di un poliedro è un vertice (punto estremo) se e solo se soddisfa all’uguaglianza n vincoli linearmente indipendenti, quindi basta dimostrare che ogni BFS soddisfa n vincoli linearmente indipendenti tra $Ax = b,x \geq 0$.
+
+            Per definizione ogni BFS soddisfa all’uguaglianza (n-m) vincoli $x \geq 0$ e gli m
+            vincoli di $Ax = b$. I vincoli stringenti sono linearmente indipendenti poiché la matrice dei loro coefficienti è certamente non singolare essendo della forma
+            
+
+            \[
+                \begin{pmatrix}
+                    B & N \\
+                    0 & I_{n-m}
+                \end{pmatrix}
+            \]
+
+            \textbf{Problema LP-ESEMPIO: }
+
+            \begin{align}
+                \max_{x} z &= 2x_1+x_2 \notag \\
+                x_1 + x_2 &\leq 5 \notag \\
+                -x_1 + x+2 &\leq 0 \notag \\
+                x_1 + 2x_2 &\leq 21 \notag \\
+                x_1, x_2 &\geq 0 \notag 
+            \end{align}
+
+            Non è in forma standard, ma espresso solo in termini delle variabili strutturali (cioè che hanno un immediata corrispondenza
+            fisica col sistema reale che viene modellato)
+
+            \paragraph{OSS: } come lo si trasforma in \textbf{f. standard}? 
+
+            Lo si trasforma in forma standard introducendo le variabili \textbf{SLACK} $s_1, s_2, s_3$. Sono variabili che rappresentano una sorta di "distanza" da uno dei vincoli. Se il valore è positivo siamo dentro al vincolo, se è 0 siamo sul vincolo, altrimenti siamo all'esterno del vincolo.
+
+            \[
+                \begin{cases}
+                    a+s = b \\
+                    s \geq 0
+                \end{cases}
+                \iff a \leq b 
+            \]            
+            
+            Il problema ottenuto diventa quindi:
+
+
+
+            \begin{align*}
+                \max_{x} z &= 2x_1 + x_2 \\
+                x_1 + x_2 + s_1 &= 5 \\
+                -x_1 + x_2 + s_2 &= 0 \\
+                6x_1 + 2x_2 + s_3 &= 21 \\
+                x_1, x_2, s_1, s_2, s_3 &\geq 0.
+            \end{align*}
+
+
+
+            dove $s_1, s_2, s_3$ sono le variabili slack
+            
+            
+
+
+            Se lo scriviamo nella forma matriciale ottengo:
+
+
+            \begin{align*}
+                \mathbf{A} &= 
+                \begin{bmatrix}
+                1 & 1 & 1 & 0 & 0 \\
+                -1 & 1 & 0 & 1 & 0 \\
+                6 & 2 & 0 & 0 & 1 \\
+                \end{bmatrix},
+                \mathbf{b} = 
+                    \begin{bmatrix}
+                        5 \\
+                        0 \\
+                        21 \\
+                    \end{bmatrix}
+                \end{align*}
+
+               
+
+                Limite superiore delle possibili basi $\frac{5!}{3!2!} = 10$ (alcune soluzioni sono degeneri, ovvero sono uguali; ex. 0 può essere ottenuto in più modi.), ma non tutte le basi corrispondono ad una soluzione ammissibile BFS, nell’esempio solo 6 basi sono ammissibili.
+
+                Siccome i vertici sono 4, vi saranno BFS degeneri.
+
+                dove $m = 3$, $n = 5$. 
+                se fisso il valore n-m = 2 variabili, posso risolvere il sistema che ora è  di 3 incognite in 3 equazioni lineari ($rg(A) = 3$)
+                
+
+
+                \[
+                    \mathbf{x_B}^{(3)} =
+                    \begin{bmatrix}
+                        x_1 \\ x_2 \\x_4
+                    \end{bmatrix}
+                    \quad
+                    B_3 =
+                    \begin{bmatrix}
+                        1 & 1 & 0 \\
+                        -1 & 1 & 1 \\
+                        6 & 2 & 0
+                    \end{bmatrix}
+                    \quad
+                    B_3^{-1} =
+                    \frac{1}{4}
+                    \begin{bmatrix}
+                        -2 & 0 & 1 \\
+                        6 & 0 & -1 \\
+                        -8 & 4 & 2
+                    \end{bmatrix}
+                \]
+                    
+                    
+
+                \textbf{OSS: } come si capisce che un vertice è non ammissibile? Guardo alla soluzione se contiene dei valori $< 0$, in quel caso allora tale soluzione è non ammissibile.
+                
+                
+                
+                \[
+                    B_3^{-1} \mathbf{b} =
+                    B_3^{-1}
+                    \begin{bmatrix}
+                        5 \\ 0 \\ 21
+                    \end{bmatrix}
+                    =
+                    \begin{bmatrix}
+                        11/4 \\
+                        9/4 \\
+                        1/2
+                    \end{bmatrix}
+                    \Rightarrow p_3
+                \]
+
+
+                Su Gurobi $B_3$ è ricavata facendo $A[x_B.index]$
+
+
+                
+
+                \[
+                    \mathbf{x}_B^{(2)} = \begin{bmatrix} x_1 \\ x_2 \\ x_5 \end{bmatrix} = \begin{bmatrix} 5/2 \\ 5/2 \\ 1 \end{bmatrix} \Rightarrow p_2
+                \]
+    
+    
+                \[
+                    \mathbf{x}_B^{(4)} = \begin{bmatrix} x_1 \\ x_3 \\ x_4 \end{bmatrix} = \begin{bmatrix} 7/2 \\ 3/2 \\ 7/2 \end{bmatrix} \Rightarrow p_4
+                \]
+    
+                
+                \[
+                    \mathbf{x}_B^{(1)} = \begin{bmatrix} x_1 \\ x_3 \\ x_5 \end{bmatrix} = \mathbf{x}_B^{(5)} = \begin{bmatrix} x_2 \\ x_3 \\ x_5 \end{bmatrix} = \mathbf{x}_B^{(6)} = \begin{bmatrix} x_4 \\ x_3 \\ x_5 \end{bmatrix} = \begin{bmatrix} 0 \\ 5 \\ 21 \end{bmatrix} \Rightarrow p_1
+                \]
+    
+
+                \[
+                    \text{soluzioni degeneri}
+                \]
+
+
+                \[
+                    \mathbf{x_B}^{(7)} = \begin{bmatrix} x_1 \\ x_2 \\ x_3 \end{bmatrix}
+                \]
+                
+
+                \[
+                    \mathbf{B}_{(7)} = \begin{bmatrix} 1 & 1 & 1 \\ -1 & 1 & 0 \\ 6 & 2 & 0 \end{bmatrix}
+                \]
+    
+
+                \[
+                    \mathbf{B}_{(7)}^{-1} = \frac{1}{8} \begin{bmatrix} 0 & -2 & 1 \\ 0 & 6 & 1 \\ 8 & -4 & -2 \end{bmatrix}
+                \]
+
+    
+                \[
+                    \mathbf{B}_{(7)}^{-1} \mathbf{b} = \mathbf{B}_{(7)}^{-1} \begin{bmatrix} 5 \\ 0 \\ 21 \end{bmatrix} = \begin{bmatrix} 21/8 \\ 21/8 \\ -1/4 \end{bmatrix}
+                \]
+    
+
+                \[
+                    \text{Analogamente, sono basi non ammissibili}
+                \]    
+    
+
+                \[
+                    \begin{bmatrix} x_2 \\ x_4 \\ x_5 \end{bmatrix} \quad \begin{bmatrix} x_1 \\ x_4 \\ x_5 \end{bmatrix} \quad \begin{bmatrix} x_2 \\ x_3 \\ x_4 \end{bmatrix}
+                \]
+
+                Se in un problema di PL ci sono dei vincoli di maggiore o uguale, per trasformare il problema in forma standard si introducono delle variabili di surplus con segno opposto, ad esempio:
+
+                \[
+                    -3x_1+2x_2 \geq 5 \Leftrightarrow -3x_1+2x_2 + s \geq 5 \text{ non è possibile $s > 0 $}
+                \]
+
+                introduco la variabile di surplus: $-3x_1+2x_2 - s \geq 5$
+
+
+                \[
+                % Esplicitando la funzione obiettivo
+                z = \mathbf{cx} = \begin{bmatrix} \mathbf{c_B} & \mathbf{c_N} \end{bmatrix} 
+                \begin{bmatrix} \mathbf{x_B} \\ \mathbf{x_N} \end{bmatrix} = 
+                \mathbf{c_B x_B} + \mathbf{c_N x_N} \quad (1)
+                \]
+                
+                \[
+                % Sostituendo l'espressione delle variabili di base
+                \mathbf{x_B} = \mathbf{B}^{-1} \mathbf{b} - \mathbf{B}^{-1} \mathbf{N x_N} \quad (2)
+                \]
+
+
+                \[
+                % Risultato finale
+                z = \mathbf{c_B B}^{-1} \mathbf{b} - 
+                \left( \mathbf{c_B B}^{-1} \mathbf{N} - \mathbf{c_N} \right) \mathbf{x_N} \quad (3)
+                \]
+
+                \[
+                % Valore dell'obiettivo corrispondente alla base B
+                z(\mathbf{B}) = \mathbf{c_B B}^{-1} \mathbf{b}
+                \]
+
+
+
+
+
+
+                
+
+
+
+
+
+
+
+
+            
+        \section{Algoritmo del simplesso - fase I e fase II}
+        Nell’algoritmo del simplesso si distingue una fase I, che consiste nel passo di inizializzazione in cui viene individuata una prima BFS, e una fase II, che consiste nel determinare la BFS ottima a partire dalla prima BFS.
+
+        \paragraph{}
+        La fase II è stata già illustrata, la fase I viene illustrata in seguito.
+
+        \paragraph{}
+        La verifica se il problema è illimitato può anche venire fatta durante la fase II controllando tutte le colonne associate a costi ridotti positivi (e quindi coefficienti nel tableau negativi), se le
+        colonne sono numerose questa verifica può essere onerosa.
+
+        In alcuni casi una prima base ammissibile è immediata. Si supponga infatti che il problema sia
+        formulato come:
+
+        \begin{align}
+            ...
+        \end{align}
+
+        con $b \geq 0$,allora la sua trasformazione in forma standard introduce delle variabili di slack s le cui corrispondenti colonne formano la prima base ammissibile: 
+
+        \begin{align}
+            ...
+        \end{align}
+
+        Riordinando le colonne si ottiene
+
+        \begin{align}
+            ...
+        \end{align}
+
+        dove chiaramente
+
+        \begin{align}
+            ...
+        \end{align}
+
+        \paragraph{}
+        \textbf{def. }  Qualora un problema di PL in forma standard ha le matrice A che si può esprimere come
+
+        \begin{align}
+            ...
+        \end{align}
+
+        allora il problema è detto essere espresso in forma \textbf{canonica}
+
+        Non è immediato esprimere un problema di PL in forma canonica in presenza di disuguaglianze di verso opposto, infatti le variabili di surplus hanno coefficienti negativi, o in presenza di vincoli di uguaglianza.
+
+
+        \paragraph{}
+        \textbf{Esempio: }
+
+        \textbf{Formulazione inziaile}
+
+        \begin{align}
+            ...
+        \end{align}
+
+
+
+        \textbf{Formulazione  standard}
+
+        \begin{align}
+            ....
+        \end{align}
+
+        Questa formulazione standard NON è una forma canonica:
+        
+        \[
+            A = 
+            \begin{bmatrix}
+                3 & 1 & 0 & 0 \\
+                4 & 3 & -1 & 0 \\
+                1 & 2 & 0 & 1 
+            \end{bmatrix}
+        \]
+
+
+        
+
+
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+------------------------------------------------------------
+\section{A Production Problem}
+
+A firm produces $n$ different goods using $m$ different raw materials.
+
+Let $b_{i}$, for $i = 1, \dots, m$, be the available amount of the $i$-th raw material. The $j$-th good, for $j = 1, \dots, n$, requires $a_{ij}$ units of the $i$-th material and results in a revenue $c_{j}$ per unit produced.
+
+The firm faces the problem of deciding how much of each good to produce in order to maximize its total revenues.
+
+The decision variable is defined as follows:
+
+Let $x_{j}$, for $j = 1, \dots, n$, be the amount of the $j$-th good to be produced.
+
+\section{Primal Formulation}
+
+\begin{align*}
+\max & \quad c_{1}x_{1} + \dots + c_{n}x_{n} \\
+\text{s.t.} & \quad a_{i1}x_{1} + \dots + a_{in}x_{n} \leq b_{i}, \quad i=1, \dots, m \\
+& \quad x_{j} \geq 0, \quad j=1, \dots, n
+\end{align*}
+
+\subsubsection*{Decision Variables}
+The quantity of goods produced:
+\[ x_{j} \in \mathbb{R}, \quad \forall j=1,\dots,n. \]
+These variables are assumed to be continuous.
+
+\subsubsection*{Objective Function}
+Maximize the profit:
+\[ \sum_{j=1}^{n} c_{j}x_{j}. \]
+
+\subsubsection*{Constraints}
+For each raw material, the amount used in production cannot exceed the available amount:
+\[ \sum_{j=1}^{n} a_{ij} x_{j} \leq b_{i}, \quad \forall i=1,\dots,m. \]
+For each good, the production quantity must be non-negative:
+\[ x_{j} \geq 0, \quad \forall j=1,\dots,n. \]
+
+\section{Example}
+
+\begin{align*}
+\max & \quad 15x_{1} + 10x_{2} \\
+\text{s.t.} & \quad x_{1} + x_{2} \leq 2000 \\
+& \quad x_{1} + 0.5x_{2} \leq 1000 \\
+& \quad 2x_{1} + x_{2} \leq 3000 \\
+& \quad x_{1}, x_{2} \geq 0
+\end{align*}
+
+\section{Comments on the Primal Problem}
+Before deciding on production to maximize profit, one should consider whether it is more beneficial to sell the raw materials instead of producing goods.
+
+The key question is:
+
+\textit{What is the minimum price at which all available resources should be sold rather than used for production?}
+
+This question is answered by the dual problem.
+
+\section{The Dual of the Production Problem}
+
+Assuming linearity, the total profit from selling resources is equal to the sum of profits obtained from selling each individual resource. The profit from selling a unit of a good must not exceed the profit obtained from selling the required raw materials.
+
+\section{Dual Variables and Objective Function}
+
+\subsection{Decision Variables}
+The unit price of each resource:
+\[ \pi_{i} \in \mathbb{R}, \quad \forall i = 1, \dots, m. \]
+These are continuous variables.
+
+\subsection{Objective Function}
+Maximize the profit from selling resources:
+\[ \sum_{i=1}^{m} b_{i} \pi_{i}. \]
+
+\section{Dual Constraints}
+For each good, the cost of raw materials must be at least as high as the profit from producing the good:
+\[ \sum_{i=1}^{m} a_{ij} \pi_{i} \geq c_{j}, \quad \forall j=1,\dots,n. \]
+The resource prices must be non-negative:
+\[ \pi_{i} \geq 0, \quad \forall i=1,\dots,m. \]
+
+\section{Dual Formulation}
+
+\begin{align*}
+\min & \quad \sum_{i=1}^{m} b_{i} \pi_{i} \\
+\text{s.t.} & \quad \sum_{i=1}^{m} a_{ij} \pi_{i} \geq c_{j}, \quad j=1,\dots,n \\
+& \quad \pi_{i} \geq 0, \quad i=1,\dots,m
+\end{align*}
+
+In matrix form:
+
+\begin{align*}
+\min & \quad b^{T} \pi \\
+\text{s.t.} & \quad A^{T} \pi \geq c \\
+& \quad \pi \geq 0
+\end{align*}
+
+\section{Comments on the Dual Problem}
+
+It is intuitively evident that:
+
+\begin{itemize}
+    \item Any feasible solution to the dual problem ensures a profit not lower than the maximum achievable through production.
+    \item The optimal dual solution cannot be lower than the optimal primal solution, otherwise, production would still be advantageous.
+\end{itemize}
+
+\section{Primal and Dual Problems}
+
+Each linear programming (LP) problem (primal) has an associated dual problem.
+
+\subsection{Primal Problem (P)}
+
+\begin{align*}
+\max & \quad z = c_{1}x_{1} + \dots + c_{n}x_{n} \\
+\text{s.t.} & \quad a_{11}x_{1} + \dots + a_{1n}x_{n} \leq b_{1} \\
+& \quad \vdots \\
+& \quad a_{m1}x_{1} + \dots + a_{mn}x_{n} \leq b_{m} \\
+& \quad x_{1}, \dots, x_{n} \geq 0
+\end{align*}
+
+\subsection{Dual Problem (D)}
+
+\begin{align*}
+\min & \quad w = b_{1} \pi_{1} + \dots + b_{m} \pi_{m} \\
+\text{s.t.} & \quad a_{11} \pi_{1} + \dots + a_{m1} \pi_{m} \geq c_{1} \\
+& \quad \vdots \\
+& \quad a_{1n} \pi_{1} + \dots + a_{mn} \pi_{m} \geq c_{n} \\
+& \quad \pi_{1}, \dots, \pi_{m} \geq 0
+\end{align*}
+
+\subsubsection*{Property}
+Problem D has as many variables as there are constraints in P and as many constraints as there are variables in P.
+
+\section{Primal and Dual - Matrix Form}
+
+In matrix form:
+
+\subsection{Primal Problem (P)}
+
+\begin{align*}
+\max & \quad z = c^{T} x \\
+\text{s.t.} & \quad A x \leq b \\
+& \quad x \geq 0
+\end{align*}
+
+\subsection{Dual Problem (D)}
+
+\begin{align*}
+\min & \quad w = b^{T} \pi \\
+\text{s.t.} & \quad A^{T} \pi \geq c \\
+& \quad \pi \geq 0
+\end{align*} 
+
+\end{document}

@@ -1,0 +1,87 @@
+\babel@toc {italian}{}\relax 
+\babel@toc {italian}{}\relax 
+\contentsline {section}{\numberline {1}Introduzione}{2}{}%
+\contentsline {subsection}{\numberline {1.1}Esempi introduttivi}{2}{}%
+\contentsline {paragraph}{Obiettivo: }{2}{}%
+\contentsline {paragraph}{Soluzione: }{2}{}%
+\contentsline {paragraph}{}{3}{}%
+\contentsline {paragraph}{}{3}{}%
+\contentsline {paragraph}{}{5}{}%
+\contentsline {paragraph}{}{5}{}%
+\contentsline {paragraph}{}{5}{}%
+\contentsline {paragraph}{}{5}{}%
+\contentsline {paragraph}{}{5}{}%
+\contentsline {paragraph}{}{5}{}%
+\contentsline {paragraph}{}{5}{}%
+\contentsline {paragraph}{}{5}{}%
+\contentsline {subsection}{\numberline {1.2}Problemi di ottimizzazione}{7}{}%
+\contentsline {paragraph}{}{7}{}%
+\contentsline {paragraph}{}{7}{}%
+\contentsline {paragraph}{}{7}{}%
+\contentsline {paragraph}{}{7}{}%
+\contentsline {paragraph}{}{7}{}%
+\contentsline {subsubsection}{\numberline {1.2.1}Esempio 1: Production Planning}{7}{}%
+\contentsline {paragraph}{}{8}{}%
+\contentsline {paragraph}{}{8}{}%
+\contentsline {paragraph}{}{8}{}%
+\contentsline {subsubsection}{\numberline {1.2.2}Esempio 2: capital budget}{8}{}%
+\contentsline {paragraph}{}{9}{}%
+\contentsline {paragraph}{}{9}{}%
+\contentsline {paragraph}{}{9}{}%
+\contentsline {subsection}{\numberline {1.3}Funzioni}{9}{}%
+\contentsline {subsubsection}{\numberline {1.3.1}Convessità}{9}{}%
+\contentsline {paragraph}{}{9}{}%
+\contentsline {paragraph}{}{9}{}%
+\contentsline {paragraph}{}{9}{}%
+\contentsline {paragraph}{}{10}{}%
+\contentsline {paragraph}{}{10}{}%
+\contentsline {paragraph}{}{10}{}%
+\contentsline {paragraph}{}{10}{}%
+\contentsline {paragraph}{}{10}{}%
+\contentsline {subsubsection}{\numberline {1.3.2}Derivate}{10}{}%
+\contentsline {paragraph}{}{10}{}%
+\contentsline {subsubsection}{\numberline {1.3.3}Massimi e minimi}{10}{}%
+\contentsline {paragraph}{}{10}{}%
+\contentsline {paragraph}{}{10}{}%
+\contentsline {paragraph}{}{11}{}%
+\contentsline {paragraph}{}{11}{}%
+\contentsline {section}{\numberline {2}Programmazione lineare}{11}{}%
+\contentsline {subsection}{\numberline {2.1}LP properties: Proportionality}{11}{}%
+\contentsline {subsection}{\numberline {2.2}LP properties: Fixed charge}{11}{}%
+\contentsline {subsection}{\numberline {2.3}LP properties: Additivity}{11}{}%
+\contentsline {subsection}{\numberline {2.4}LP properties: Divisibily (or Continuity)}{11}{}%
+\contentsline {subsection}{\numberline {2.5}LP properties: Certainty}{11}{}%
+\contentsline {subsection}{\numberline {2.6}Esiti possibili in un LP}{11}{}%
+\contentsline {subsubsection}{\numberline {2.6.1}Key Theorem}{11}{}%
+\contentsline {section}{\numberline {3}Algoritmo del simplesso}{11}{}%
+\contentsline {section}{\numberline {4}Soluzioni base}{11}{}%
+\contentsline {subsection}{\numberline {4.1}Forma standard}{11}{}%
+\contentsline {paragraph}{Th. }{11}{}%
+\contentsline {paragraph}{}{11}{}%
+\contentsline {paragraph}{}{12}{}%
+\contentsline {paragraph}{}{12}{}%
+\contentsline {paragraph}{}{12}{}%
+\contentsline {paragraph}{}{12}{}%
+\contentsline {paragraph}{OSS: }{13}{}%
+\contentsline {section}{\numberline {5}Algoritmo del simplesso - fase I e fase II}{15}{}%
+\contentsline {paragraph}{}{15}{}%
+\contentsline {paragraph}{}{15}{}%
+\contentsline {paragraph}{}{15}{}%
+\contentsline {paragraph}{}{15}{}%
+\contentsline {section}{\numberline {6}A Production Problem}{16}{}%
+\contentsline {section}{\numberline {7}Primal Formulation}{16}{}%
+\contentsline {section}{\numberline {8}Example}{17}{}%
+\contentsline {section}{\numberline {9}Comments on the Primal Problem}{17}{}%
+\contentsline {section}{\numberline {10}The Dual of the Production Problem}{17}{}%
+\contentsline {section}{\numberline {11}Dual Variables and Objective Function}{17}{}%
+\contentsline {subsection}{\numberline {11.1}Decision Variables}{17}{}%
+\contentsline {subsection}{\numberline {11.2}Objective Function}{17}{}%
+\contentsline {section}{\numberline {12}Dual Constraints}{17}{}%
+\contentsline {section}{\numberline {13}Dual Formulation}{18}{}%
+\contentsline {section}{\numberline {14}Comments on the Dual Problem}{18}{}%
+\contentsline {section}{\numberline {15}Primal and Dual Problems}{18}{}%
+\contentsline {subsection}{\numberline {15.1}Primal Problem (P)}{18}{}%
+\contentsline {subsection}{\numberline {15.2}Dual Problem (D)}{18}{}%
+\contentsline {section}{\numberline {16}Primal and Dual - Matrix Form}{19}{}%
+\contentsline {subsection}{\numberline {16.1}Primal Problem (P)}{19}{}%
+\contentsline {subsection}{\numberline {16.2}Dual Problem (D)}{19}{}%
