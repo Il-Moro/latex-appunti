@@ -2011,8 +2011,7 @@
 
 
         \paragraph{}
-        \textbf{def. numero di condizionamento }
-        La quantità che misura il grado di sensibilità di un problema rispetto a piccole variazioni nei dati si dice \textbf{Numero di condizionamento}.
+        \textbf{def. numero di condizionamento } la quantità che misura il grado di sensibilità di un problema rispetto a piccole variazioni nei dati si dice \textbf{Numero di condizionamento}.
 
         \paragraph{}
         Consideriamo il problema di valutare una funzione di una variabile \( f \) in un punto: \( y = f(x) \).
@@ -2020,7 +2019,7 @@
         Se il dato di ingresso \( x \) è perturbato di una quantità \( \Delta x \), assumendo \( f \) derivabile, per il teorema di Lagrange:
 
         \[
-            f(x + \Delta x) - f(x) = \Delta x f'(\xi).
+            f(x + \Delta x) - f(x) = \Delta x f'(\xi)
         \]
 
         Detto \( \Delta y = f(x + \Delta x) - f(x) \) l'errore assoluto sul valore della funzione, quello relativo è:
@@ -2032,16 +2031,10 @@
         Al limite, per \( \Delta x \to 0 \), \( \xi \to x \):
 
         \[
-            \left| \frac{\Delta y}{y} \right| = K(f, x) \left| \frac{\Delta x}{x} \right|
+            \left| \frac{\Delta y}{y} \right| = K(f, x) \frac{|\Delta x|}{|x|}
         \]
 
-        dove:
-
-        \[
-            K(f, x) = \left| \frac{x \cdot f'(x)}{y} \right|
-        \]
-
-        è detto \textbf{Numero di condizionamento}.
+        dove  $K(f, x) = \frac{|x f'(x)|}{|y|}$ è detto \textbf{Numero di condizionamento}.
 
         \paragraph{}
         \textbf{Esempio:}
@@ -2050,7 +2043,7 @@
 
 
         \[
-            K(f, x) = \frac{|x \cdot f'(x)|}{|y|} = \frac{|x \cdot \frac{-2x}{2\sqrt{1 - x^2}}|}{\sqrt{1 - x^2}} = \frac{x^2}{1 - x^2}.
+            K(f, x) = \frac{|x f'(x)|}{|y|} = \frac{|x \frac{-2x}{2\sqrt{1 - x^2}}|}{\sqrt{1 - x^2}} = \frac{x^2}{1 - x^2}
         \]
 
 
@@ -2066,35 +2059,215 @@
 
         
 
-        \section{Funzioni:}
-        \subsection{Calcolo degli zeri di una funzione}
-        
-        Dato il problema: \( f(x) = 0 \), con \( f: [a, b] \to \mathbb{R} \), continua, allora \( \alpha \) è uno zero di \( f \) se \( \alpha \in [a, b] \) e \( f(\alpha) = 0 \).Quello che vogliamo trovare sono le radici di \( f(x) = 0 \).
+    \section{Funzioni:}
         
         \paragraph{}
+        \textbf{def. } dato il problema: \( f(x) = 0 \), con \( f: [a, b] \to \mathbb{R} \), continua, allora \( \alpha \) è uno \textbf{zero} di \( f \) se \( \alpha \in [a, b] \) e \( f(\alpha) = 0 \). 
+        
+        
+        Quello che vogliamo trovare sono le radici di \( f(x) = 0 \).
+
+        \paragraph{}
         \textbf{Esempio:}
-        
-        \[
-            f(x) = (x - 1)^2 = 0 \quad ; \quad f(x) = \cos\left(\log\left(\frac{1}{x}\right)\right) = 0
-        \]
-        
-        
-        
-        \textbf{Definizione: Molteplicità di uno zero}
-        {Zero semplice:} \( \alpha \) è uno zero semplice di \( f \) se \( f(\alpha) = 0 \) ma \( f'(\alpha) \neq 0 \).
-        
-        \noindent La molteplicità di uno zero è l'indice della prima derivata che non si annulla in \( \alpha \).
-        
-        Esempio:
-        
         \begin{align*}
-            &f(x) = \cos x - \frac{x^2}{2} + \frac{x^5}{5} \\
-            &f'(x) = -\sin x + x + x^4 \\
-            &f''(x) = -\cos x + 14x^3 \\
-            &f^{(3)}(x) = \sin x + 12x^2 \quad ; \quad f^{(3)}(0) = 0 \\
-            &f^{(4)}(x) = \cos x + 24x \quad ; \quad f^{(4)}(0) = 1 \neq 0 \\
+            f(x) &= (x - 1)^2 = 0, \quad \text{$\alpha = +1$} \\
+            f(x) &= \cos\left(\log\left(\frac{1}{x}\right)\right) = 0, \quad \text{$\alpha =  $}
         \end{align*}
+           
         
-        Quindi, \( \tau = 4 \).
+
+        \paragraph{}
+        \textbf{def. zero semplice}: si $f(x)$ una funzione, allora $\alpha$ si dice \textbf{zero semplice} se $f(\alpha) = 0$ e $f'(\alpha) \neq 0 $
+
+        \paragraph{}
+        \textbf{def. molteplicità di uno zero}: sia $f(x)$ una funzione, allora la molteplicità di uno zero è l'indice della prima derivata che non si annulla in $\alpha$.
+
+        \paragraph{}
+        \textbf{Esempio}: sia $f(x) = \cos{x}-1-\frac{x^2}{2}+\frac{x^5}{5}$
+        \[ f'(x) = -\sin x + x + x^4 \]
+        \[ f''(x) = -\cos x + 4x^3 \]
+        \[ f^{(3)}(x) = \sin x + 12x^2 \quad ; \quad f^{(3)}(0) = 0 \]
+        \[ f^{(4)}(x) = \cos x + 24x \quad ; \quad f^{(4)}(0) = 1 \neq 0 \]
+        
+
+        Quindi la molteplicità di uno zero è \( \tau = 4 \).
+
+        \paragraph{}
+        \textbf{th. esistenza dello zero:} siia \( f(x) \) continua in \([a,b]\) e tale che \( f(a)f(b) < 0 \), allora esiste \( \alpha \in [a,b] \) tale che \( f(\alpha) = 0 \).
+
+        \paragraph{}
+        \textbf{th. unicità:} se \( f(x) \) è monotona in senso stretto in \([a,b]\) ed esiste \( \alpha \in [a,b] \) tale che \( f(\alpha) = 0 \), allora \( \alpha \) è unico.
+
+        \paragraph{Esempio:}
+        Consideriamo l'equazione:
+        \[
+        f(x) = 2x^2 - \log(x) - \frac{1}{x} = 0
+        \]
+
+        Esistenza: $f(0.1) = -12.28, \quad f(1) = 1 > 0 \implies$ esiste \( \alpha \in [0.1, 1] \) tale che \( f(x) = 0 \).
+
+        Unicità: $f'(x) = 4x - \frac{1}{x} + \frac{1}{x^2} > 0 \quad \forall x \in [0.1, 1] \implies$ che \( f \) è monotona crescente in \([0.1, 1]\), e quindi lo zero di \( f \) in \([0.1, 1]\) è unico.
+
+
+
+        \subsection{Metodi Iterativi}
+        \paragraph{def. metodo iterativo:} \textbf{un metodo iterativo} è una procedura che genera una successione a partire da uno o più valori iniziali e quindi a partire da uno o più termini della successione precedenti. Una successione si indica generalmente con la notazione \( (x_k)_{k \geq 0} \).
+
+        \paragraph{def cconvergenza di un metodo iterativo:} un metodo iterativo (o la successione  \( \{x_k\} \) da esso generata ) è convergente ad \( \alpha \) se:
+        \[
+        \lim_{k \to \infty} x_k = \alpha
+        \]
+        o equivalentemente se:
+        \[
+        \lim_{k \to \infty} | \alpha - e_k | = 0.
+        \]
+        (dove \( e_k \) è l'errore al passo \( k \)).
+
+        \paragraph{def. convergenza locale:} un metodo iterativo converge localmente ad \( \alpha \) se esiste \( \delta > 0 \) tale che $ \forall  $ \( x_0 \in B(\alpha, \delta) = [\alpha - \delta, \alpha + \delta] \), si ha:
+
+        \[
+            \lim_{k \to \infty} x_k = \alpha.
+        \]
+
+        \paragraph{def. ordine di convergenza:}
+        sia $x_k$ un metodo iterativo convergente tale che \( x_k \to \alpha \) (la successione ha come limite \( \alpha \)), allora se esiste una costante positiva \( c \) tale che:
+
+        \[
+            \lim_{k \to \infty} \frac{|e_{k+1}|}{|e_k|^p} = c, \quad c > 0, \quad p \geq 1, \quad p \in \mathbb{R}.
+        \] 
+        
+        allora si dice che $x_k$ ha ordine di convergenza \( p \). Se:
+        
+        \begin{itemize}
+            \item \( p = 1 \), allora $x_k$ ha convergenza lineare
+            \item \( p = 2 \), allora $x_k$ ha convergenza quadratica
+            \item se \( p > 1 \), allora $x_k$ ha convergenza superlineare.
+        \end{itemize}
+_________________________________________________________
+        \paragraph{Esempio:}
+        Se:
+        \[
+            \lim_{k \to \infty} \frac{|e_{k+1}|}{|e_k|^p} = 0
+        \]
+        allora l'ordine è maggiore di \( p \) (convergenza superlineare).
+_________________________________________________________
+
+        \paragraph{def. costante asintotica di riduzione dell'errore:} per i metodi lineari, la costante \( c \) si chiama costante asintotica di riduzione dell'errore (fattore del quale si riduce l'errore asintoticamente). Per \( p = 1 \), deve essere \( c < 1 \).
+
+        \paragraph{Metodo superlineare con \( p = 2 \):}
+        Dalla relazione:
+        \[
+        |e_{k+1}| \approx c |e_k|^2,
+        \]
+        se \( e_k = 0.1 \):
+        \[
+        e_{k+1} \approx c (0.1)^2 \approx 10^{-2}, \quad e_{k+2} \approx c (10^{-2})^2 \approx 10^{-4}.
+        \]
+
+        \subsection{Metodo di Bisezione (Dicotomico)}
+        \paragraph{Ipotesi:}
+        \begin{itemize}
+            \item \( f(x) \) è continua in \([a, b]\).
+            \item Esiste uno zero unico \( \alpha \in [a, b] \) tale che \( f(\alpha) = 0 \).
+        \end{itemize}
+
+        \paragraph{Algoritmo:}
+        \begin{enumerate}
+            \item Calcolare il punto medio \( c = \frac{a + b}{2} \).
+            \item Valutare \( f(c) \):
+            \begin{itemize}
+            \item Se \( f(c) = 0 \), allora \( c \) è lo zero cercato.
+            \item Se \( f(a)f(c) < 0 \), allora lo zero si trova nell'intervallo \([a, c]\).
+            \item Se \( f(c)f(b) < 0 \), allora lo zero si trova nell'intervallo \([c, b]\).
+            \end{itemize}
+            \item Ripetere il processo restringendo l'intervallo fino a ottenere una tolleranza desiderata \( \epsilon \), cioè \( |b - a| < \epsilon \).
+        \end{enumerate}
+
+        \paragraph{Convergenza:}
+        Il metodo di bisezione ha una convergenza lineare. Ad ogni iterazione, la lunghezza dell'intervallo si dimezza, quindi l'errore \( e_k \) al passo \( k \) è dato da:
+        \[
+        e_k = \frac{b - a}{2^k}.
+        \]
+
+        \paragraph{Vantaggi:}
+        \begin{itemize}
+            \item Garantisce la convergenza se le ipotesi sono soddisfatte.
+            \item È semplice da implementare.
+        \end{itemize}
+
+        \paragraph{Svantaggi:}
+        \begin{itemize}
+            \item La convergenza è lenta rispetto ad altri metodi come il metodo di Newton.
+            \item Richiede che \( f(a)f(b) < 0 \), quindi non può essere applicato a funzioni che non soddisfano questa condizione.
+        \end{itemize}
+
+        \paragraph{Pseudocodice:}
+        \begin{verbatim}
+        Input: estremi a, b; tolleranza tol; massimo iterazioni max_iter
+        Output: approssimazione dello zero c
+
+        Se f(a) * f(b) >= 0 allora
+            Segnala errore: "Non garantita la presenza di uno zero nell'intervallo [a, b]"
+        Fine se
+
+        Inizializza iterazione: iter = 0
+
+        Ripeti finché (b - a > tol) e (iter < max_iter):
+            Calcola punto medio: c = (a + b) / 2
+            Se f(c) = 0 allora
+                Interrompi: trovato zero esatto
+            Altrimenti se f(a) * f(c) < 0 allora
+                Aggiorna intervallo: b = c
+            Altrimenti
+                Aggiorna intervallo: a = c
+            Fine se
+            Incrementa iterazione: iter = iter + 1
+        Fine ripeti
+
+        Restituisci c come approssimazione dello zero
+        \end{verbatim}
+
+        \paragraph{Convergenza globale del metodo di bisezione:}
+        (indipendenza da \( x_0 \)).
+
+        \[
+        |e_k| \leq \frac{b_k-a_k}{2} \leq \frac{b-a}{2^k} = \frac{b-a}{2^{k+1}}
+        \]
+
+        Basta dimostrare che 
+
+        \[
+        \lim_{k \to +\infty} \frac{b-a}{2^{k+1}} = 0
+        \]
+
+        Per il teorema dei due carabinieri si ha che 
+
+        \[
+        \lim_{k \to +\infty} 0 = 0
+        \]
+
+        \[
+        \lim_{k \to +\infty} \frac{b-a}{2^{k+1}} = 0
+        \]
+
+        Quindi 
+
+        \[
+        0 \leq |e_k| \leq \frac{b-a}{2^{k+1}}
+        \]
+
+        e quindi 
+
+        \[
+        \lim_{k \to +\infty} |e_k| = 0.
+        \]
+
+
+
+        ordine di convergenza e costante asintotica
+
+        lim k-> +inf \frac{|e_{k_1}|}{|e_k|} NON esiste
+
+        p = 1, c = \frac{1}{2}
 
 \end{document}

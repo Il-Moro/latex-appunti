@@ -91,5 +91,27 @@
 \contentsline {paragraph}{}{25}{}%
 \contentsline {paragraph}{}{26}{}%
 \contentsline {section}{\numberline {3}Funzioni:}{26}{}%
-\contentsline {subsection}{\numberline {3.1}Calcolo degli zeri di una funzione}{26}{}%
 \contentsline {paragraph}{}{26}{}%
+\contentsline {paragraph}{}{26}{}%
+\contentsline {paragraph}{}{26}{}%
+\contentsline {paragraph}{}{26}{}%
+\contentsline {paragraph}{}{26}{}%
+\contentsline {paragraph}{}{26}{}%
+\contentsline {paragraph}{}{26}{}%
+\contentsline {paragraph}{Esempio:}{26}{}%
+\contentsline {subsection}{\numberline {3.1}Metodi Iterativi}{27}{}%
+\contentsline {paragraph}{def. metodo iterativo:}{27}{}%
+\contentsline {paragraph}{def cconvergenza di un metodo iterativo:}{27}{}%
+\contentsline {paragraph}{def. convergenza locale:}{27}{}%
+\contentsline {paragraph}{def. ordine di convergenza:}{27}{}%
+\contentsline {paragraph}{Esempio:}{27}{}%
+\contentsline {paragraph}{Costante asintotica di riduzione dell'errore:}{27}{}%
+\contentsline {paragraph}{Metodo superlineare con \( p = 2 \):}{27}{}%
+\contentsline {subsection}{\numberline {3.2}Metodo di Bisezione (Dicotomico)}{27}{}%
+\contentsline {paragraph}{Ipotesi:}{27}{}%
+\contentsline {paragraph}{Algoritmo:}{28}{}%
+\contentsline {paragraph}{Convergenza:}{28}{}%
+\contentsline {paragraph}{Vantaggi:}{28}{}%
+\contentsline {paragraph}{Svantaggi:}{28}{}%
+\contentsline {paragraph}{Pseudocodice:}{28}{}%
+\contentsline {paragraph}{Convergenza globale del metodo di bisezione:}{29}{}%
