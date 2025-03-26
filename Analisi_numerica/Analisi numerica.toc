@@ -101,17 +101,29 @@
 \contentsline {paragraph}{Esempio:}{26}{}%
 \contentsline {subsection}{\numberline {3.1}Metodi Iterativi}{27}{}%
 \contentsline {paragraph}{def. metodo iterativo:}{27}{}%
-\contentsline {paragraph}{def cconvergenza di un metodo iterativo:}{27}{}%
+\contentsline {paragraph}{def convergenza di un metodo iterativo:}{27}{}%
 \contentsline {paragraph}{def. convergenza locale:}{27}{}%
-\contentsline {paragraph}{def. ordine di convergenza:}{27}{}%
-\contentsline {paragraph}{Esempio:}{27}{}%
-\contentsline {paragraph}{Costante asintotica di riduzione dell'errore:}{27}{}%
-\contentsline {paragraph}{Metodo superlineare con \( p = 2 \):}{27}{}%
+\contentsline {paragraph}{def. ordine di convergenza (di un metodo iterativo:)}{27}{}%
+\contentsline {paragraph}{def. costante asintotica di riduzione dell'errore:}{27}{}%
+\contentsline {paragraph}{Oss. }{27}{}%
 \contentsline {subsection}{\numberline {3.2}Metodo di Bisezione (Dicotomico)}{27}{}%
-\contentsline {paragraph}{Ipotesi:}{27}{}%
-\contentsline {paragraph}{Algoritmo:}{28}{}%
-\contentsline {paragraph}{Convergenza:}{28}{}%
-\contentsline {paragraph}{Vantaggi:}{28}{}%
+\contentsline {paragraph}{Vantaggi:}{27}{}%
 \contentsline {paragraph}{Svantaggi:}{28}{}%
+\contentsline {paragraph}{Funzionamento: }{28}{}%
 \contentsline {paragraph}{Pseudocodice:}{28}{}%
-\contentsline {paragraph}{Convergenza globale del metodo di bisezione:}{29}{}%
+\contentsline {paragraph}{}{28}{}%
+\contentsline {paragraph}{Convergenza globale:}{28}{}%
+\contentsline {paragraph}{dim: }{28}{}%
+\contentsline {paragraph}{Oss: }{29}{}%
+\contentsline {paragraph}{}{29}{}%
+\contentsline {subsection}{\numberline {3.3}Criterio di arresto}{29}{}%
+\contentsline {paragraph}{}{29}{}%
+\contentsline {paragraph}{}{29}{}%
+\contentsline {paragraph}{}{29}{}%
+\contentsline {paragraph}{}{29}{}%
+\contentsline {subsection}{\numberline {3.4}Numero Minimo di iterazioni}{30}{}%
+\contentsline {paragraph}{}{30}{}%
+\contentsline {paragraph}{Esercizi: }{30}{}%
+\contentsline {subsection}{\numberline {3.5}Metodo Newton-Raphson}{30}{}%
+\contentsline {paragraph}{}{31}{}%
+\contentsline {paragraph}{}{31}{}%

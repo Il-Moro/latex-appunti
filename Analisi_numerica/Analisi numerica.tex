@@ -19,6 +19,10 @@
 \usepackage{amssymb} % Simboli aggiuntivi
 \usepackage{textgreek} % Per lettere greche in modalità testo
 
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+
+
 % Grafica e immagini
 \usepackage{graphicx} % Per includere immagini
 \usepackage{float} % Per posizionamento accurato degli oggetti flottanti
@@ -292,19 +296,19 @@
 
 
         \pagebreak 
-        \section{Aritmetica del calcolatore}
+    \section{Aritmetica del calcolatore}
         
-            Come abbiamo già detto, la soluzione al calcolatore di un problema matematico è affetto da errori di vario tipo:
+    Come abbiamo già detto, la soluzione al calcolatore di un problema matematico è affetto da errori di vario tipo:
 
-            \begin{itemize}
-                \item ERRORI DI MODELLAZIONE: i modelli servono a rappresentare approssimando la realtà mediante semplificazioni. L'errore è dovuto alla scelta di usare una modellazione matematica della realtà, oltre a errori presenti nei dati sperimentali.
-                \item ERRORI DI TRONCAMENTO: commessi nella trasformazione di un problema matematico di dimensione infinita in una dimensione finita. Il classico esempio è il calcolo dell'integrale definito (somme infinite) approssimato ad una sommatoria di quantità finite.
-                \item ERRORI DI ARROTONDAMENTO: dovuti al fatto che nel calcolatore si possono rappresentare solo un sottoinsieme finito dei numeri reali.
-            \end{itemize} 
+        \begin{itemize}
+            \item ERRORI DI MODELLAZIONE: i modelli servono a rappresentare approssimando la realtà mediante semplificazioni. L'errore è dovuto alla scelta di usare una modellazione matematica della realtà, oltre a errori presenti nei dati sperimentali.
+            \item ERRORI DI TRONCAMENTO: commessi nella trasformazione di un problema matematico di dimensione infinita in una dimensione finita. Il classico esempio è il calcolo dell'integrale definito (somme infinite) approssimato ad una sommatoria di quantità finite.
+            \item ERRORI DI ARROTONDAMENTO: dovuti al fatto che nel calcolatore si possono rappresentare solo un sottoinsieme finito dei numeri reali.
+        \end{itemize} 
 
-            Di questi 3 tipi di errori solamenti i punti 2 e 3 sono oggetto di studio dell'Analisi numerica.
+        Di questi 3 tipi di errori solamenti i punti 2 e 3 sono oggetto di studio dell'Analisi numerica.
 
-            \subsection*{Effetti disastrosi degli errori numerici}
+        \subsection*{Effetti disastrosi degli errori numerici}
 
             \textbf{Fallimento del missile Patriot}: il giorno 25 Febbraio 1991, durante la prima guerra del golfo, un missile Patriot fallì l’intercettazione di un missile Scud iracheno che centrò il suo obiettivo causando la morte di 28 soldati americani e un centinaio di feriti.
 
@@ -2062,11 +2066,9 @@
     \section{Funzioni:}
         
         \paragraph{}
-        \textbf{def. } dato il problema: \( f(x) = 0 \), con \( f: [a, b] \to \mathbb{R} \), continua, allora \( \alpha \) è uno \textbf{zero} di \( f \) se \( \alpha \in [a, b] \) e \( f(\alpha) = 0 \). 
+        Sia dato il problema: \( f(x) = 0 \), con \( f: I = [a, b] \to \mathbb{R} \), continua, allora il nostro obiettico sarà quello di trovare \( \alpha \in I$ $|$ $f(\alpha) = 0\); quindi si cercano gli zeri della funzione $f$ (radici di $f$) 
         
-        
-        Quello che vogliamo trovare sono le radici di \( f(x) = 0 \).
-
+    
         \paragraph{}
         \textbf{Esempio:}
         \begin{align*}
@@ -2077,15 +2079,18 @@
         
 
         \paragraph{}
-        \textbf{def. zero semplice}: si $f(x)$ una funzione, allora $\alpha$ si dice \textbf{zero semplice} se $f(\alpha) = 0$ e $f'(\alpha) \neq 0 $
+        \textbf{def. zero semplice}: sia $f(x)$ una funzione, allora $\alpha$ si dice \textbf{zero semplice} se $f(\alpha) = 0$ e $f'(\alpha) \neq 0 $, altrimenti ($f'(\alpha) = 0$) $\alpha$ si dice \textbf{multiplo}
 
         \paragraph{}
         \textbf{def. molteplicità di uno zero}: sia $f(x)$ una funzione, allora la molteplicità di uno zero è l'indice della prima derivata che non si annulla in $\alpha$.
 
         \paragraph{}
-        \textbf{Esempio}: sia $f(x) = \cos{x}-1-\frac{x^2}{2}+\frac{x^5}{5}$
-        \[ f'(x) = -\sin x + x + x^4 \]
-        \[ f''(x) = -\cos x + 4x^3 \]
+        \textbf{Esempio}: sia $f(x) = \cos{x}-1+\frac{x^2}{2}+\frac{x^5}{5}$
+
+        Si nota che uno zero di $f$ è in $x = 0$; la derivata di $f$ in 0 però si annulla, pertanto $\alpha = x = 0$ è multiplo:
+
+        \[ f'(x) = -\sin x + x + x^4 \quad ; \quad f'(0) = 0\]
+        \[ f''(x) = -\cos x + 4x^3 \quad ; \quad f''(0) = 0\]
         \[ f^{(3)}(x) = \sin x + 12x^2 \quad ; \quad f^{(3)}(0) = 0 \]
         \[ f^{(4)}(x) = \cos x + 24x \quad ; \quad f^{(4)}(0) = 1 \neq 0 \]
         
@@ -2093,34 +2098,37 @@
         Quindi la molteplicità di uno zero è \( \tau = 4 \).
 
         \paragraph{}
-        \textbf{th. esistenza dello zero:} siia \( f(x) \) continua in \([a,b]\) e tale che \( f(a)f(b) < 0 \), allora esiste \( \alpha \in [a,b] \) tale che \( f(\alpha) = 0 \).
+        \textbf{th. esistenza dello zero:} sia \( f(x) \) continua in \([a,b]\) e tale che \( f(a)f(b) < 0 \), allora esiste \( \alpha \in [a,b] \) tale che \( f(\alpha) = 0 \).
 
         \paragraph{}
-        \textbf{th. unicità:} se \( f(x) \) è monotona in senso stretto in \([a,b]\) ed esiste \( \alpha \in [a,b] \) tale che \( f(\alpha) = 0 \), allora \( \alpha \) è unico.
+        \textbf{Condizione sufficiente per l'unicità dello zero:} se \( f(x) \) è monotona in senso stretto in \([a,b]\) ed $\exists$ \( \alpha \in [a,b] \) tale che \( f(\alpha) = 0 \), allora \( \alpha \) è unico.
 
         \paragraph{Esempio:}
-        Consideriamo l'equazione:
-        \[
-        f(x) = 2x^2 - \log(x) - \frac{1}{x} = 0
-        \]
+        Consideriamo l'equazione: $f(x) = 2x^2 + \log(x) - \frac{1}{x} = 0$
 
         Esistenza: $f(0.1) = -12.28, \quad f(1) = 1 > 0 \implies$ esiste \( \alpha \in [0.1, 1] \) tale che \( f(x) = 0 \).
 
-        Unicità: $f'(x) = 4x - \frac{1}{x} + \frac{1}{x^2} > 0 \quad \forall x \in [0.1, 1] \implies$ che \( f \) è monotona crescente in \([0.1, 1]\), e quindi lo zero di \( f \) in \([0.1, 1]\) è unico.
+        Unicità: $f'(x) = 4x + \frac{1}{x} + \frac{1}{x^2} > 0 \quad \forall x \in [0.1, 1] \implies$ \( f \) è monotona crescente in \([0.1, 1]\), e quindi lo zero di \( f \) in \([0.1, 1]\) è unico.
 
 
 
         \subsection{Metodi Iterativi}
-        \paragraph{def. metodo iterativo:} \textbf{un metodo iterativo} è una procedura che genera una successione a partire da uno o più valori iniziali e quindi a partire da uno o più termini della successione precedenti. Una successione si indica generalmente con la notazione \( (x_k)_{k \geq 0} \).
+        Le procedure di calcolo di zeri di funzioni sono iterative.
 
-        \paragraph{def cconvergenza di un metodo iterativo:} un metodo iterativo (o la successione  \( \{x_k\} \) da esso generata ) è convergente ad \( \alpha \) se:
+        \paragraph{def. metodo iterativo:} un metodo iterativo è una procedura che a partire da un valore iniziale $x_0$ genera una successione \( \{x_k\}_{k \geq 0} \) a partire da uno o più termini precedenti.
+
+        \paragraph{def convergenza di un metodo iterativo:} un metodo iterativo (o la successione  \( \{x_k\} \) da esso generata ) è convergente ad \( \alpha \) se:
+
         \[
-        \lim_{k \to \infty} x_k = \alpha
+            \lim_{k \to \infty} x_k = \alpha
         \]
+
         o equivalentemente se:
+
         \[
-        \lim_{k \to \infty} | \alpha - e_k | = 0.
+            \lim_{k \to \infty} | \alpha - x_k | = 0 \text{, con $|\alpha-x_k| = e_k$}
         \]
+
         (dove \( e_k \) è l'errore al passo \( k \)).
 
         \paragraph{def. convergenza locale:} un metodo iterativo converge localmente ad \( \alpha \) se esiste \( \delta > 0 \) tale che $ \forall  $ \( x_0 \in B(\alpha, \delta) = [\alpha - \delta, \alpha + \delta] \), si ha:
@@ -2129,65 +2137,35 @@
             \lim_{k \to \infty} x_k = \alpha.
         \]
 
-        \paragraph{def. ordine di convergenza:}
-        sia $x_k$ un metodo iterativo convergente tale che \( x_k \to \alpha \) (la successione ha come limite \( \alpha \)), allora se esiste una costante positiva \( c \) tale che:
+        \paragraph{def. ordine di convergenza (di un metodo iterativo:)}sia $x_k$ un metodo iterativo convergente tale che \( x_k \to \alpha \) (la successione ha come limite \( \alpha \)), allora se esistono due costanti positive \( c \) e $p$ tali che:
 
         \[
             \lim_{k \to \infty} \frac{|e_{k+1}|}{|e_k|^p} = c, \quad c > 0, \quad p \geq 1, \quad p \in \mathbb{R}.
         \] 
+        con $e_k = \alpha - x_k$, allora si dice che $x_k$ ha ordine di convergenza \( p \). 
         
-        allora si dice che $x_k$ ha ordine di convergenza \( p \). Se:
-        
+        Se:        
         \begin{itemize}
-            \item \( p = 1 \), allora $x_k$ ha convergenza lineare
-            \item \( p = 2 \), allora $x_k$ ha convergenza quadratica
-            \item se \( p > 1 \), allora $x_k$ ha convergenza superlineare.
+            \item \( p = 1 \), allora il metodo iterativo $x_k$ ha convergenza lineare
+            \[
+                \lim_{k \to \infty} \frac{|e_{k+1}|}{|e_k|} = c \approx |e_{k+1}| \approx c \cdot |e_k|
+            \]
+            \item \( p = 2 \), allora il metodo iterativo $x_k$ ha convergenza quadratica:
+            \[
+                \lim_{k \to \infty} \frac{|e_{k+1}|}{|e_k|^2} = c \approx |e_{k+1}| \approx c \cdot |e_k|^2
+            \]
+            \item se \( p > 1 \), allora il metodo iterativo  $x_k$ ha convergenza superlineare.
         \end{itemize}
-_________________________________________________________
-        \paragraph{Esempio:}
-        Se:
-        \[
-            \lim_{k \to \infty} \frac{|e_{k+1}|}{|e_k|^p} = 0
-        \]
-        allora l'ordine è maggiore di \( p \) (convergenza superlineare).
-_________________________________________________________
 
-        \paragraph{def. costante asintotica di riduzione dell'errore:} per i metodi lineari, la costante \( c \) si chiama costante asintotica di riduzione dell'errore (fattore del quale si riduce l'errore asintoticamente). Per \( p = 1 \), deve essere \( c < 1 \).
+        \paragraph{def. costante asintotica di riduzione dell'errore:} per i metodi lineari, la costante \( c \) si chiama costante asintotica di riduzione dell'errore (fattore del quale si riduce l'errore asintoticamente).
+        
+        
+        \paragraph{Oss. } Per \( p = 1 \), deve essere che \( c < 1 \), cosa non necessaria per $p = 2$
+        
 
-        \paragraph{Metodo superlineare con \( p = 2 \):}
-        Dalla relazione:
-        \[
-        |e_{k+1}| \approx c |e_k|^2,
-        \]
-        se \( e_k = 0.1 \):
-        \[
-        e_{k+1} \approx c (0.1)^2 \approx 10^{-2}, \quad e_{k+2} \approx c (10^{-2})^2 \approx 10^{-4}.
-        \]
 
         \subsection{Metodo di Bisezione (Dicotomico)}
-        \paragraph{Ipotesi:}
-        \begin{itemize}
-            \item \( f(x) \) è continua in \([a, b]\).
-            \item Esiste uno zero unico \( \alpha \in [a, b] \) tale che \( f(\alpha) = 0 \).
-        \end{itemize}
-
-        \paragraph{Algoritmo:}
-        \begin{enumerate}
-            \item Calcolare il punto medio \( c = \frac{a + b}{2} \).
-            \item Valutare \( f(c) \):
-            \begin{itemize}
-            \item Se \( f(c) = 0 \), allora \( c \) è lo zero cercato.
-            \item Se \( f(a)f(c) < 0 \), allora lo zero si trova nell'intervallo \([a, c]\).
-            \item Se \( f(c)f(b) < 0 \), allora lo zero si trova nell'intervallo \([c, b]\).
-            \end{itemize}
-            \item Ripetere il processo restringendo l'intervallo fino a ottenere una tolleranza desiderata \( \epsilon \), cioè \( |b - a| < \epsilon \).
-        \end{enumerate}
-
-        \paragraph{Convergenza:}
-        Il metodo di bisezione ha una convergenza lineare. Ad ogni iterazione, la lunghezza dell'intervallo si dimezza, quindi l'errore \( e_k \) al passo \( k \) è dato da:
-        \[
-        e_k = \frac{b - a}{2^k}.
-        \]
+        Sia $f(x) = 0$, continua in \([a, b]\) e tale che esiste uno zero unico \( \alpha \in I = [a, b] \) tale che \( f(\alpha) = 0 \), si trovi $\alpha$
 
         \paragraph{Vantaggi:}
         \begin{itemize}
@@ -2201,73 +2179,332 @@ _________________________________________________________
             \item Richiede che \( f(a)f(b) < 0 \), quindi non può essere applicato a funzioni che non soddisfano questa condizione.
         \end{itemize}
 
+        \paragraph{Funzionamento: } genera una successione di intervalli $I_k$, chiusi, limitati e inscatolati di ragione la metà del precedente. Si ha inoltre che per ogni $I_k$ vale che $f(a_k)f(b_k) < 0$.
+
         \paragraph{Pseudocodice:}
-        \begin{verbatim}
-        Input: estremi a, b; tolleranza tol; massimo iterazioni max_iter
-        Output: approssimazione dello zero c
+        Dato $[a,b], f, f(a)f(b) < 0$, con $a_0 = a$, $b_0 = b$
+        
+        
+        \begin{algorithm}
+            \begin{algorithmic}[1]
+            \State $x_k = \frac{a_k + b_k}{2}$
+            \For{$k = 0, 1, \ldots$}
+                \If{$f(x_k) = 0$}
+                    \State \textbf{Fine}
+                \ElsIf{$f(x_k) \cdot f(a_k) < 0$}
+                    \State $b_k = x_k$
+                \Else
+                    \State $a_k = x_k$
+                \EndIf
+            \EndFor
+        \end{algorithmic}
+        \end{algorithm}
 
-        Se f(a) * f(b) >= 0 allora
-            Segnala errore: "Non garantita la presenza di uno zero nell'intervallo [a, b]"
-        Fine se
+        \paragraph{}
+        \textbf{Spiegazione: }
+        Si calcola il punto medio per \( x_k = \frac{a_k + b_k}{2} \).
+        Si valuta a questo punto \( f(x_k) \):
+        \begin{itemize}
+            \item Se \( f(x_k) = 0 \), allora \( x_k \) è lo zero cercato.
+            \item Se \( f(a_k)f(x_k) < 0 \), allora lo zero si trova nell'intervallo \([a_k, x_k]\) e si pone $a_{k+1} = a_k$ e $b_{k+1} = x_k$
+            \item Se \( f(x_k)f(b_k) < 0 \), allora lo zero si trova nell'intervallo \([x_k, b_k]\) si pone $a_{k+1} = a_k$ e $b_{k+1} = x_k$
+        \end{itemize}
+        Si ripete poi processo restringendo l'intervallo fino a ottenere una tolleranza desiderata \( \epsilon \), cioè \( |b_k - a_k| < \epsilon \).
+        
+        ($e_k = \alpha - x_k$ è l'errore al passo $k$, mentre $f(x_k)$ si dice residuo al passo k)
 
-        Inizializza iterazione: iter = 0
-
-        Ripeti finché (b - a > tol) e (iter < max_iter):
-            Calcola punto medio: c = (a + b) / 2
-            Se f(c) = 0 allora
-                Interrompi: trovato zero esatto
-            Altrimenti se f(a) * f(c) < 0 allora
-                Aggiorna intervallo: b = c
-            Altrimenti
-                Aggiorna intervallo: a = c
-            Fine se
-            Incrementa iterazione: iter = iter + 1
-        Fine ripeti
-
-        Restituisci c come approssimazione dello zero
-        \end{verbatim}
-
-        \paragraph{Convergenza globale del metodo di bisezione:}
-        (indipendenza da \( x_0 \)).
-
+        \paragraph{Convergenza globale:}
+        Il metodo di bisezione ha una convergenza globale, ad ogni iterazione, la lunghezza dell'intervallo si dimezza, quindi l'errore \( e_k \) al passo \( k \) è dato da:
+        
         \[
-        |e_k| \leq \frac{b_k-a_k}{2} \leq \frac{b-a}{2^k} = \frac{b-a}{2^{k+1}}
+            0 \le |e_k| \le \frac{b_k - a_k}{2} = \frac{b-a}{2^{k+1}}
         \]
-
-        Basta dimostrare che 
+        \paragraph{dim: } basta dimostrare che 
 
         \[
-        \lim_{k \to +\infty} \frac{b-a}{2^{k+1}} = 0
+            \lim_{k \to +\infty} \frac{b-a}{2^{k+1}} = 0
         \]
 
         Per il teorema dei due carabinieri si ha che 
 
         \[
-        \lim_{k \to +\infty} 0 = 0
+            \lim_{k \to +\infty} 0 = 0
         \]
 
         \[
-        \lim_{k \to +\infty} \frac{b-a}{2^{k+1}} = 0
+            \lim_{k \to +\infty} \frac{b-a}{2^{k+1}} = 0
         \]
 
         Quindi 
 
         \[
-        0 \leq |e_k| \leq \frac{b-a}{2^{k+1}}
+            0 \leq |e_k| \leq \frac{b-a}{2^{k+1}}
         \]
 
         e quindi 
 
         \[
-        \lim_{k \to +\infty} |e_k| = 0.
+            \lim_{k \to +\infty} |e_k| = 0.
+        \]
+
+        \paragraph{Oss: } si noti l'ordine di convergenza e la costante asintotica: il metodo di bisezione ha come costanti $p = 1 e \quad c = \frac{1}{2}$, ma se si calcola 
+
+        \[
+            \lim_{k \to +\infty} \frac{|e_{k+1}|}{|e_k|} \text{ NON esiste}
+        \]
+
+        \paragraph{}
+        In realazione all'errore al passo $k$ è possibile stimare il numero minimo di iterazioni k che mi permette di avere un errore  minore di una certa tolleranza che stabilisco:
+        
+        \begin{align*}
+            |e_k| \le \frac{b-a}{2^{k+1}} &< tol \\
+            \log \left (\frac{b-a}{2^{k+1}} \right ) &< \log(tol) \\
+            \log(b-a) - (k+1)\log_2 &< \log(tol) \\
+            \log(b-a) - \log(tol) &< (k+1)\log_2 \\
+            (k+1) &> \frac{\log(b-a)-\log(tol)}{\log_2} \\
+            k &>  \frac{\log(b-a)-\log(tol)}{\log_2} -1 \\
+        \end{align*}
+
+
+        \subsection{Criterio di arresto}
+        \paragraph{}
+        \textbf{Test di arresto sul residuo}: sia $e_k = a-x_k$ l'errore alla k-esima iterazione e $f(\alpha) - f(x_k)$ il residuo. 
+
+        Allora posso usare come criterio di arresto del programma quando ritengo che il valore di $f$ sia sufficientemente vicino a 0
+
+        \paragraph{}
+        \textbf{OSS: } problemi di arresto sul residuo:
+
+        Il criterio di arresto basato sul residuo consiste nel fermare l'algoritmo iterativo quando il valore assoluto di \( f(x_k) \) è sufficientemente piccolo, ovvero \( |f(x_k)| < \text{tol} \), dove \(\text{tol}\) è una tolleranza prefissata. Tuttavia, questo criterio può essere problematico in alcune situazioni:
+
+        \paragraph{}
+        \textbf{Esempio funzione molto piatta:} consideriamo \( f(x) = 10^{-50}x \). Questa funzione è estremamente piatta, quindi anche per valori di \( x_k \) lontani dallo zero, il residuo \( f(x_k) \) può risultare molto piccolo. Ad esempio, se \( x_k = 10^{20} \), allora:
+        \[
+            f(x_k) = 10^{-50} \cdot 10^{20} = 10^{-30}.
+        \]
+        In questo caso, il residuo \( f(x_k) \) è molto piccolo, ma il valore di \( x_k \) è ancora lontano dalla radice \( \alpha = 0 \). Questo può portare a un arresto prematuro dell'algoritmo, senza aver raggiunto una soluzione accurata.
+
+        \textbf{Esempio funzione molto ripida:} consideriamo \( f(x) = 10^{50}x \). Questa funzione è estremamente ripida, quindi anche per valori di \( x_k \) molto vicini alla radice, il residuo \( f(x_k) \) può risultare molto grande. Ad esempio, se \( x_k = 10^{-20} \), allora:
+        \[
+            f(x_k) = 10^{50} \cdot 10^{-20} = 10^{30}.
+        \]
+        In questo caso, il residuo \( f(x_k) \) è molto grande, ma il valore di \( x_k \) è già molto vicino alla radice \( \alpha = 0 \). Questo può portare a un prolungamento inutile dell'algoritmo, nonostante la soluzione sia già sufficientemente accurata.
+
+        \paragraph{}
+        \textbf{Soluzione: RESIDUO PESATO }
+        si utilizza la quantità:
+
+        \[
+            \frac{f(x_k)}{f'(x_k)}
+        \]
+        
+        Approssimazione di ordine 1 dell'errore, ovvero $|\frac{f(x_k)}{f'(x_k)}| \approx |e_k|$
+
+
+        $e_k = \alpha - x_k$; \quad $\alpha = x_k + e_k$
+        
+
+        \[
+            0 = f(\alpha) = f(x_k + e_k) = f(x_k) + f'(x_k)e_k +O(e_k)^2
+        \]
+
+        Assumendo che $f'(x_k) \ne 0$
+        
+        \[
+            \frac{f(x_k)}{f'(x_k)} \approx e_k + O(e_k^2)
         \]
 
 
+        \subsection{Numero Minimo di iterazioni}
+        Il numero minimo di iterazioni per avere un errore inferiore a tol è:
 
-        ordine di convergenza e costante asintotica
+        \[
+            |e_k| < 10^{-t} = tol
+        \]
 
-        lim k-> +inf \frac{|e_{k_1}|}{|e_k|} NON esiste
+        \[
+            |e_k| \le \frac{b-a}{2^{k+1}} < tol   
+        \]
 
-        p = 1, c = \frac{1}{2}
+        \[
+            \log(b-a) - (k+1)\log_2 < \log(tol)
+        \]
 
-\end{document}
+        \[
+            \log(b-a) - \log_(tol) < (k+1)\log_2
+        \]
+
+        \[
+            \frac{\log(b-a)-\log_(tol)}{\log_2} < (k+1)
+        \]
+
+        \[
+            k > \frac{\log(b-a)-\log_(tol)}{\log_2} -1
+        \]
+    
+
+        \paragraph{}
+        \textbf{Esempio:} $f(x) = e^{-2x}-x^2 = 0$, $I = [0,1]$
+        
+        \[
+            \frac{1}{2^{k+1}} < 10^{-7}
+        \]
+
+        \[
+            \frac{1}{10^{-7}} < 2^{k+1}
+        \]
+
+        \[
+            k+1 > \log_2(10^7)
+        \]
+
+        \[
+            k > 23.25 -1 \approx 23
+        \]
+
+        \paragraph{Esercizi: }
+
+        \begin{align*}
+            & \sin(x) - x = 0 \quad \\
+            & 5x - e^{-x} = 0 \quad \\
+            & x^2 - 5x + 6 = 0 \quad \\
+            & e^{-\frac{x}{4}} - x = 0 \quad
+        \end{align*}
+
+    
+
+        \subsection{Metodo Newton-Raphson}
+        Applicabilità:
+        \begin{itemize}
+            \item \( f \in C^1([a,b]) \)
+            \item \( \alpha \in [a,b] \mid f(\alpha) = 0 \)
+        \end{itemize}
+
+        Funzionamento:
+        --------------
+
+        Interpretazione:
+        due modi diversi 
+        \begin{enumerate}
+            \item Traduzione matematica:
+            suppongo di essere in \( x_k \):
+            \[
+            \begin{cases}
+            y = f(x_k)+f'(x_k)(x-x_k) \\
+            y = 0
+            \end{cases}
+            \]
+
+            \[
+            \begin{aligned}
+            0 &= f(x_k)+f'(x_k)(x-x_k) \\
+            \frac{-f(x_k)}{f'(x_k)} &= x-x_k \\
+            x &= x_k - \frac{f(x_k)}{f'(x_k)} \\
+            x_{k+1} &= x_k -\frac{f(x_k)}{f'(x_k)}, \quad k \geq 0
+            \end{aligned}
+            \]
+
+            \item Modo di ricavare lo schema iterativo:
+            \[
+            x_{k+1} = x_k + S
+            \]
+
+            \[
+            0 = f(x_{k+1}) = f(x_k+S) = f(x_k) + f'(x_k) S
+            \]
+
+            \[
+            -\frac{f(x_k)}{f'(x_k)} = S
+            \]
+
+            \[
+            x_{k+1} = x_k + S = x_k-\frac{f(x_k)}{f'(x_k)}, \quad k \geq 0
+            \]
+        \end{enumerate}
+
+        \paragraph{}
+        \textbf{Th. di convergenza locale del Metodo di Newton-Raphson}: Sia \( f \in C^2([a,b]) \), con \( \alpha \in [a,b] \mid f(\alpha) = 0 \).
+        Sia \( f'(x) \neq 0 \, \forall x \in [a,b] \), allora esiste \( \delta > 0 \) tale che \( \forall x_0 \in B(\alpha, \delta) \):
+        \begin{enumerate}
+            \item il metodo è ben definito, \( \{x_k\}_{k \geq 0} \subset B(\alpha, \delta) \)
+            \item \( \frac{|e_{k+1}|}{|e_k|^2} < M \); (e quindi il limite \( k \to \infty \, x_k = \alpha \))
+        \end{enumerate}
+        Inoltre si ha che:
+        \[
+        \lim_{k \to \infty} \frac{|e_{k+1}|}{|e_k|^2} = \frac{1}{2} \left| \frac{f''(\alpha)}{f'(\alpha)} \right|
+        \]
+
+        \paragraph{}
+        \textbf{Dimostrazione: }
+        \[
+        e_k = \alpha - x_k; \quad \alpha = x_k + e_k;
+        \]
+
+        \[
+        0 = f(\alpha) = f(x_k + e_k) = f(x_k) + f'(x_k) e_k + \frac{1}{2} f''(\xi_k)e_k^2, \quad \xi_k \in \text{int}(x_k,\alpha)
+        \]
+
+        \[
+        -\frac{f(x_k)}{f'(x_k)} = e_k + \frac{1}{2} \frac{f''(\xi_k)}{f'(x_k)} e_k^2
+        \]
+
+        \[
+        -\frac{f(x_k)}{f'(x_k)} = x_{k+1} - x_k
+        \]
+
+        \[
+        x_{k+1} - x_k = e_k + \frac{1}{2} \frac{f''(\xi_k)}{f'(x_k)} e_k^2
+        \]
+
+        \[
+        x_{k+1} - \alpha + \alpha - x_k = e_k + \frac{1}{2} \frac{f''(\xi_k)}{f'(x_k)} e_k^2
+        \]
+
+        \[
+        x_{k+1} - \alpha + \alpha - x_k = - e_{k+1} + e_k
+        \]
+
+        \[
+        \frac{-e_{k+1}}{e_k^2} = \frac{1}{2} \frac{f''(\xi_k)}{f'(x_k)}
+        \]
+
+        \[
+        \frac{|e_{k+1}|}{|e_k|^2} \leq \frac{1}{2} \frac{\max_x |f''(x)|}{\min_x |f'(x)|} = M
+        \]
+
+        Questo risultato ci permette di dimostrare la convergenza di \( x_k \) ad \( \alpha \) (ovvero che \( \lim_{k \to \infty} |e_k| = 0 \)).
+
+        \[
+        |e_{k+1}| \leq M |e_k|^2; \quad |e_k| \leq M |e_{k-1}|^2
+        \]
+
+        \[
+        M|e_k| \leq M |e_{k-1}|^2 \leq (M|e_{k-2}|)^2 \leq \ldots \leq (M|e_0|)^{2^k}
+        \]
+
+        \[
+        M(e_k) \leq (M|e_0|)^{2^k}; \quad |e_k| \leq \frac{1}{M}(M |e_0|)^{2^k}
+        \]
+
+        \[
+        0 \leq |e_k| \leq \frac{1}{M} (M |e_0|)^{2^k}
+        \]
+
+        DA COMPLETARE 
+ 
+ 
+
+        CRITERIO DI ARRESTO:
+        per newton si usa il residuo pesato che per newton è anche
+
+        \begin{align*}
+            x_k+1 ... x_k sacrto al passo k+1\\
+            S_k+1 = x_k+1 ... x_k \\
+            if |S_k+1 | < tol \\
+            S_k+1 \approx e_k ottimo test di arresto 
+        \end{align*}
+        
+       
+
+ 
+ \end{document}
