@@ -19,6 +19,9 @@
 \usepackage{amssymb} % Simboli aggiuntivi
 \usepackage{textgreek} % Per lettere greche in modalità testo
 
+\usepackage{tikz}
+\usetikzlibrary{trees}
+
 % Grafica e immagini
 \usepackage{graphicx} % Per includere immagini
 \usepackage{float} % Per posizionamento accurato degli oggetti flottanti
@@ -49,7 +52,7 @@
     
         % Titolo
         \vspace{2cm}
-        {\Huge\bfseries Analisi Numerica\par}
+        {\Huge\bfseries Algoritmi di ottimizzazione\par}
     
         % Autore
         \vspace{1cm}
@@ -638,15 +641,201 @@
 
         
 
-    \section{Programmazione lineare}
-        \subsection{LP properties: Proportionality}
-        \subsection{LP properties: Fixed charge}
-        \subsection{LP properties: Additivity}
+    \section{Introduzione alla Programmazione lineare}
+        Un problema di programmazione lineare (LP) è un problema di ottimizzazione del tipo:
+
+        \[
+            z = \max \{c(x): x \in X \subseteq \mathbb{R}^n \}
+        \]
+        
+        oppure 
+
+        \[
+            z = \min \{c(x): x \in X \subseteq \mathbb{R}^n \}
+        \]
+        
+        Dove:
+            \paragraph{} La funzione obiettivo $c(x): \mathbb{R}^n \rightarrow \mathbb{R}$ è lineare, quindi $c(0) = 0$ e $c(\alpha x + \beta y) = \alpha c(x)+\beta c(y)$. 
+            Questo implica che $c(x) = cx$ dove $c$ è un vettore in $\mathbb{R}^n$
+            \paragraph{}  L'insieme $X$ della regione ammissibile è definita da vincoli lineari tali che $h(x) = \gamma$ e/o $h(x)\le \gamma$ e/o $h(x) \ge \gamma$, dove $h(x): \mathbb{R}^n \rightarrow \mathbb{R}$ è una funzione lineare e $\gamma$ è uno scalare in $\mathbb{R}$.
+        
+        \paragraph{}
+        Un problema di programmazione lineare può essere formulato come:
+
+        \begin{align*}
+            \max & c^T x \\
+            Ax &\leq b \\
+            x &\geq 0
+        \end{align*}
+        
+        or
+        
+        \begin{align*}
+            \max Z = c_1 x_1 + c_2 x_2 + \dots + c_n x_n \\
+            a_{11} x_1 + a_{12} x_2 + \dots + a_{1n} x_n \leq b_1 \\
+            a_{21} x_1 + a_{22} x_2 + \dots + a_{2n} x_n \leq b_2 \\
+            \vdots \\
+            a_{m1} x_1 + a_{m2} x_2 + \dots + a_{mn} x_n \leq b_m \\
+            x_1, x_2, \dots, x_n \geq 0
+        \end{align*}
+        
+        \paragraph{} Dove: 
+        \begin{itemize}
+            \item $m$ è il numero di righe della matrice $A$
+            \item $n$ è la dimensione del vettore $x$ e il numero di colonne della matrice $A$
+            \item $c$ è il vettore dei coefficienti della funzione obiettivo
+            \item $A$ technology matrix
+            \item $b$ right-hand side vector ($\geq 0$ in the standard form)
+            \item $x$ varibili di decisione
+            \item $X = \{ x : Ax \leq b, x \geq 0 \}$, l'insieme della regione ammissibile
+        \end{itemize}
+            
+        \subsection{LP properties: Proporzionalità}
+        La funzione obiettivo e ogni vincolo devono essere lineari rispetto a ciascuna variabile decisionale; in altre parole, la misura dell'efficacia e l'uso delle risorse devono essere proporzionali al livello di ciascuna attività svolta individualmente, cioè se $x_i \neq 0$ e $x_1 = x_2 = \ldots = x_{j-1} = x_{j+1} = \ldots = x_n = 0$, deve essere che $Z = c_jx_j$ e $a_{ij} \le b_j, $ $\forall i, \forall j$
+
+        \paragraph{}
+        Pertanto la seguente proprietà vale sempre: 
+
+        \[
+            \frac{\partial Z}{\partial x_j} = c_j \quad \forall j; \quad  \frac{\partial b_j}{\partial x_j} \ge a_{ij} \quad \forall i, \forall j 
+        \]
+
+        cioè, la misura marginale dell'efficacia e l'uso marginale di ciascuna risorsa devono rimanere costanti sull'intero intervallo di variazione dei livelli di ciascuna attività.
+
+        \subsubsection{LP properties: Fixed charge}
+        Un caso in cui non è possibile applicare la Programmazione Lineare (PL) è quando abbiamo un costo fisso. Questo accade ogni volta che c'è un costo di preparazione o un costo di setup associato a un'attività.
+
+        Cioè, se $x$ è il livello di una certa attività e la funzione obiettivo è
+
+        $$
+            f(x) = \begin{cases}
+            0 & x = 0 \\
+            K + cx & x > 0
+            \end{cases}
+        $$
+
+        La proprietà di proporzionalità è violata.
+        
+        \subsection{LP properties: Addittività}
+        
+        Non ci devono essere interazioni tra le varie attività, cioè, la misura totale di efficacia derivata dal risultato congiunto delle attività deve essere uguale alla somma di quelle quantità risultanti da ciascuna attività svolta individualmente.
+
+        In pratica, se $c_1 x_1, c_2 x_2, \dots, c_n x_n$ è la misura di efficacia per l'attività $1, 2, \dots, n$ condotta individualmente, deve essere che $Z = c_1 x_1 + c_2 x_2 + \dots + c_n x_n$ dove $Z$ è la misura totale di efficacia.
+
+        Allo stesso modo, per l'utilizzo totale di una risorsa.
+
         \subsection{LP properties: Divisibily (or Continuity)}
+
+        I valori di $x_j$ sono numeri reali, cioè $x \in \mathbb{R}^n$.
+
+        Va notato che questo non ha sempre senso, cioè, a volte la soluzione che stiamo cercando deve essere intera. Tuttavia, in quel caso, se la regione ammissibile non è vuota, possiamo sempre trovare un vettore $x$ che rispetta i vincoli anche senza essere intero.
+
+        Escludiamo sempre il caso di valori complessi.
+      
         \subsection{LP properties: Certainty}
+        Tutti i coefficienti del problema sono numeri reali costanti noti a priori. Non c'è nulla di stocastico, nulla di casuale.
+
         \subsection{Esiti possibili in un LP}
+        
+        \begin{center}
+            \begin{tikzpicture}[
+                level distance=2cm,
+                level 1/.style={sibling distance=8cm},
+                level 2/.style={sibling distance=6cm},
+                level 3/.style={sibling distance=6cm},
+                edge from parent/.style={draw,thick,blue,->}
+                ]
+                \node {$\begin{aligned} &\text{Max } \{cx : x \in X \} \\ &X = \{ x : Ax \le b, x \ge 0 \} \end{aligned}$}
+                child {node {$\begin{aligned} &\text{No feasible region} \\ &\quad\quad X = \emptyset \end{aligned}$}
+                }
+                child {node {$\begin{aligned} &\text{A feasible region exists} \\ &\quad\quad\quad\quad X \neq \emptyset \end{aligned}$}
+                    child {node {An optimal solution exists}
+                    child {node {One optimal solution}}
+                    child {node {Infinite number of optimal solutions}}
+                    }
+                    child {node {No optimal solution}}
+                };
+                \end{tikzpicture}
+        \end{center}
+
         \subsubsection{Key Theorem}
-    \section{Algoritmo del simplesso}   
+
+
+        \paragraph{}
+        \textbf{Def.  Iperpiano:} chiamiamo iperpiano l'insieme $H = \{ x \in \mathbb{R}^n : a^T x = b \}$, dove $a \in \mathbb{R}^n$, $a \neq 0$, $b \in \mathbb{R}$. Le regioni $X^- = \{ x \in \mathbb{R}^n : a^T x \leq b \}$ e $X^+ = \{ x \in \mathbb{R}^n : a^T x \geq b \}$ sono chiamate \textit{semispazi} delimitati dall'iperpiano di supporto $H$.
+
+        \paragraph{}
+        \textbf{Def. Poliedro:} chiamiamo \textit{poliedro (convesso)} l'intersezione di un numero finito di semispazi e iperpiani.
+        
+        \paragraph{}
+        \textbf{Def. Politopo:} chiamiamo \textit{politopo} un poliedro limitato $P$, cioè, esiste una costante $M > 0$ tale che $||x|| \leq M$ per tutti gli $x \in P$.
+
+        \paragraph{}
+        \textbf{Lemma:} la regione ammissibile di un problema di Programmazione Lineare (PL) è un poliedro convesso.
+
+        \paragraph{}
+        \textbf{Def. vertice:} i punti estremi di un poliedro convesso sono chiamati vertici.
+
+
+        \paragraph{}
+        \textbf{Th.} dato il problema di Programmazione Lineare (PL)
+
+        $$
+        \begin{aligned}
+            \max cx \\
+            Ax = b \quad (b \geq 0) \\
+            x \geq 0
+        \end{aligned}
+        $$
+
+        se $X \neq \emptyset$ e ha una soluzione ottima e finita, allora esiste un vertice di $X$ che è una soluzione ottima.
+
+        La dimostrazione si basa sul fatto che $X$ è un poliedro e quindi un insieme convesso.
+
+        \textbf{Dim :} Per assurdo, assumendo che ci sia esattamente una soluzione ottima e che non sia un vertice della regione ammissibile. Ricordiamo la definizione di vertice ammissibile (una soluzione ammissibile che non giace su alcun segmento di retta che collega altre due soluzioni ammissibili). Poiché abbiamo assunto che la soluzione ottima $x^*$ non sia un vertice ammissibile, ciò implica che devono esserci altre due soluzioni ammissibili tali che il segmento di retta che le collega contenga la soluzione ottima. Siano i vettori $x'$ e $x''$ queste altre due soluzioni ammissibili, e siano $Z_1$ e $Z_2$ i loro rispettivi valori della funzione obiettivo. Come ogni altro punto sul segmento di retta che collega $x'$ e $x''$,
+
+        $$
+            x^* = \alpha x'' + (1 - \alpha) x'
+        $$
+
+        per qualche valore di $\alpha$ tale che $0 < \alpha < 1$. Quindi,
+
+        $$
+            Z^* = \alpha Z_2 + (1 - \alpha) Z_1
+        $$
+
+        Poiché i pesi $\alpha$ e $1 - \alpha$ sommano a 1, le uniche possibilità per come $Z^*$, $Z_1$ e $Z_2$ si confrontano sono
+
+        \begin{enumerate}
+            \item $Z^* = Z_1 = Z_2$
+            \item $Z_1 < Z^* < Z_2$
+            \item $Z_1 > Z^* > Z_2$
+        \end{enumerate}
+
+        La prima possibilità implica che anche $x'$ e $x''$ sono ottime, il che contraddice l'assunzione che ci sia esattamente una soluzione ottima. Entrambe le ultime possibilità contraddicono l'assunzione che $x^*$ (non un vertice ammissibile) sia ottima. La conclusione risultante è che è impossibile avere una singola soluzione ottima che non sia un vertice ammissibile.
+
+       
+
+    \section{Algoritmo del simplesso: fondamenti}
+    \textbf{Esempio: }
+
+    ----------------------------------------------------------------------
+        
+        \subsection{CPS-Corner Point Solutions}
+        \begin{itemize}
+            \item Un limite di vincolo è una linea che forma il confine di ciò che è permesso dal vincolo corrispondente.
+            \item I punti di intersezione sono le soluzioni dei punti d'angolo (vertici) del problema. I cinque che si trovano agli angoli della regione ammissibile—(0, 0), (0, 6), (2, 6), (4, 3) e (4, 0)—sono le soluzioni ammissibili dei punti d'angolo (soluzioni CPF). Gli altri tre—(0, 9), (4, 6) e (6, 0)—sono chiamati soluzioni inammissibili dei punti d'angolo.
+        \end{itemize}
+        
+        In questo esempio, ogni soluzione di punto d'angolo si trova all'intersezione di due limiti di vincolo. Per un problema di Programmazione Lineare (PL) con $n$ variabili decisionali, ciascuna delle sue soluzioni di punto d'angolo si trova all'intersezione di $n$ limiti di vincolo.
+        
+
+
+        \subsection{Proprietà}
+        \subsection{Optimal test}
+        \subsection{The Simplex Algorithm}
+
+    
     
     
 
