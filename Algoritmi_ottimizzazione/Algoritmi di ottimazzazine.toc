@@ -66,37 +66,55 @@
 \contentsline {paragraph}{}{14}{}%
 \contentsline {section}{\numberline {3}Algoritmo del simplesso: fondamenti}{15}{}%
 \contentsline {subsection}{\numberline {3.1}CPS-Corner Point Solutions}{15}{}%
-\contentsline {subsection}{\numberline {3.2}Proprietà}{15}{}%
-\contentsline {subsection}{\numberline {3.3}Optimal test}{15}{}%
-\contentsline {subsection}{\numberline {3.4}The Simplex Algorithm}{15}{}%
-\contentsline {section}{\numberline {4}Soluzioni base}{15}{}%
-\contentsline {subsection}{\numberline {4.1}Forma standard}{15}{}%
-\contentsline {paragraph}{Th. }{15}{}%
+\contentsline {paragraph}{}{15}{}%
+\contentsline {paragraph}{}{15}{}%
+\contentsline {paragraph}{}{15}{}%
+\contentsline {paragraph}{}{15}{}%
+\contentsline {paragraph}{}{15}{}%
+\contentsline {subsection}{\numberline {3.2}Proprietà}{16}{}%
 \contentsline {paragraph}{}{16}{}%
 \contentsline {paragraph}{}{16}{}%
 \contentsline {paragraph}{}{16}{}%
 \contentsline {paragraph}{}{16}{}%
-\contentsline {paragraph}{}{16}{}%
-\contentsline {paragraph}{OSS: }{17}{}%
-\contentsline {section}{\numberline {5}Algoritmo del simplesso - fase I e fase II}{19}{}%
+\contentsline {paragraph}{}{17}{}%
+\contentsline {subsection}{\numberline {3.3}Optimal test}{17}{}%
+\contentsline {paragraph}{}{17}{}%
+\contentsline {subsection}{\numberline {3.4}The Simplex Algorithm}{17}{}%
+\contentsline {paragraph}{}{17}{}%
+\contentsline {paragraph}{}{17}{}%
+\contentsline {subsection}{\numberline {3.5}Oss.}{18}{}%
+\contentsline {section}{\numberline {4}Soluzioni base}{19}{}%
+\contentsline {subsection}{\numberline {4.1}Forma standard}{19}{}%
+\contentsline {paragraph}{Th. }{19}{}%
 \contentsline {paragraph}{}{19}{}%
 \contentsline {paragraph}{}{19}{}%
-\contentsline {paragraph}{}{19}{}%
-\contentsline {paragraph}{}{19}{}%
-\contentsline {section}{\numberline {6}A Production Problem}{20}{}%
-\contentsline {section}{\numberline {7}Primal Formulation}{20}{}%
-\contentsline {section}{\numberline {8}Example}{21}{}%
-\contentsline {section}{\numberline {9}Comments on the Primal Problem}{21}{}%
-\contentsline {section}{\numberline {10}The Dual of the Production Problem}{21}{}%
-\contentsline {section}{\numberline {11}Dual Variables and Objective Function}{21}{}%
-\contentsline {subsection}{\numberline {11.1}Decision Variables}{21}{}%
-\contentsline {subsection}{\numberline {11.2}Objective Function}{21}{}%
-\contentsline {section}{\numberline {12}Dual Constraints}{21}{}%
-\contentsline {section}{\numberline {13}Dual Formulation}{22}{}%
-\contentsline {section}{\numberline {14}Comments on the Dual Problem}{22}{}%
-\contentsline {section}{\numberline {15}Primal and Dual Problems}{22}{}%
-\contentsline {subsection}{\numberline {15.1}Primal Problem (P)}{22}{}%
-\contentsline {subsection}{\numberline {15.2}Dual Problem (D)}{22}{}%
-\contentsline {section}{\numberline {16}Primal and Dual - Matrix Form}{23}{}%
-\contentsline {subsection}{\numberline {16.1}Primal Problem (P)}{23}{}%
-\contentsline {subsection}{\numberline {16.2}Dual Problem (D)}{23}{}%
+\contentsline {paragraph}{}{20}{}%
+\contentsline {paragraph}{}{20}{}%
+\contentsline {paragraph}{}{20}{}%
+\contentsline {paragraph}{OSS: }{20}{}%
+\contentsline {paragraph}{}{21}{}%
+\contentsline {paragraph}{Oss: }{21}{}%
+\contentsline {subsubsection}{\numberline {4.1.1}Variabili surplus}{22}{}%
+\contentsline {section}{\numberline {5}Algoritmo del simplesso - fase I e fase II}{22}{}%
+\contentsline {paragraph}{}{22}{}%
+\contentsline {paragraph}{}{22}{}%
+\contentsline {paragraph}{}{23}{}%
+\contentsline {paragraph}{}{23}{}%
+\contentsline {paragraph}{}{23}{}%
+\contentsline {section}{\numberline {6}A Production Problem}{23}{}%
+\contentsline {section}{\numberline {7}Primal Formulation}{23}{}%
+\contentsline {section}{\numberline {8}Example}{24}{}%
+\contentsline {section}{\numberline {9}Comments on the Primal Problem}{24}{}%
+\contentsline {section}{\numberline {10}The Dual of the Production Problem}{24}{}%
+\contentsline {section}{\numberline {11}Dual Variables and Objective Function}{24}{}%
+\contentsline {subsection}{\numberline {11.1}Decision Variables}{24}{}%
+\contentsline {subsection}{\numberline {11.2}Objective Function}{25}{}%
+\contentsline {section}{\numberline {12}Dual Constraints}{25}{}%
+\contentsline {section}{\numberline {13}Dual Formulation}{25}{}%
+\contentsline {section}{\numberline {14}Comments on the Dual Problem}{25}{}%
+\contentsline {section}{\numberline {15}Primal and Dual Problems}{25}{}%
+\contentsline {subsection}{\numberline {15.1}Primal Problem (P)}{26}{}%
+\contentsline {subsection}{\numberline {15.2}Dual Problem (D)}{26}{}%
+\contentsline {section}{\numberline {16}Primal and Dual - Matrix Form}{26}{}%
+\contentsline {subsection}{\numberline {16.1}Primal Problem (P)}{26}{}%
+\contentsline {subsection}{\numberline {16.2}Dual Problem (D)}{26}{}%

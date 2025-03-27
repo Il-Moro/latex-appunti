@@ -822,366 +822,487 @@
     ----------------------------------------------------------------------
         
         \subsection{CPS-Corner Point Solutions}
-        \begin{itemize}
-            \item Un limite di vincolo è una linea che forma il confine di ciò che è permesso dal vincolo corrispondente.
-            \item I punti di intersezione sono le soluzioni dei punti d'angolo (vertici) del problema. I cinque che si trovano agli angoli della regione ammissibile—(0, 0), (0, 6), (2, 6), (4, 3) e (4, 0)—sono le soluzioni ammissibili dei punti d'angolo (soluzioni CPF). Gli altri tre—(0, 9), (4, 6) e (6, 0)—sono chiamati soluzioni inammissibili dei punti d'angolo.
-        \end{itemize}
+        Un limite di vincolo è una linea che forma il confine di ciò che è permesso dal vincolo corrispondente.
+        
+        \paragraph{}
+        \textbf{Def. CPS:} i punti di intersezione delle linee definite dai vincoli sono le soluzioni (CPS, Corner Point Solutions) del problema. 
+        
+        \paragraph{}
+        I cinque che si trovano agli angoli della regione ammissibile—(0, 0), (0, 6), (2, 6), (4, 3) e (4, 0)—sono le soluzioni ammissibili dei punti d'angolo (soluzioni CPF). Gli altri tre—(0, 9), (4, 6) e (6, 0)—sono chiamati soluzioni inammissibili dei punti d'angolo.
         
         In questo esempio, ogni soluzione di punto d'angolo si trova all'intersezione di due limiti di vincolo. Per un problema di Programmazione Lineare (PL) con $n$ variabili decisionali, ciascuna delle sue soluzioni di punto d'angolo si trova all'intersezione di $n$ limiti di vincolo.
-        
 
+        \paragraph{}
+        \text{Disegnino del poliedro}
+
+        \paragraph{}
+        \textbf{Def. } Per qualsiasi problema di Programmazione Lineare (PL) con $n$ variabili decisionali, due soluzioni CPF sono adiacenti tra loro se condividono $n - 1$ limiti di vincolo. Le due soluzioni CPF adiacenti sono collegate da un segmento di retta che giace su questi stessi limiti di vincolo condivisi. Tale segmento di retta è indicato come un bordo (spigolo) della regione ammissibile.
+
+        \paragraph{}
+        Poiché $n = 2$ nell'esempio, due delle sue soluzioni CPF sono adiacenti se condividono un limite di vincolo; per esempio, (0, 0) e (0, 6) sono adiacenti perché condividono il limite di vincolo $x_1 = 0$. La regione ammissibile nella figura ha cinque bordi, costituiti dai cinque segmenti di retta che formano il confine di questa regione. Si noti che due bordi emanano da ciascuna soluzione CPF. Pertanto, ogni soluzione CPF ha due soluzioni CPF adiacenti (ciascuna situata all'altra estremità di uno dei due bordi), come elencato nella Tabella 1.
+
+        \begin{center}
+        \begin{tabular}{| c | c |}
+            \hline
+            Soluzione CPF & Sue soluzioni CPF adiacenti \\
+            \hline
+            (0,0) & (0,6) e (4,0) \\
+            \hline
+            (0,6) & (2,6) e (0,0) \\
+            \hline
+            (2,6) & (4,3) e (0,6) \\
+            \hline
+            (4,3) & (4,0) e (2,6) \\
+            \hline
+            (4,0) & (0,0) e (4,3) \\
+            \hline
+        \end{tabular}
+        \end{center}
 
         \subsection{Proprietà}
+
+        \paragraph{}
+        \textbf{Proprietà 1}
+
+        \begin{enumerate}
+            \item Se esiste esattamente una soluzione ottima, allora deve essere una soluzione CPF.
+            \item Se esistono più soluzioni ottime (e una regione ammissibile limitata), allora almeno due devono essere soluzioni CPF adiacenti.
+        \end{enumerate}
+
+        \textbf{Dim 1:} Per assurdo, assumendo che ci sia esattamente una soluzione ottima e che non sia una soluzione CPF. Ricordiamo la definizione di soluzione CPF (una soluzione ammissibile che non giace su alcun segmento di retta che collega altre due soluzioni ammissibili). Poiché abbiamo assunto che la soluzione ottima $x^*$ non sia una soluzione CPF, ciò implica che devono esserci altre due soluzioni ammissibili tali che il segmento di retta che le collega contenga la soluzione ottima. Siano i vettori $x'$ e $x''$ queste altre due soluzioni ammissibili, e siano $Z_1$ e $Z_2$ i loro rispettivi valori della funzione obiettivo. Come ogni altro punto sul segmento di retta che collega $x'$ e $x''$,
+
+        $$
+            x^* = \alpha x'' + (1 - \alpha) x'
+        $$
+
+        per qualche valore di $\alpha$ tale che $0 < \alpha < 1$. Quindi,
+
+        $$
+            Z^* = \alpha Z_2 + (1 - \alpha) Z_1
+        $$
+
+        Poiché i pesi $\alpha$ e $1 - \alpha$ sommano a 1, le uniche possibilità per come $Z^*$, $Z_1$ e $Z_2$ si confrontano sono
+
+        \begin{enumerate}
+            \item $Z^* = Z_1 = Z_2$
+            \item $Z_1 < Z^* < Z_2$
+            \item $Z_1 > Z^* > Z_2$
+        \end{enumerate}
+
+        La prima possibilità implica che anche $x'$ e $x''$ sono ottime, il che contraddice l'assunzione che ci sia esattamente una soluzione ottima. Entrambe le ultime possibilità contraddicono l'assunzione che $x^*$ (non una soluzione CPF) sia ottima. La conclusione risultante è che è impossibile avere una singola soluzione ottima che non sia una soluzione CPF.
+
+        \paragraph{}
+        \textbf{Dim 2:} Ciò che accade quando si risolve graficamente è che la linea della funzione obiettivo viene alzata fino a contenere il segmento di retta che collega le due soluzioni CPF.
+
+        La stessa cosa accadrebbe in dimensioni superiori, tranne che un iperpiano della funzione obiettivo verrebbe alzato fino a contenere il/i segmento/i di retta che collega/no due (o più) soluzioni CPF adiacenti.
+
+        Di conseguenza, tutte le soluzioni ottime possono essere ottenute come medie ponderate delle soluzioni CPF ottime.
+
+        
+        \paragraph{}
+        \textbf{Proprietà 2:} Esiste solo un numero finito di soluzioni CPF.
+
+        \paragraph{}
+        Ogni soluzione CPF è la soluzione simultanea di un sistema di $n$ equazioni tra le $m + n$ equazioni di confine dei vincoli. Il numero di diverse combinazioni di $m + n$ equazioni prese $n$ alla volta è
+
+        $$
+            \binom{m+n}{n} = \frac{(m+n)!}{m!n!}
+        $$
+
+        che è un numero finito.
+
+        L'enumerazione esaustiva potrebbe non essere possibile: un problema di programmazione lineare piuttosto piccolo con solo $m = 50$ e $n = 50$ avrebbe $\frac{100!}{(50!)^2} \approx 10^{29}$ sistemi di equazioni da risolvere!
+
+        Al contrario, il metodo del simplesso dovrebbe esaminare solo circa 100 soluzioni CPF per un problema di queste dimensioni.
+
+        \paragraph{}
+        \textbf{Proprietà 3:} se una soluzione CPF non ha soluzioni CPF adiacenti che sono migliori (misurate da Z), allora non ci sono soluzioni CPF migliori da nessuna parte. Pertanto, tale soluzione CPF è garantita essere una soluzione ottima (per la Proprietà 1), assumendo solo che il problema possieda almeno una soluzione ottima (garantito se il problema possiede soluzioni ammissibili e una regione ammissibile limitata).
+
         \subsection{Optimal test}
+
+        \textbf{Test di ottimalità: } si consideri qualsiasi problema di programmazione lineare che possiede almeno una soluzione ottima. Se una soluzione CPF non ha soluzioni CPF adiacenti che sono migliori (misurate da Z), allora deve essere una soluzione ottima.
+
+        \paragraph{}
+        Pertanto, per l'esempio, (2, 6) deve essere ottima semplicemente perché il suo Z = 36 è maggiore di Z = 30 per (0, 6) e Z = 27 per (4, 3). Questo test di ottimalità è quello utilizzato dal metodo del simplesso per determinare quando è stata raggiunta una soluzione ottima.
+
         \subsection{The Simplex Algorithm}
 
-    
-    
-    
+        \textbf{Inizializzazione: } sceglie (0,0) come soluzione CPF iniziale da esaminare. (Questa è una scelta conveniente perché non sono necessari calcoli per identificare questa soluzione CPF.)
 
+        \paragraph{}
+        \textbf{Test di ottimalità:} conclude che (0,0) non è una soluzione ottima. (Le soluzioni CPF adiacenti sono migliori.)
 
+        \paragraph{}
+        \textbf{Iterazione 1:} si sposta a una soluzione CPF adiacente migliore, (0, 6), eseguendo i seguenti tre passaggi.
+
+        \begin{enumerate}
+            \item Considerando i due bordi della regione ammissibile che emanano da (0, 0), sceglie di spostarsi lungo il bordo che porta sull'asse $x_2$. (Con una funzione obiettivo di $Z = 3x_1 + 5x_2$, spostarsi sull'asse $x_2$ aumenta $Z$ a una velocità maggiore rispetto allo spostamento lungo l'asse $x_1$.)
+            \item si ferma al primo nuovo limite di vincolo: $2x_2 = 12$. (Spostarsi ulteriormente nella direzione selezionata al passaggio 1 esce dalla regione ammissibile; ad esempio, spostarsi al secondo nuovo limite di vincolo raggiunto quando ci si sposta in quella direzione dà (0, 9), che è una soluzione inammissibile del punto d'angolo.)
+            \item risolve per l'intersezione del nuovo insieme di limiti di vincolo: (0, 6). (Le equazioni per questi limiti di vincolo, $x_1 = 0$ e $2x_2 = 12$, producono immediatamente questa soluzione.)
+        \end{enumerate}
+
+        \textbf{Test di ottimalità:} conclude che (0, 6) non è una soluzione ottima. (Una soluzione CPF adiacente è migliore.)
+
+        \textbf{Iterazione 2:} si sposta a una soluzione CPF adiacente migliore, (2, 6), eseguendo i seguenti tre passaggi.
+
+        \begin{enumerate}
+            \item Considerando i due bordi della regione ammissibile che emanano da (0, 6), sceglie di spostarsi lungo il bordo che porta a destra. (Spostarsi lungo questo bordo aumenta Z, mentre tornare indietro per spostarsi di nuovo sull'asse $x_2$ diminuisce Z.)
+            \item si ferma al primo nuovo limite di vincolo incontrato quando ci si sposta in quella direzione: $3x_1 + 2x_2 = 18$. (Spostarsi ulteriormente nella direzione selezionata al passaggio 1 esce dalla regione ammissibile.)
+            \item risolve per l'intersezione del nuovo insieme di limiti di vincolo: (2, 6). (Le equazioni per questi limiti di vincolo, $3x_1 + 2x_2 = 18$ e $2x_2 = 12$, producono immediatamente questa soluzione.)
+        \end{enumerate}
+
+        \textbf{Test di ottimalità} conclude che (2, 6) è una soluzione ottima, quindi ci si ferma. (Nessuna delle soluzioni CPF adiacenti è migliore.)
+
+        \subsection{Oss.}
+        \begin{itemize}
+            \item \textbf{Relazioni tra soluzioni ottimali e CPF}
+            
+                Il metodo del simplesso si concentra esclusivamente sulle soluzioni CPF. Per qualsiasi problema con almeno una soluzione ottima, trovarne una richiede solo di trovare la migliore soluzione CFP.
+            
+                Poiché il numero di soluzioni ammissibili è generalmente infinito, ridurre il numero di soluzioni che devono essere esaminate a un piccolo numero finito (solo tre nel nostro esempio) è una semplificazione enorme.
+
+            \item \textbf{Il flusso del metodo del simplesso:}
+
+                Il metodo del simplesso è un algoritmo iterativo con la seguente struttura
+            
+
+                \begin{center}
+                    \includegraphics[width=0.3\textwidth]{graph1.png}
+                \end{center} 
+            
+            \item \textbf{Come iniziare:}
+            
+                Quando possibile, l'inizializzazione del metodo del simplesso sceglie l'origine (tutte le variabili decisionali uguali a zero) come soluzione CPF iniziale. Quando ci sono troppe variabili decisionali per trovare graficamente una soluzione CPF iniziale, questa scelta elimina la necessità di utilizzare procedure algebriche per trovare e risolvere una soluzione CPF iniziale.
+                
+                La scelta dell'origine è comunemente possibile quando tutte le variabili decisionali hanno vincoli di non negatività, perché l'intersezione di questi confini dei vincoli produce l'origine come soluzione di punto d'angolo. Questa soluzione è quindi una soluzione CPF a meno che non sia infattibile perché viola uno o più vincoli. Se è infattibile, sono necessarie procedure speciali per trovare la soluzione CPF iniziale.
+                
+
+                \text{Oss: } non sempre è possibile scegliere l'origine come soluzione iniziale 
+            
+            \item \textbf{La scelta di una soluzione CPF migliore ad ogni iterazione}
+
+                Data una soluzione CPF, è computazionalmente molto più veloce raccogliere informazioni sulle sue soluzioni CPF adiacenti rispetto ad altre soluzioni CPF. Pertanto, ogni volta che il metodo del simplesso esegue un'iterazione per passare dalla soluzione CPF corrente a una migliore, sceglie sempre una soluzione CPF che è adiacente a quella corrente. Non vengono considerate altre soluzioni CPF. Di conseguenza, l'intero percorso seguito per raggiungere infine una soluzione ottimale si snoda lungo i bordi della regione ammissibile.
+            
+            \item \textbf{Quale soluzione CPF adiacente scegliere ad ogni iterazione: }
+
+                Dopo che la soluzione CPF corrente è stata identificata, il metodo del simplesso esamina ciascuno dei bordi della regione ammissibile che emanano da questa soluzione CPF e identifica il tasso di miglioramento in Z che si otterrebbe spostandosi lungo il bordo. Tra i bordi con un tasso di miglioramento positivo in Z, sceglie quindi di spostarsi lungo quello con il tasso di miglioramento maggiore in Z. L'iterazione è completata risolvendo prima per la soluzione CPF adiacente all'altra estremità di questo bordo e poi rietichettando questa soluzione CPF adiacente come la soluzione CPF corrente per il test di ottimalità e (se necessario) la successiva iterazione.
+                
+                Alla prima iterazione dell'esempio, spostarsi da (0, 0) lungo il bordo sull'asse $x_1$ darebbe un tasso di miglioramento in Z di 3 (Z aumenta di 3 per unità di aumento in $x_1$), mentre spostarsi lungo il bordo sull'asse $x_2$ darebbe un tasso di miglioramento in Z di 5 (Z aumenta di 5 per unità di aumento in $x_2$), quindi la decisione è di spostarsi lungo quest'ultimo bordo. Alla seconda iterazione, l'unico bordo che emana da (0, 6) che darebbe un tasso di miglioramento positivo in Z è il bordo che porta a (2, 6), quindi la decisione è di spostarsi successivamente lungo questo bordo.
+
+            \item \textbf{Come viene eseguito efficacemente il test di ottimalità: }
+            
+                Un tasso di miglioramento positivo in Z implica che la soluzione CPF adiacente è migliore della soluzione CPF corrente, mentre un tasso di miglioramento negativo in Z implica che la soluzione CPF adiacente è peggiore. Pertanto, il test di ottimalità consiste semplicemente nel verificare se uno qualsiasi dei bordi dà un tasso di miglioramento positivo in Z. Se nessuno lo fa, allora la soluzione CPF corrente è ottima.
+                
+                Nell'esempio, spostarsi lungo entrambi i bordi da (2, 6) diminuisce Z. Poiché vogliamo massimizzare Z, questo fatto dà immediatamente la conclusione che (2, 6) è ottima.
+            
+        \end{itemize}
 
     \section{Soluzioni base}
         \subsection{Forma standard}
-            Un qualuqnue problema di programmazione lineare può essere sempre formulato in FORMA STANDARD:
-            \begin{align}
-               \max{z} &= c^{T}x \notag \\
-                Ax &= b, \text{ ($b \geq 0$)} \notag \\
+        Un qualuqnue problema di programmazione lineare può essere sempre formulato in FORMA STANDARD:
+        \begin{align}
+            \max{z} &= c^{T}x \notag \\
+            Ax &= b, \text{ ($b \geq 0$)} \notag \\
+            x & \geq 0 \notag 
+        \end{align}
+
+        \paragraph{Th. } per ogni PL $\exists$ PL' in forma standard
+
+        \paragraph{}
+        Dato il problema: 
+        \begin{align}
+            \max{z} &= cx \notag \\
+                Ax &= b, \text{ } A \in M_{m,n}(\mathbb{R}) \notag \\
                 x & \geq 0 \notag 
-            \end{align}
+        \end{align}
+        
+        Si suppnga il $rango(A)$ = m, $m < n$, eventualmente riordinando le colonne, si può pore 
+        \[
+            A = [B|N]
+        \]
 
-            \paragraph{Th. } $\forall$ PL $\exists$ PL' in forma standard
+        dove 
+        \begin{itemize}
+            \item B è una matrice nonsingolare $m \cdot n$ detta \textbf{matrice delle colonne base}
+            \item N è una matrice $m \cdot (n-m)$, detta \textbf{matrice delle colonne fuori base}
+        \end{itemize}
 
-            \paragraph{}
-            Dato il problema: 
-            \begin{align}
-                \max{z} &= cx \notag \\
-                 Ax &= b, \text{ } A \in M_{m,n}(\mathbb{R}) \notag \\
-                 x & \geq 0 \notag 
-            \end{align}
-            
-            Si suppnga il $rango(A)$ = m, $m < n$, eventualmente riordinando le colonne, si può pore 
-            \[
-                A = [B|N]
-            \]
-
-            dove 
-            \begin{itemize}
-                \item B è una matrice nonsingolare $m \cdot m$ detta MATRICE DELLE COLONNE BASE 
-                \item N è una matrice $m \cdot (n-m)$, MATRICE DELLE COLONNE FUORI BASE
-            \end{itemize}
-
-            La matrice B è composta da m colonne di A linearmente indipendenti che formano 
-            una base nello spazio vettoriale ad m dimensioni delle colonne di A.
+        La matrice B è composta da m colonne di A linearmente indipendenti che formano 
+        una base nello spazio vettoriale ad m dimensioni delle colonne di A.
 
 
 
-            \paragraph{}
-            Sia:
+        \paragraph{}
+        Sia:
 
 
-            \[
-                x = 
-                \begin{pmatrix}
-                    x_1 \\
-                    \ldots \\
-                    x_n
-                \end{pmatrix}
-                \in \mathbb{R}^n
-            \]
+        \[
+            x = 
+            \begin{pmatrix}
+                x_1 \\
+                \ldots \\
+                x_n
+            \end{pmatrix}
+            \in \mathbb{R}^n
+        \]
 
-            In corripondenza di una scelta B e di N si può partizionare anche il vettore delle x:
+        In corripondenza di una scelta B e di N si può partizionare anche il vettore delle x:
 
-            \[ x = 
+        \[ x = 
+        \begin{bmatrix}
+            x_B \\
+            x_N
+        \end{bmatrix}
+        \]
+
+        \begin{itemize}
+            \item $x_B$, costituito da $m$ componenti, è detto vettore delle variabili base (vettore base)
+            \item $x_N$, costituito da $n-m$ componenti, è detto vettore delle variabili fuori base
+        \end{itemize}
+
+
+
+        \paragraph{}
+        Il sistema di equazizoni lineari $Ax = b$ si può scrivere come:
+        
+        \begin{align}
+            [B|N] 
+            \begin{bmatrix}
+                x_B \\
+                x_N 
+            \end{bmatrix} &= b
+            \implies B x_B + N x_N = b \notag \\
+            x_B &= B^{-1} b -B^{-1} N x_N \notag 
+        \end{align}
+
+        Dove $A = B|N$, B con $m$ elementi, invertibile, quindi $\exists$ $B^{-1}$, N di $(n-m)$ elementi.
+        
+
+        \paragraph{}
+        Per ogni base B (matrice di base) ogni soluzione del sistema $Ax = b$ corrisponde a determinare il valore per $m$ variabuli $x_B$ avendo fissato arbitrariarmente il valore per le restanti $n-m$ varibiabili $x_N$.
+
+        Una scelta particolarmente importante è porre $x_N = 0$, da cui si ottiene la corrispondente soluzione base: 
+        
+        \[ 
+            x = 
             \begin{bmatrix}
                 x_B \\
                 x_N
             \end{bmatrix}
-            \]
+            = 
+            \begin{bmatrix}
+                B^{-1}b \\
+                0
+            \end{bmatrix}
+        \]
 
-            \begin{itemize}
-                \item $x_B$, costituito da $m$ componenti, è detto vettore delle variabili base (vettore base)
-                \item $x_N$, costituito da $n-m$ componenti, è detto vettore delle variabili fuori base
-            \end{itemize}
+
+
+        se $B^{-1} b \geq 0$ si ottiene una soluzione di base ammissibile (BFS) per il sistema $Ax = b$, $x \geq 0$
+
+
+        \paragraph{}
+        \textbf{Dato il problema $Ax = b,x \geq 0$, una soluzione x è un vertice del
+        poliedro $P(A, b)$ se e solo se x è una BFS} (soluzione della base ammissibile)
+
+        Un punto di un poliedro è un vertice (punto estremo) se e solo se soddisfa all’uguaglianza n vincoli linearmente indipendenti, quindi basta dimostrare che ogni BFS soddisfa n vincoli linearmente indipendenti tra $Ax = b,x \geq 0$.
+
+        Per definizione ogni BFS soddisfa all’uguaglianza (n-m) vincoli $x \geq 0$ e gli m
+        vincoli di $Ax = b$. I vincoli stringenti sono linearmente indipendenti poiché la matrice dei loro coefficienti è certamente non singolare essendo della forma
+        
+
+        \[
+            \begin{pmatrix}
+                B & N \\
+                0 & I_{n-m}
+            \end{pmatrix}
+        \]
+
+        \textbf{Problema LP-ESEMPIO: }
+
+        \begin{align}
+            \max_{x} z &= 2x_1+x_2 \notag \\
+            x_1 + x_2 &\leq 5 \notag \\
+            -x_1 + x+2 &\leq 0 \notag \\
+            x_1 + 2x_2 &\leq 21 \notag \\
+            x_1, x_2 &\geq 0 \notag 
+        \end{align}
+
+        Non è in forma standard, ma espresso solo in termini delle variabili strutturali (cioè che hanno un immediata corrispondenza
+        fisica col sistema reale che viene modellato)
+
+        \paragraph{OSS: } come lo si trasforma in \textbf{f. standard}? 
+
+        Lo si trasforma in forma standard introducendo le variabili \textbf{SLACK} $s_1, s_2, s_3$. Sono variabili che rappresentano una sorta di "distanza" da uno dei vincoli. Se il valore è positivo siamo dentro al vincolo, se è 0 siamo sul vincolo, altrimenti siamo all'esterno del vincolo.
+
+        \[
+            \begin{cases}
+                a+s = b \\
+                s \geq 0
+            \end{cases}
+            \iff a \leq b 
+        \]            
+        
+        Il problema ottenuto diventa quindi:
 
 
 
-            \paragraph{}
-            Il sistema di equazizoni lineari $Ax = b$ si può scrivere come:
-            
-            \begin{align}
-                [B|N] 
+        \begin{align*}
+            \max_{x} z &= 2x_1 + x_2 \\
+            x_1 + x_2 + s_1 &= 5 \\
+            -x_1 + x_2 + s_2 &= 0 \\
+            6x_1 + 2x_2 + s_3 &= 21 \\
+            x_1, x_2, s_1, s_2, s_3 &\geq 0.
+        \end{align*}
+
+
+
+        dove $s_1, s_2, s_3$ sono le variabili slack
+        
+        
+
+
+        Se lo scriviamo nella forma matriciale ottengo:
+
+
+        \begin{align*}
+            \mathbf{A} &= 
+            \begin{bmatrix}
+            1 & 1 & 1 & 0 & 0 \\
+            -1 & 1 & 0 & 1 & 0 \\
+            6 & 2 & 0 & 0 & 1 \\
+            \end{bmatrix},
+            \mathbf{b} = 
                 \begin{bmatrix}
-                    x_B \\
-                    x_N 
-                \end{bmatrix} &= b
-                \implies B x_B + N x_N = b \notag \\
-                x_B &= B^{-1} b -B^{-1} N x_N \notag 
-            \end{align}
-
-            Dove $A = B|N$, B con $m$ elementi, invertibile, quindi $\exists$ $B^{-1}$, N di $(n-m)$ elementi.
-            
-
-            \paragraph{}
-            Per ogni base B (matrice di base) ogni soluzione del sistema $Ax = b$ corrisponde a determinare il valore per $m$ variabuli $x_B$ avendo fissato arbitrariarmente il valore per le restanti $n-m$ varibiabili $x_N$.
-
-            Una scelta particolarmente importante è porre $x_N = 0$, da cui si ottiene la corrispondente soluzione base: 
-            
-            \[ 
-                x = 
-                \begin{bmatrix}
-                    x_B \\
-                    x_N
+                    5 \\
+                    0 \\
+                    21 \\
                 \end{bmatrix}
-                = 
-                \begin{bmatrix}
-                    B^{-1}b \\
-                    0
-                \end{bmatrix}
-            \]
+        \end{align*}
 
+        Limite superiore delle possibili basi $\frac{5!}{3!2!} = 10$, (alcune soluzioni sono degeneri, ovvero sono uguali; ex. 0 può essere ottenuto in più modi.), ma non tutte le basi corrispondono ad una soluzione ammissibile BFS, nell’esempio solo 6 basi sono ammissibili.
 
+        Siccome i vertici sono 4, vi saranno BFS degeneri.      
+        
+        \paragraph{}
+        \textbf{Esempio-BFS}
 
-            se $B^{-1} b \geq 0$ si ottiene una soluzione di base ammissibile (BFS) per il sistema $Ax = b$, $x \geq 0$
-
-
-            \paragraph{}
-            \textbf{Dato il problema $Ax = b,x \geq 0$, una soluzione x è un vertice del
-            poliedro $P(A, b)$ se e solo se x è una BFS} (soluzione della base ammissibile)
-
-            Un punto di un poliedro è un vertice (punto estremo) se e solo se soddisfa all’uguaglianza n vincoli linearmente indipendenti, quindi basta dimostrare che ogni BFS soddisfa n vincoli linearmente indipendenti tra $Ax = b,x \geq 0$.
-
-            Per definizione ogni BFS soddisfa all’uguaglianza (n-m) vincoli $x \geq 0$ e gli m
-            vincoli di $Ax = b$. I vincoli stringenti sono linearmente indipendenti poiché la matrice dei loro coefficienti è certamente non singolare essendo della forma
-            
-
-            \[
-                \begin{pmatrix}
-                    B & N \\
-                    0 & I_{n-m}
-                \end{pmatrix}
-            \]
-
-            \textbf{Problema LP-ESEMPIO: }
-
-            \begin{align}
-                \max_{x} z &= 2x_1+x_2 \notag \\
-                x_1 + x_2 &\leq 5 \notag \\
-                -x_1 + x+2 &\leq 0 \notag \\
-                x_1 + 2x_2 &\leq 21 \notag \\
-                x_1, x_2 &\geq 0 \notag 
-            \end{align}
-
-            Non è in forma standard, ma espresso solo in termini delle variabili strutturali (cioè che hanno un immediata corrispondenza
-            fisica col sistema reale che viene modellato)
-
-            \paragraph{OSS: } come lo si trasforma in \textbf{f. standard}? 
-
-            Lo si trasforma in forma standard introducendo le variabili \textbf{SLACK} $s_1, s_2, s_3$. Sono variabili che rappresentano una sorta di "distanza" da uno dei vincoli. Se il valore è positivo siamo dentro al vincolo, se è 0 siamo sul vincolo, altrimenti siamo all'esterno del vincolo.
-
-            \[
-                \begin{cases}
-                    a+s = b \\
-                    s \geq 0
-                \end{cases}
-                \iff a \leq b 
-            \]            
-            
-            Il problema ottenuto diventa quindi:
-
-
-
-            \begin{align*}
-                \max_{x} z &= 2x_1 + x_2 \\
-                x_1 + x_2 + s_1 &= 5 \\
-                -x_1 + x_2 + s_2 &= 0 \\
-                6x_1 + 2x_2 + s_3 &= 21 \\
-                x_1, x_2, s_1, s_2, s_3 &\geq 0.
-            \end{align*}
-
-
-
-            dove $s_1, s_2, s_3$ sono le variabili slack
+        \[
+            \mathbf{x_B}^{(3)} =
+            \begin{bmatrix}
+                x_1 \\ x_2 \\s_2
+            \end{bmatrix}
+            \quad
+            B_3 =
+            \begin{bmatrix}
+                1 & 1 & 0 \\
+                -1 & 1 & 1 \\
+                6 & 2 & 0
+            \end{bmatrix}
+            \quad
+            B_3^{-1} =
+            \frac{1}{4}
+            \begin{bmatrix}
+                -2 & 0 & 1 \\
+                6 & 0 & -1 \\
+                -8 & 4 & 2
+            \end{bmatrix}
+        \]
             
             
 
+        \textbf{OSS: } come si capisce che un vertice è non ammissibile? Guardo alla soluzione se contiene dei valori $< 0$, in quel caso allora tale soluzione è non ammissibile.
 
-            Se lo scriviamo nella forma matriciale ottengo:
-
-
-            \begin{align*}
-                \mathbf{A} &= 
-                \begin{bmatrix}
-                1 & 1 & 1 & 0 & 0 \\
-                -1 & 1 & 0 & 1 & 0 \\
-                6 & 2 & 0 & 0 & 1 \\
-                \end{bmatrix},
-                \mathbf{b} = 
-                    \begin{bmatrix}
-                        5 \\
-                        0 \\
-                        21 \\
-                    \end{bmatrix}
-                \end{align*}
-
-               
-
-                Limite superiore delle possibili basi $\frac{5!}{3!2!} = 10$ (alcune soluzioni sono degeneri, ovvero sono uguali; ex. 0 può essere ottenuto in più modi.), ma non tutte le basi corrispondono ad una soluzione ammissibile BFS, nell’esempio solo 6 basi sono ammissibili.
-
-                Siccome i vertici sono 4, vi saranno BFS degeneri.
-
-                dove $m = 3$, $n = 5$. 
-                se fisso il valore n-m = 2 variabili, posso risolvere il sistema che ora è  di 3 incognite in 3 equazioni lineari ($rg(A) = 3$)
-                
+        \paragraph{Oss: } $B_3$ è stato ricavato facendo (su gurobi) $A[x_B.index]$
+        
+        
+        
+        \[
+            B_3^{-1} \mathbf{b} =
+            B_3^{-1}
+            \begin{bmatrix}
+                5 \\ 0 \\ 21
+            \end{bmatrix}
+            =
+            \begin{bmatrix}
+                11/4 \\
+                9/4 \\
+                1/2
+            \end{bmatrix}
+            \Rightarrow p_3
+        \]
 
 
-                \[
-                    \mathbf{x_B}^{(3)} =
-                    \begin{bmatrix}
-                        x_1 \\ x_2 \\x_4
-                    \end{bmatrix}
-                    \quad
-                    B_3 =
-                    \begin{bmatrix}
-                        1 & 1 & 0 \\
-                        -1 & 1 & 1 \\
-                        6 & 2 & 0
-                    \end{bmatrix}
-                    \quad
-                    B_3^{-1} =
-                    \frac{1}{4}
-                    \begin{bmatrix}
-                        -2 & 0 & 1 \\
-                        6 & 0 & -1 \\
-                        -8 & 4 & 2
-                    \end{bmatrix}
-                \]
-                    
-                    
-
-                \textbf{OSS: } come si capisce che un vertice è non ammissibile? Guardo alla soluzione se contiene dei valori $< 0$, in quel caso allora tale soluzione è non ammissibile.
-                
-                
-                
-                \[
-                    B_3^{-1} \mathbf{b} =
-                    B_3^{-1}
-                    \begin{bmatrix}
-                        5 \\ 0 \\ 21
-                    \end{bmatrix}
-                    =
-                    \begin{bmatrix}
-                        11/4 \\
-                        9/4 \\
-                        1/2
-                    \end{bmatrix}
-                    \Rightarrow p_3
-                \]
+        \[
+            \mathbf{x}_B^{(2)} = \begin{bmatrix} x_1 \\ x_2 \\ s_3 \end{bmatrix} = \begin{bmatrix} 5/2 \\ 5/2 \\ 1 \end{bmatrix} \Rightarrow p_2
+        \]
 
 
-                Su Gurobi $B_3$ è ricavata facendo $A[x_B.index]$
+        \[
+            \mathbf{x}_B^{(4)} = \begin{bmatrix} x_1 \\ s_1 \\ s_2 \end{bmatrix} = \begin{bmatrix} 7/2 \\ 3/2 \\ 7/2 \end{bmatrix} \Rightarrow p_4
+        \]
+
+        
+        \[
+            \mathbf{x}_B^{(1)} = \begin{bmatrix} x_1 \\ s_1 \\ s_3 \end{bmatrix} = \mathbf{x}_B^{(5)} = \begin{bmatrix} x_2 \\ s_1 \\ s_3 \end{bmatrix} = \mathbf{x}_B^{(6)} = \begin{bmatrix} s_2 \\ s_1 \\ s_3 \end{bmatrix} = \begin{bmatrix} 0 \\ 5 \\ 21 \end{bmatrix} \Rightarrow p_1
+        \]
 
 
-                
-
-                \[
-                    \mathbf{x}_B^{(2)} = \begin{bmatrix} x_1 \\ x_2 \\ x_5 \end{bmatrix} = \begin{bmatrix} 5/2 \\ 5/2 \\ 1 \end{bmatrix} \Rightarrow p_2
-                \]
-    
-    
-                \[
-                    \mathbf{x}_B^{(4)} = \begin{bmatrix} x_1 \\ x_3 \\ x_4 \end{bmatrix} = \begin{bmatrix} 7/2 \\ 3/2 \\ 7/2 \end{bmatrix} \Rightarrow p_4
-                \]
-    
-                
-                \[
-                    \mathbf{x}_B^{(1)} = \begin{bmatrix} x_1 \\ x_3 \\ x_5 \end{bmatrix} = \mathbf{x}_B^{(5)} = \begin{bmatrix} x_2 \\ x_3 \\ x_5 \end{bmatrix} = \mathbf{x}_B^{(6)} = \begin{bmatrix} x_4 \\ x_3 \\ x_5 \end{bmatrix} = \begin{bmatrix} 0 \\ 5 \\ 21 \end{bmatrix} \Rightarrow p_1
-                \]
-    
-
-                \[
-                    \text{soluzioni degeneri}
-                \]
+        \[
+            \text{soluzioni degeneri}
+        \]
 
 
-                \[
-                    \mathbf{x_B}^{(7)} = \begin{bmatrix} x_1 \\ x_2 \\ x_3 \end{bmatrix}
-                \]
-                
-
-                \[
-                    \mathbf{B}_{(7)} = \begin{bmatrix} 1 & 1 & 1 \\ -1 & 1 & 0 \\ 6 & 2 & 0 \end{bmatrix}
-                \]
-    
-
-                \[
-                    \mathbf{B}_{(7)}^{-1} = \frac{1}{8} \begin{bmatrix} 0 & -2 & 1 \\ 0 & 6 & 1 \\ 8 & -4 & -2 \end{bmatrix}
-                \]
-
-    
-                \[
-                    \mathbf{B}_{(7)}^{-1} \mathbf{b} = \mathbf{B}_{(7)}^{-1} \begin{bmatrix} 5 \\ 0 \\ 21 \end{bmatrix} = \begin{bmatrix} 21/8 \\ 21/8 \\ -1/4 \end{bmatrix}
-                \]
-    
-
-                \[
-                    \text{Analogamente, sono basi non ammissibili}
-                \]    
-    
-
-                \[
-                    \begin{bmatrix} x_2 \\ x_4 \\ x_5 \end{bmatrix} \quad \begin{bmatrix} x_1 \\ x_4 \\ x_5 \end{bmatrix} \quad \begin{bmatrix} x_2 \\ x_3 \\ x_4 \end{bmatrix}
-                \]
-
-                Se in un problema di PL ci sono dei vincoli di maggiore o uguale, per trasformare il problema in forma standard si introducono delle variabili di surplus con segno opposto, ad esempio:
-
-                \[
-                    -3x_1+2x_2 \geq 5 \Leftrightarrow -3x_1+2x_2 + s \geq 5 \text{ non è possibile $s > 0 $}
-                \]
-
-                introduco la variabile di surplus: $-3x_1+2x_2 - s \geq 5$
+        \[
+            \mathbf{x_B}^{(7)} = \begin{bmatrix} x_1 \\ x_2 \\ s_1 \end{bmatrix} \quad \mathbf{B}_{(7)} = \begin{bmatrix} 1 & 1 & 1 \\ -1 & 1 & 0 \\ 6 & 2 & 0 \end{bmatrix} \quad \mathbf{B}_{(7)}^{-1} = \frac{1}{8} \begin{bmatrix} 0 & -2 & 1 \\ 0 & 6 & 1 \\ 8 & -4 & -2 \end{bmatrix}
+        \]
 
 
-                \[
-                % Esplicitando la funzione obiettivo
-                z = \mathbf{cx} = \begin{bmatrix} \mathbf{c_B} & \mathbf{c_N} \end{bmatrix} 
-                \begin{bmatrix} \mathbf{x_B} \\ \mathbf{x_N} \end{bmatrix} = 
-                \mathbf{c_B x_B} + \mathbf{c_N x_N} \quad (1)
-                \]
-                
-                \[
-                % Sostituendo l'espressione delle variabili di base
-                \mathbf{x_B} = \mathbf{B}^{-1} \mathbf{b} - \mathbf{B}^{-1} \mathbf{N x_N} \quad (2)
-                \]
+        \[
+            \mathbf{B}_{(7)}^{-1} \mathbf{b} = \mathbf{B}_{(7)}^{-1} \begin{bmatrix} 5 \\ 0 \\ 21 \end{bmatrix} = \begin{bmatrix} 21/8 \\ 21/8 \\ -1/4 \end{bmatrix}
+        \]
 
 
-                \[
-                % Risultato finale
-                z = \mathbf{c_B B}^{-1} \mathbf{b} - 
-                \left( \mathbf{c_B B}^{-1} \mathbf{N} - \mathbf{c_N} \right) \mathbf{x_N} \quad (3)
-                \]
-
-                \[
-                % Valore dell'obiettivo corrispondente alla base B
-                z(\mathbf{B}) = \mathbf{c_B B}^{-1} \mathbf{b}
-                \]
+        \[
+            \text{Analogamente, sono basi non ammissibili}
+        \]    
 
 
+        \[
+            \begin{bmatrix} x_2 \\ s_2 \\ s_3 \end{bmatrix} \quad \begin{bmatrix} x_1 \\ s_2 \\ s_3 \end{bmatrix} \quad \begin{bmatrix} x_2 \\ s_1 \\ s_2 \end{bmatrix}
+        \]
 
+        
+        \subsubsection{Variabili surplus}
+        Se in un problema di PL ci sono dei vincoli di maggiore o uguale, per trasformare il problema in forma standard si introducono delle variabili di surplus con segno opposto, ad esempio:
 
+        \[
+            -3x_1+2x_2 \geq 5 \Leftrightarrow -3x_1+2x_2 - s = 5 
+        \]
 
+        Esplicitando la funzione obiettivo:
 
-                
+        $$
+            z = c\mathbf{x} = \begin{bmatrix} c_B & c_N \end{bmatrix} \begin{bmatrix} \mathbf{x}_B \\ \mathbf{x}_N \end{bmatrix} = c_B\mathbf{x}_B + c_N\mathbf{x}_N
+        $$
 
+        e sostituendo l'espressione delle variabili di base:
 
+        $$
+            \mathbf{x}_B = B^{-1}\mathbf{b} - B^{-1}N\mathbf{x}_N
+        $$
 
+        si ottiene:
 
+        $$
+            z = c_BB^{-1}\mathbf{b} - (c_BB^{-1}N - c_N)\mathbf{x}_N
+        $$
 
-
+        Il valore dell'obiettivo corrispondente alla base $B$ è quindi $z(B) = c_BB^{-1}\mathbf{b}$
 
 
             
-        \section{Algoritmo del simplesso - fase I e fase II}
+    \section{Algoritmo del simplesso - fase I e fase II}
         Nell’algoritmo del simplesso si distingue una fase I, che consiste nel passo di inizializzazione in cui viene individuata una prima BFS, e una fase II, che consiste nel determinare la BFS ottima a partire dalla prima BFS.
 
         \paragraph{}
@@ -1195,37 +1316,34 @@
         formulato come:
 
         \begin{align}
-            ...
+            \max{z} &= cx \notag \\
+            Hx &\leq b \notag \\
+            x &\geq 0 \notag 
         \end{align}
 
         con $b \geq 0$,allora la sua trasformazione in forma standard introduce delle variabili di slack s le cui corrispondenti colonne formano la prima base ammissibile: 
 
         \begin{align}
-            ...
+            \max{z} &= cx \notag \\
+            Hx + Is & = b \notag \\
+            x \geq 0, &s \leq 0 \notag 
         \end{align}
 
-        Riordinando le colonne si ottiene
+        Riordinando le colonne si ottiene: $A = [I | H], B = I$ e $N = H$
 
-        \begin{align}
-            ...
-        \end{align}
-
-        dove chiaramente
-
-        \begin{align}
-            ...
-        \end{align}
+        dove chiaramente: $rango(A) = m$ e $B^{-1}b \le 0$
 
         \paragraph{}
         \textbf{def. }  Qualora un problema di PL in forma standard ha le matrice A che si può esprimere come
 
-        \begin{align}
-            ...
-        \end{align}
+        $$
+            A = [I | H] \text{, } \quad B = I \quad \text{ e }\quad N = H
+        $$
 
         allora il problema è detto essere espresso in forma \textbf{canonica}
 
-        Non è immediato esprimere un problema di PL in forma canonica in presenza di disuguaglianze di verso opposto, infatti le variabili di surplus hanno coefficienti negativi, o in presenza di vincoli di uguaglianza.
+        \paragraph{}
+        Non è immediato esprimere un problema di PL in forma canonica in presenza di disuguaglianze di verso opposto, infatti le variabili di \textbf{surplus} hanno coefficienti negativi, o in presenza di vincoli di uguaglianza.
 
 
         \paragraph{}
