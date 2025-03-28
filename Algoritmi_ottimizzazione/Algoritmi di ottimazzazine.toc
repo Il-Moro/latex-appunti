@@ -1,120 +1,122 @@
 \babel@toc {italian}{}\relax 
 \babel@toc {italian}{}\relax 
-\contentsline {section}{\numberline {1}Introduzione}{3}{}%
-\contentsline {subsection}{\numberline {1.1}Esempi introduttivi}{3}{}%
-\contentsline {paragraph}{Obiettivo: }{3}{}%
-\contentsline {paragraph}{Soluzione: }{3}{}%
-\contentsline {paragraph}{}{4}{}%
-\contentsline {paragraph}{}{4}{}%
-\contentsline {paragraph}{}{6}{}%
-\contentsline {paragraph}{}{6}{}%
-\contentsline {paragraph}{}{6}{}%
-\contentsline {paragraph}{}{6}{}%
-\contentsline {paragraph}{}{6}{}%
-\contentsline {paragraph}{}{6}{}%
-\contentsline {paragraph}{}{6}{}%
-\contentsline {paragraph}{}{6}{}%
-\contentsline {subsection}{\numberline {1.2}Problemi di ottimizzazione}{8}{}%
+\contentsline {section}{\numberline {1}Introduzione}{2}{}%
+\contentsline {subsection}{\numberline {1.1}Esempi introduttivi}{2}{}%
+\contentsline {paragraph}{Obiettivo: }{2}{}%
+\contentsline {paragraph}{Soluzione: }{2}{}%
+\contentsline {paragraph}{}{3}{}%
+\contentsline {paragraph}{}{3}{}%
+\contentsline {paragraph}{}{5}{}%
+\contentsline {paragraph}{}{5}{}%
+\contentsline {paragraph}{}{5}{}%
+\contentsline {paragraph}{}{5}{}%
+\contentsline {paragraph}{}{5}{}%
+\contentsline {paragraph}{}{5}{}%
+\contentsline {paragraph}{}{5}{}%
+\contentsline {paragraph}{}{5}{}%
+\contentsline {subsection}{\numberline {1.2}Problemi di ottimizzazione}{7}{}%
+\contentsline {paragraph}{}{7}{}%
+\contentsline {paragraph}{}{7}{}%
+\contentsline {paragraph}{}{7}{}%
+\contentsline {paragraph}{}{7}{}%
+\contentsline {paragraph}{}{7}{}%
+\contentsline {subsubsection}{\numberline {1.2.1}Esempio 1: Production Planning}{7}{}%
 \contentsline {paragraph}{}{8}{}%
 \contentsline {paragraph}{}{8}{}%
 \contentsline {paragraph}{}{8}{}%
-\contentsline {paragraph}{}{8}{}%
-\contentsline {paragraph}{}{8}{}%
-\contentsline {subsubsection}{\numberline {1.2.1}Esempio 1: Production Planning}{8}{}%
+\contentsline {subsubsection}{\numberline {1.2.2}Esempio 2: capital budget}{8}{}%
 \contentsline {paragraph}{}{9}{}%
 \contentsline {paragraph}{}{9}{}%
 \contentsline {paragraph}{}{9}{}%
-\contentsline {subsubsection}{\numberline {1.2.2}Esempio 2: capital budget}{9}{}%
+\contentsline {subsection}{\numberline {1.3}Funzioni}{9}{}%
+\contentsline {subsubsection}{\numberline {1.3.1}Convessità}{9}{}%
+\contentsline {paragraph}{}{9}{}%
+\contentsline {paragraph}{}{9}{}%
+\contentsline {paragraph}{}{9}{}%
 \contentsline {paragraph}{}{10}{}%
 \contentsline {paragraph}{}{10}{}%
 \contentsline {paragraph}{}{10}{}%
-\contentsline {subsection}{\numberline {1.3}Funzioni}{10}{}%
-\contentsline {subsubsection}{\numberline {1.3.1}Convessità}{10}{}%
 \contentsline {paragraph}{}{10}{}%
 \contentsline {paragraph}{}{10}{}%
+\contentsline {subsubsection}{\numberline {1.3.2}Derivate}{10}{}%
+\contentsline {paragraph}{}{10}{}%
+\contentsline {subsubsection}{\numberline {1.3.3}Massimi e minimi}{10}{}%
+\contentsline {paragraph}{}{10}{}%
 \contentsline {paragraph}{}{10}{}%
 \contentsline {paragraph}{}{11}{}%
 \contentsline {paragraph}{}{11}{}%
+\contentsline {section}{\numberline {2}Introduzione alla Programmazione lineare}{11}{}%
 \contentsline {paragraph}{}{11}{}%
 \contentsline {paragraph}{}{11}{}%
 \contentsline {paragraph}{}{11}{}%
-\contentsline {subsubsection}{\numberline {1.3.2}Derivate}{11}{}%
 \contentsline {paragraph}{}{11}{}%
-\contentsline {subsubsection}{\numberline {1.3.3}Massimi e minimi}{11}{}%
-\contentsline {paragraph}{}{11}{}%
-\contentsline {paragraph}{}{11}{}%
+\contentsline {subsection}{\numberline {2.1}LP properties: Proporzionalità}{12}{}%
 \contentsline {paragraph}{}{12}{}%
-\contentsline {paragraph}{}{12}{}%
-\contentsline {section}{\numberline {2}Introduzione alla Programmazione lineare}{12}{}%
-\contentsline {paragraph}{}{12}{}%
-\contentsline {paragraph}{}{12}{}%
-\contentsline {paragraph}{}{12}{}%
-\contentsline {paragraph}{}{12}{}%
-\contentsline {subsection}{\numberline {2.1}LP properties: Proporzionalità}{13}{}%
+\contentsline {subsubsection}{\numberline {2.1.1}LP properties: Fixed charge}{12}{}%
+\contentsline {subsection}{\numberline {2.2}LP properties: Addittività}{12}{}%
+\contentsline {subsection}{\numberline {2.3}LP properties: Divisibily (or Continuity)}{12}{}%
+\contentsline {subsection}{\numberline {2.4}LP properties: Certainty}{13}{}%
+\contentsline {subsection}{\numberline {2.5}Esiti possibili in un LP}{13}{}%
+\contentsline {subsubsection}{\numberline {2.5.1}Key Theorem}{13}{}%
 \contentsline {paragraph}{}{13}{}%
-\contentsline {subsubsection}{\numberline {2.1.1}LP properties: Fixed charge}{13}{}%
-\contentsline {subsection}{\numberline {2.2}LP properties: Addittività}{13}{}%
-\contentsline {subsection}{\numberline {2.3}LP properties: Divisibily (or Continuity)}{13}{}%
-\contentsline {subsection}{\numberline {2.4}LP properties: Certainty}{14}{}%
-\contentsline {subsection}{\numberline {2.5}Esiti possibili in un LP}{14}{}%
-\contentsline {subsubsection}{\numberline {2.5.1}Key Theorem}{14}{}%
+\contentsline {paragraph}{}{13}{}%
+\contentsline {paragraph}{}{13}{}%
+\contentsline {paragraph}{}{13}{}%
+\contentsline {paragraph}{}{13}{}%
+\contentsline {paragraph}{}{13}{}%
+\contentsline {section}{\numberline {3}Algoritmo del simplesso: fondamenti}{14}{}%
+\contentsline {subsection}{\numberline {3.1}CPS-Corner Point Solutions}{14}{}%
 \contentsline {paragraph}{}{14}{}%
 \contentsline {paragraph}{}{14}{}%
 \contentsline {paragraph}{}{14}{}%
 \contentsline {paragraph}{}{14}{}%
 \contentsline {paragraph}{}{14}{}%
-\contentsline {paragraph}{}{14}{}%
-\contentsline {section}{\numberline {3}Algoritmo del simplesso: fondamenti}{15}{}%
-\contentsline {subsection}{\numberline {3.1}CPS-Corner Point Solutions}{15}{}%
+\contentsline {subsection}{\numberline {3.2}Proprietà}{15}{}%
 \contentsline {paragraph}{}{15}{}%
 \contentsline {paragraph}{}{15}{}%
 \contentsline {paragraph}{}{15}{}%
 \contentsline {paragraph}{}{15}{}%
-\contentsline {paragraph}{}{15}{}%
-\contentsline {subsection}{\numberline {3.2}Proprietà}{16}{}%
+\contentsline {paragraph}{}{16}{}%
+\contentsline {subsection}{\numberline {3.3}Optimal test}{16}{}%
+\contentsline {paragraph}{}{16}{}%
+\contentsline {subsection}{\numberline {3.4}The Simplex Algorithm}{16}{}%
 \contentsline {paragraph}{}{16}{}%
 \contentsline {paragraph}{}{16}{}%
-\contentsline {paragraph}{}{16}{}%
-\contentsline {paragraph}{}{16}{}%
-\contentsline {paragraph}{}{17}{}%
-\contentsline {subsection}{\numberline {3.3}Optimal test}{17}{}%
-\contentsline {paragraph}{}{17}{}%
-\contentsline {subsection}{\numberline {3.4}The Simplex Algorithm}{17}{}%
-\contentsline {paragraph}{}{17}{}%
-\contentsline {paragraph}{}{17}{}%
-\contentsline {subsection}{\numberline {3.5}Oss.}{18}{}%
-\contentsline {section}{\numberline {4}Soluzioni base}{19}{}%
-\contentsline {subsection}{\numberline {4.1}Forma standard}{19}{}%
-\contentsline {paragraph}{Th. }{19}{}%
+\contentsline {subsection}{\numberline {3.5}Oss.}{17}{}%
+\contentsline {section}{\numberline {4}Soluzioni base}{18}{}%
+\contentsline {subsection}{\numberline {4.1}Forma standard}{18}{}%
+\contentsline {paragraph}{Th. }{18}{}%
+\contentsline {paragraph}{}{18}{}%
+\contentsline {paragraph}{}{18}{}%
 \contentsline {paragraph}{}{19}{}%
 \contentsline {paragraph}{}{19}{}%
+\contentsline {paragraph}{}{19}{}%
+\contentsline {paragraph}{OSS: }{19}{}%
 \contentsline {paragraph}{}{20}{}%
-\contentsline {paragraph}{}{20}{}%
-\contentsline {paragraph}{}{20}{}%
-\contentsline {paragraph}{OSS: }{20}{}%
+\contentsline {paragraph}{Oss: }{20}{}%
+\contentsline {subsubsection}{\numberline {4.1.1}Variabili surplus}{21}{}%
+\contentsline {section}{\numberline {5}Algoritmo del simplesso - fase I e fase II}{21}{}%
 \contentsline {paragraph}{}{21}{}%
-\contentsline {paragraph}{Oss: }{21}{}%
-\contentsline {subsubsection}{\numberline {4.1.1}Variabili surplus}{22}{}%
-\contentsline {section}{\numberline {5}Algoritmo del simplesso - fase I e fase II}{22}{}%
+\contentsline {paragraph}{}{21}{}%
+\contentsline {paragraph}{}{22}{}%
+\contentsline {paragraph}{}{22}{}%
 \contentsline {paragraph}{}{22}{}%
 \contentsline {paragraph}{}{22}{}%
 \contentsline {paragraph}{}{23}{}%
 \contentsline {paragraph}{}{23}{}%
-\contentsline {paragraph}{}{23}{}%
-\contentsline {section}{\numberline {6}A Production Problem}{23}{}%
-\contentsline {section}{\numberline {7}Primal Formulation}{23}{}%
-\contentsline {section}{\numberline {8}Example}{24}{}%
-\contentsline {section}{\numberline {9}Comments on the Primal Problem}{24}{}%
-\contentsline {section}{\numberline {10}The Dual of the Production Problem}{24}{}%
-\contentsline {section}{\numberline {11}Dual Variables and Objective Function}{24}{}%
-\contentsline {subsection}{\numberline {11.1}Decision Variables}{24}{}%
-\contentsline {subsection}{\numberline {11.2}Objective Function}{25}{}%
-\contentsline {section}{\numberline {12}Dual Constraints}{25}{}%
-\contentsline {section}{\numberline {13}Dual Formulation}{25}{}%
-\contentsline {section}{\numberline {14}Comments on the Dual Problem}{25}{}%
-\contentsline {section}{\numberline {15}Primal and Dual Problems}{25}{}%
-\contentsline {subsection}{\numberline {15.1}Primal Problem (P)}{26}{}%
-\contentsline {subsection}{\numberline {15.2}Dual Problem (D)}{26}{}%
-\contentsline {section}{\numberline {16}Primal and Dual - Matrix Form}{26}{}%
-\contentsline {subsection}{\numberline {16.1}Primal Problem (P)}{26}{}%
-\contentsline {subsection}{\numberline {16.2}Dual Problem (D)}{26}{}%
+\contentsline {section}{\numberline {6}Il problema duale}{23}{}%
+\contentsline {subsection}{\numberline {6.1}A production problem}{23}{}%
+\contentsline {subsection}{\numberline {6.2}Primal Formulation}{23}{}%
+\contentsline {paragraph}{Variabili di decisione:}{23}{}%
+\contentsline {paragraph}{Funzione obiettivo:}{23}{}%
+\contentsline {paragraph}{Vincoli:}{23}{}%
+\contentsline {paragraph}{Esempio: }{24}{}%
+\contentsline {paragraph}{Commenti sul problema primale}{24}{}%
+\contentsline {paragraph}{}{24}{}%
+\contentsline {paragraph}{}{24}{}%
+\contentsline {subsection}{\numberline {6.3}Problema primale e duale}{25}{}%
+\contentsline {paragraph}{}{25}{}%
+\contentsline {paragraph}{}{25}{}%
+\contentsline {paragraph}{}{25}{}%
+\contentsline {paragraph}{}{26}{}%
+\contentsline {subsection}{\numberline {6.4}Primal-Dual Relationship}{26}{}%

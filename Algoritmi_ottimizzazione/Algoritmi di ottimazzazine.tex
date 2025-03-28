@@ -1096,8 +1096,6 @@
             \end{bmatrix}
         \]
 
-
-
         se $B^{-1} b \geq 0$ si ottiene una soluzione di base ammissibile (BFS) per il sistema $Ax = b$, $x \geq 0$
 
 
@@ -1145,8 +1143,6 @@
         
         Il problema ottenuto diventa quindi:
 
-
-
         \begin{align*}
             \max_{x} z &= 2x_1 + x_2 \\
             x_1 + x_2 + s_1 &= 5 \\
@@ -1155,12 +1151,7 @@
             x_1, x_2, s_1, s_2, s_3 &\geq 0.
         \end{align*}
 
-
-
         dove $s_1, s_2, s_3$ sono le variabili slack
-        
-        
-
 
         Se lo scriviamo nella forma matriciale ottengo:
 
@@ -1349,19 +1340,21 @@
         \paragraph{}
         \textbf{Esempio: }
 
-        \textbf{Formulazione inziaile}
-
-        \begin{align}
-            ...
-        \end{align}
-
-
-
-        \textbf{Formulazione  standard}
-
-        \begin{align}
-            ....
-        \end{align}
+        \begin{center}
+            \begin{tabular}{ c | c }
+                Formulazione iniziale & Formulazione standard \\
+                
+                $\min{z} = 4x_1 + x_2$ & $\max{z} = -4x_1 - x_2$ \\
+                
+                $3x_1 + x_2 = 3$ & $3x_1 + x_2 \quad \quad = 3$ \\
+                
+                $4x_1 + 3x_2 \geq 6$ & $4x_1 + 3x_2 - x_3 \quad \quad = 6$ \\
+                
+                $x_1 + 2x_2 \leq 4$ & $x_1 + 2x_2 \quad \quad + x_4 = 4$ \\
+                
+                $x_1, x_2 \geq 0$ & $x_1, x_2, x_3, x_4 \geq 0$ \\
+            \end{tabular}
+        \end{center}
 
         Questa formulazione standard NON è una forma canonica:
         
@@ -1374,203 +1367,435 @@
             \end{bmatrix}
         \]
 
+        Se il problema è nella forma standard, ottenuto solo da vincoli di tipo = e $\geq$, si introducono $m$ variabili artificiali $\mathbf{u}$ e si formula il problema di fase I
+
+        $$
+            \begin{array}{ccc}
+                \max z = c\mathbf{x} & & \min w = \mathbf{1u} \\
+                \mathbf{Ax} = \mathbf{b} & \Rightarrow \text{ fase I } & \mathbf{Ax} + \mathbf{Iu} = \mathbf{b} \\
+                \mathbf{x} \geq 0 & & \mathbf{x} \geq 0, \mathbf{u} \geq 0
+            \end{array}
+        $$
+
+        Per il problema di fase I è immediato determinare una base iniziale ammissibile.
+
+
+        Il problema di fase I ammette una soluzione ottima $w^*$ non negativa per costruzione,
+
+        \begin{itemize}
+            \item se $w^* > 0$ allora il problema fase I non ha soluzioni ammissibili $\mathbf{x}$, $\mathbf{u}$ tali che $\mathbf{u} = 0$ e quindi non esiste $\mathbf{x}$ tale che $\mathbf{Ax} + \mathbf{I0} = \mathbf{b} \Rightarrow \mathbf{Ax} = \mathbf{b}$, da cui il sistema $\mathbf{Ax} = \mathbf{b}$ non è compatibile e il problema di PL non ha soluzioni ammissibili.
+            \item se $w^* = 0$ allora la componente della soluzione ottima $\mathbf{x}^*$, $\mathbf{u}^*$ è tale che $\mathbf{u} = 0$ e quindi $\mathbf{x}^*$ è tale che $\mathbf{Ax}^* + \mathbf{I0} = \mathbf{b} \Rightarrow \mathbf{Ax}^* = \mathbf{b}$. Poiché $\mathbf{x}^*$ ha al più $m$ componenti non nulle, essa può essere presa come prima BFS del problema originale.
+        \end{itemize}
+
+        \paragraph{}
+        \textbf{Esempio - Fase I}
+
+        \begin{align*}
+            \min w = u_1 + u_2 \quad  \Rightarrow \max w = -u_1 - u_2 \\
+            3x_1 + x_2 \quad \quad  + u_1 \quad  = 3 \\
+            4x_1 + 3x_2 - x_3 \quad \quad + u_2 = 6 \\
+            x_1 + 2x_2  \quad + x_4 \quad \quad  = 4 \\
+            x_1, x_2, x_3, x_4, u_1, u_2 \geq 0
+        \end{align*}
+            
+        Data la presenza di una variabile di slack, sono necessarie solo due variabili artificiali ($u_1$, $u_2$).
+
+        \paragraph{}
+        $u_1, u_2, x_4$ è la base iniziale.
+
+        \paragraph{}
+        \textbf{Esempio: radioterapia}
+
+    \section{Il problema duale}
+        
+        \subsection{A production problem}
+        Un'azienda produce $n$ beni diversi utilizzando $m$ materie prime diverse.
+
+        \begin{itemize}
+            \item Sia $b_i$, per $i = 1, \dots, m$, la quantità disponibile della $i$-esima materia prima.
+            \item Il $j$-esimo bene, per $j = 1, \dots, n$, richiede $a_{ij}$ unità della $i$-esima materia prima e genera un ricavo $c_j$ per unità prodotta.
+        \end{itemize}
+
+        L'azienda si trova di fronte al problema di decidere quanto produrre di ciascun bene al fine di massimizzare i suoi ricavi totali.
+
+        La variabile di decisione è definita come segue:
+
+        Sia $x_j$, per $j = 1, \dots, n$, la quantità del $j$-esimo bene da produrre.
+
+
+        \subsection{Primal Formulation}
+
+        \begin{align*}
+            \max{z} =  c_{1}x_{1} + \dots + c_{n}x_{n} \\
+            \quad a_{i1}x_{1} + \dots + a_{in}x_{n} \leq b_{i}, \quad i=1, \dots, m \\
+            \quad x_{j} \geq 0, \quad j=1, \dots, n
+        \end{align*}
+
+        \paragraph{Variabili di decisione:} la quantità di beni prodotti:
+        \[ x_j \in \mathbb{R}, \quad \forall j=1,\dots,n. \]
+        Queste variabili sono considerate continue.
+
+        \paragraph{Funzione obiettivo:} massimizzare il profitto:
+        \[ \sum_{j=1}^{n} c_j x_j. \]
+
+        \paragraph{Vincoli:} per ciascuna materia prima, la quantità utilizzata nella produzione non può superare la quantità disponibile:
+        \[ \sum_{j=1}^{n} a_{ij} x_j \leq b_i, \quad \forall i=1,\dots,m. \]
+        Per ciascun bene, la quantità di produzione deve essere non negativa:
+        \[ x_j \geq 0, \quad \forall j=1,\dots,n. \]
+
+        \paragraph{Esempio: }
+
+        \begin{align*}
+            \max & \quad 15x_{1} + 10x_{2} \\
+            (R_p)& \quad x_{1} + x_{2} \leq 2000 \\
+            (R_q) & \quad x_{1} + 0.5x_{2} \leq 1000 \\
+            (R_r) & \quad 2x_{1} + x_{2} \leq 3000 \\
+            & \quad x_{1}, x_{2} \geq 0
+        \end{align*}
+
+        \paragraph{Commenti sul problema primale}
+        Prima di decidere la produzione per massimizzare il profitto, si dovrebbe considerare se è più vantaggioso vendere le materie prime invece di produrre beni.
+
+        La domanda chiave è:
+
+        \textit{Qual è il prezzo minimo al quale tutte le risorse disponibili dovrebbero essere vendute piuttosto che utilizzate per la produzione?}
+
+        La risposta a questa domanda è data dal \textbf{problema duale}.
+
+        \paragraph{}
+        \textbf{Il duale del problema di produzione}
+        Assumendo la linearità, il profitto totale dalla vendita delle risorse è uguale alla somma dei profitti ottenuti dalla vendita di ciascuna risorsa individuale. Il profitto dalla vendita di un'unità di un bene non deve superare il profitto ottenuto dalla vendita delle materie prime necessarie.
+        
+        \paragraph{}
+        Un bene $P_1$ dà un profitto di 15 e consuma un'unità di $R_p$, un'unità di $R_q$ e 2 unità di $R_r$. Pertanto, per rendere conveniente vendere le risorse (o almeno rimanere alla pari) invece di produrre, la vendita complessiva di un'unità di $R_p$, un'unità di $R_q$ e 2 unità di $R_r$ deve fornire un guadagno non inferiore a 15.
+
+        I prezzi di vendita delle risorse devono essere non negativi.
+
+        \subsection*{Variabili duali e Funzione obiettivo}
+
+            
+            \textbf{Variabili decisionali}
+            Prezzo unitario di ciascuna risorsa:
+            \[ \pi_i \in \mathbb{R}, \quad \forall i = 1, \dots, m. \]
+            Queste sono variabili continue.
+
+        \subsection*{Funzione obiettivo}
+            Massimizzare il profitto dalla vendita delle risorse:
+            \[ 
+                \sum_{i=1}^{m} b_i \pi_i = 
+            \]
+
+            \[
+                = 2000 \pi_p + 1000 \pi_q + 3000 \pi_r
+            \]
+
+        \subsection*{Vincoli duali}
+            Per ciascun bene, il costo delle materie prime deve essere almeno pari al profitto derivante dalla produzione del bene:
+            \[ \sum_{i=1}^{m} a_{ij} \pi_i \geq c_j, \quad \forall j=1,2 \]
+            I prezzi delle risorse devono essere non negativi:
+            \[ \pi_i \geq 0, \quad \forall i=p,q,r \]
+
+        \subsection*{Formulazione duale}
+
+            \begin{align*}
+                \textcolor{green}{\text{(profit)}} \quad \quad &\min q = 2000\pi_p + 1000\pi_q + 3000\pi_r \\
+                \textcolor{green}{\text{(product 1)}} \quad & \pi_p + \pi_q + 2\pi_r \geq 15 \\
+                \textcolor{green}{\text{(product 2)}} \quad & \pi_p + 0.5\pi_q + \pi_r \geq 10 \\
+                & \pi_p, \pi_q, \pi_r \geq 0
+            \end{align*}
+            
+            \begin{align*}
+                \min \sum_{i=1}^{m} b_i \pi_i & \\
+                \sum_{i=1}^{m} a_{ij} \pi_i \geq c_j \qquad & \text{for } j = 1, \dots, n \\
+                \pi_i \geq 0 \qquad & \text{for } i = 1, \dots, m
+            \end{align*}
+                
+            in forma matriciale:
+            \begin{align*}
+                \min b^T \pi \\
+                A^T \pi \geq c
+                \quad \pi \geq 0
+            \end{align*}
+
+        \subsection*{Commenti sul problema duale}
+
+            È intuitivamente evidente che:
+
+            \begin{itemize}
+                \item Qualsiasi soluzione ammissibile al problema duale garantisce un profitto non inferiore al massimo ottenibile attraverso la produzione.
+                \item La soluzione duale ottima non può essere inferiore alla soluzione primale ottima, altrimenti la produzione sarebbe ancora vantaggiosa.
+            \end{itemize}
+
+        \subsection{Problema primale e duale}            
+                        
+            \noindent Ad ogni problema di programmazione lineare (primale) è associato un problema duale
+
+            \paragraph{}
+            \noindent\begin{minipage}{0.48\textwidth}
+            \noindent \textcolor{orange}{\textbf{Problema primale (P)}}
+
+            \noindent \begin{align*}
+            \max z = c_1 x_1 +& \dots + c_n x_n \\
+            a_{11} x_1 +& \dots + a_{1n} x_n \leq b_1 \\
+            & \vdots \\
+            a_{m1} x_1 +& \dots + a_{mn} x_n \leq b_m \\
+            x_1, \dots, x_n &\geq 0
+            \end{align*}
+
+            \noindent \textit{n variabili e m vincoli}
+            \end{minipage}
+            \hfill
+            \begin{minipage}{0.48\textwidth}
+            \noindent \textcolor{cyan}{\textbf{Problema duale (D)}}
+
+            \noindent \begin{align*}
+            \min w = b_1 \pi_1 +& \dots + b_m \pi_m \\
+            a_{11} \pi_1 +& \dots + a_{m1} \pi_m \geq c_1 \\
+            & \vdots \\
+            a_{1n} \pi_1 +& \dots + a_{mn} \pi_m \geq c_n \\
+            \pi_1, \dots, \pi_m &\geq 0
+            \end{align*}
+
+            \noindent \textit{m variabili e n vincoli}
+            \end{minipage}
+
+            \paragraph{}
+            \textbf{Proprietà: } il problema D ha tante variabili quanti sono i vincoli in P e tanti vincoli quante sono le variabili in P.
+
+            \paragraph{}
+            \noindent In forma matriciale, vediamo che i vettori $b$ e $c$ scambiano le loro posizioni e la matrice dei coefficienti $A$ è trasposta.
+
+            \paragraph{}
+            \noindent\begin{minipage}{0.48\textwidth}
+            \noindent \textcolor{orange}{\textbf{Problema primale (P)}}
+
+            \noindent \begin{align*}
+            \max z &= c^T x \\
+            Ax &\leq b \\
+            x &\geq 0 \\
+            x &\in \mathbb{R}^n
+            \end{align*}
+            \end{minipage}
+            \hfill
+            \begin{minipage}{0.48\textwidth}
+            \noindent \textcolor{cyan}{\textbf{Problema duale (D)}}
+
+            \noindent \begin{align*}
+            \min w &= b^T \pi \\
+            A^T \pi &\geq c \\
+            \pi &\geq 0 \\
+            \pi &\in \mathbb{R}^m
+            \end{align*}
+            \end{minipage}
+        \subsection*{Osservazioni: }
+
+        La dualità non sorge solo da giustificazioni economiche, ma anche dall'applicazione delle condizioni di Kuhn-Tucker ai problemi di programmazione lineare o dal rilassamento Lagrangiano.
+
+        La dualità è importante perché:
+
+        \begin{itemize}
+            \item il problema duale corrisponde a una diversa visione dello stesso problema (per il quale deve sempre essere ricercata un'interpretazione economica della formulazione ottenuta);
+            \item su di essa si basano algoritmi, come il Dual Simplex e l'Algoritmo Primale-Duale, alternativi al Simplex (Primale), che sono utili per certe classi di problemi;
+            \item in alcuni casi può essere conveniente risolvere D invece di P (potrebbe essere meglio risolvere il problema con meno vincoli).
+        \end{itemize}
+
+    \subsection{Primal-Dual Relationship}
+        \begin{table}[h!]
+            \centering
+            \begin{tabular}{|c|c||c|c|}
+            \hline
+            PRIMALE & massimizzare & minimizzare & DUALE \\
+            \hline
+            vincoli & $\leq b_i$ & $\geq 0$ & variabili \\
+             & $\geq b_i$ & $\leq 0$ & \\
+             & $= b_i$ & libere & \\
+            \hline
+            variabili & $\geq 0$ & $\geq c_j$ & vincoli \\
+             & $\leq 0$ & $\leq c_j$ & \\
+             & libere & $=$ & \\
+            \hline
+            \end{tabular}
+            \caption{Tabella 1: Relazione tra variabili e vincoli primali e duali}
+        \end{table}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         
-
-
-    
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-------------------------------------------------------------
-\section{A Production Problem}
-
-A firm produces $n$ different goods using $m$ different raw materials.
-
-Let $b_{i}$, for $i = 1, \dots, m$, be the available amount of the $i$-th raw material. The $j$-th good, for $j = 1, \dots, n$, requires $a_{ij}$ units of the $i$-th material and results in a revenue $c_{j}$ per unit produced.
-
-The firm faces the problem of deciding how much of each good to produce in order to maximize its total revenues.
-
-The decision variable is defined as follows:
-
-Let $x_{j}$, for $j = 1, \dots, n$, be the amount of the $j$-th good to be produced.
-
-\section{Primal Formulation}
-
-\begin{align*}
-\max & \quad c_{1}x_{1} + \dots + c_{n}x_{n} \\
-\text{s.t.} & \quad a_{i1}x_{1} + \dots + a_{in}x_{n} \leq b_{i}, \quad i=1, \dots, m \\
-& \quad x_{j} \geq 0, \quad j=1, \dots, n
-\end{align*}
-
-\subsubsection*{Decision Variables}
-The quantity of goods produced:
-\[ x_{j} \in \mathbb{R}, \quad \forall j=1,\dots,n. \]
-These variables are assumed to be continuous.
-
-\subsubsection*{Objective Function}
-Maximize the profit:
-\[ \sum_{j=1}^{n} c_{j}x_{j}. \]
-
-\subsubsection*{Constraints}
-For each raw material, the amount used in production cannot exceed the available amount:
-\[ \sum_{j=1}^{n} a_{ij} x_{j} \leq b_{i}, \quad \forall i=1,\dots,m. \]
-For each good, the production quantity must be non-negative:
-\[ x_{j} \geq 0, \quad \forall j=1,\dots,n. \]
-
-\section{Example}
-
-\begin{align*}
-\max & \quad 15x_{1} + 10x_{2} \\
-\text{s.t.} & \quad x_{1} + x_{2} \leq 2000 \\
-& \quad x_{1} + 0.5x_{2} \leq 1000 \\
-& \quad 2x_{1} + x_{2} \leq 3000 \\
-& \quad x_{1}, x_{2} \geq 0
-\end{align*}
-
-\section{Comments on the Primal Problem}
-Before deciding on production to maximize profit, one should consider whether it is more beneficial to sell the raw materials instead of producing goods.
-
-The key question is:
-
-\textit{What is the minimum price at which all available resources should be sold rather than used for production?}
-
-This question is answered by the dual problem.
-
-\section{The Dual of the Production Problem}
-
-Assuming linearity, the total profit from selling resources is equal to the sum of profits obtained from selling each individual resource. The profit from selling a unit of a good must not exceed the profit obtained from selling the required raw materials.
-
-\section{Dual Variables and Objective Function}
-
-\subsection{Decision Variables}
-The unit price of each resource:
-\[ \pi_{i} \in \mathbb{R}, \quad \forall i = 1, \dots, m. \]
-These are continuous variables.
-
-\subsection{Objective Function}
-Maximize the profit from selling resources:
-\[ \sum_{i=1}^{m} b_{i} \pi_{i}. \]
-
-\section{Dual Constraints}
-For each good, the cost of raw materials must be at least as high as the profit from producing the good:
-\[ \sum_{i=1}^{m} a_{ij} \pi_{i} \geq c_{j}, \quad \forall j=1,\dots,n. \]
-The resource prices must be non-negative:
-\[ \pi_{i} \geq 0, \quad \forall i=1,\dots,m. \]
-
-\section{Dual Formulation}
-
-\begin{align*}
-\min & \quad \sum_{i=1}^{m} b_{i} \pi_{i} \\
-\text{s.t.} & \quad \sum_{i=1}^{m} a_{ij} \pi_{i} \geq c_{j}, \quad j=1,\dots,n \\
-& \quad \pi_{i} \geq 0, \quad i=1,\dots,m
-\end{align*}
-
-In matrix form:
-
-\begin{align*}
-\min & \quad b^{T} \pi \\
-\text{s.t.} & \quad A^{T} \pi \geq c \\
-& \quad \pi \geq 0
-\end{align*}
-
-\section{Comments on the Dual Problem}
-
-It is intuitively evident that:
-
-\begin{itemize}
-    \item Any feasible solution to the dual problem ensures a profit not lower than the maximum achievable through production.
-    \item The optimal dual solution cannot be lower than the optimal primal solution, otherwise, production would still be advantageous.
-\end{itemize}
-
-\section{Primal and Dual Problems}
-
-Each linear programming (LP) problem (primal) has an associated dual problem.
-
-\subsection{Primal Problem (P)}
-
-\begin{align*}
-\max & \quad z = c_{1}x_{1} + \dots + c_{n}x_{n} \\
-\text{s.t.} & \quad a_{11}x_{1} + \dots + a_{1n}x_{n} \leq b_{1} \\
-& \quad \vdots \\
-& \quad a_{m1}x_{1} + \dots + a_{mn}x_{n} \leq b_{m} \\
-& \quad x_{1}, \dots, x_{n} \geq 0
-\end{align*}
-
-\subsection{Dual Problem (D)}
-
-\begin{align*}
-\min & \quad w = b_{1} \pi_{1} + \dots + b_{m} \pi_{m} \\
-\text{s.t.} & \quad a_{11} \pi_{1} + \dots + a_{m1} \pi_{m} \geq c_{1} \\
-& \quad \vdots \\
-& \quad a_{1n} \pi_{1} + \dots + a_{mn} \pi_{m} \geq c_{n} \\
-& \quad \pi_{1}, \dots, \pi_{m} \geq 0
-\end{align*}
-
-\subsubsection*{Property}
-Problem D has as many variables as there are constraints in P and as many constraints as there are variables in P.
-
-\section{Primal and Dual - Matrix Form}
-
-In matrix form:
-
-\subsection{Primal Problem (P)}
-
-\begin{align*}
-\max & \quad z = c^{T} x \\
-\text{s.t.} & \quad A x \leq b \\
-& \quad x \geq 0
-\end{align*}
-
-\subsection{Dual Problem (D)}
-
-\begin{align*}
-\min & \quad w = b^{T} \pi \\
-\text{s.t.} & \quad A^{T} \pi \geq c \\
-& \quad \pi \geq 0
-\end{align*} 
-
+        \section*{Problemi primali e duali - esempio}
+        Problema primale (P)
+        \begin{align*}
+            \max z &= 2x_1 + 3x_2 - x_3 + 7x_4 \\
+            4x_1 + 3x_2 - x_3 + 2x_4 &\leq 35 \quad (\pi_1) \\
+            x_1 + 5x_2 + 6x_3 + 10x_4 &= 28 \quad (\pi_2) \\
+            2x_1 + 7x_2 - 2x_3 + 4x_4 &\geq 15 \quad (\pi_3) \\
+            x_1 \geq 0, x_2 \text{ libera }, x_3 \leq 0, x_4 &\geq 0
+        \end{align*}
+        
+        Problema duale (D)
+        \begin{align*}
+            \min w &= 35\pi_1 + 28\pi_2 + 15\pi_3 \\
+            4\pi_1 + \pi_2 + 2\pi_3 &\geq 2 \quad (x_1) \\
+            3\pi_1 + 5\pi_2 + 7\pi_3 &= 3 \quad (x_2) \\
+            -\pi_1 + 6\pi_2 - 2\pi_3 &\leq -1 \quad (x_3) \\
+            2\pi_1 + 10\pi_2 + 4\pi_3 &\geq 7 \quad (x_4) \\
+            \pi_1 \geq 0, \pi_2 \text{ libera }, \pi_3 &\leq 0
+        \end{align*}
+        
+        \section*{Il teorema della dualità (debole)}
+        \textbf{Dualità debole}
+        \begin{itemize}
+            \item Se $x$ è una soluzione ammissibile per il problema primale e $\pi$ è una soluzione ammissibile per il problema duale allora
+            \begin{equation*}
+                c^T x \leq b^T \pi
+            \end{equation*}
+        \end{itemize}
+        \textbf{Dimostrazione} Infatti,
+        \begin{equation*}
+            c^T x \leq (A^T \pi)^T x = \pi^T A x \leq \pi^T b = b^T \pi
+        \end{equation*}
+        
+        \section*{Problemi primali e duali}
+        \textbf{Corollari}
+        \begin{enumerate}
+            \item Se il valore ottimo nel primale è $+\infty$, allora il problema duale deve essere inammissibile
+            \item Se il valore ottimo nel duale è $-\infty$, allora il problema primale deve essere inammissibile
+        \end{enumerate}
+        \textbf{Dimostrazione} Supponiamo che il valore ottimo nel problema primale sia $+\infty$ e che il problema duale abbia una soluzione ammissibile $\pi$. Per dualità debole, $\pi$ soddisfa $b^T \pi \geq c^T x$ per ogni primale ammissibile $x$. Prendendo il massimo su tutti gli $x$ ammissibili, concludiamo $b^T \pi \geq +\infty$. Questo è impossibile e mostra che il duale non può avere una soluzione ammissibile, stabilendo così la parte (a). La parte (b) segue da un argomento simmetrico.
+        
+        \section*{Problemi primali e duali}
+        \textbf{Corollario}
+        \begin{itemize}
+            \item Siano $x$ e $\pi$ soluzioni ammissibili per il primale e il duale, rispettivamente, e supponiamo che $c^T x = b^T \pi$. Allora $x$ e $\pi$ sono soluzioni ottime per il primale e il duale, rispettivamente.
+        \end{itemize}
+        \textbf{Dimostrazione} Siano $x$ e $\pi$ come nell'enunciato del corollario. Per ogni soluzione ammissibile primale $y$, il teorema della dualità debole produce $c^T x = b^T \pi \geq c^T y$, il che dimostra che $x$ è ottimo. La dimostrazione dell'ottimalità di $\pi$ è simile.
+        
+        \section*{Il teorema della dualità (forte)}
+        \textbf{Dualità forte}
+        \begin{itemize}
+            \item Se un problema di programmazione lineare ha una soluzione ottima, allora anche il suo duale ce l'ha, e i rispettivi valori ottimi sono uguali.
+        \end{itemize}
+        In altre parole, se $x^*$ è una soluzione ottima finita per il primale, anche il duale ha una soluzione ottima finita $\pi^*$ ed è sempre vero che $c^T x^* = b^T \pi^*$.
+        
+        \section*{Relazioni tra Primale e Duale}
+        Ricordiamo che in un problema di programmazione lineare, si verificherà esattamente una delle seguenti tre possibilità
+        \begin{enumerate}
+            \item Esiste una soluzione ottima
+            \item Il problema è "illimitato", cioè il valore ottimo è $+\infty$ (per i problemi di massimizzazione) o $-\infty$ (per i problemi di minimizzazione)
+            \item Il problema è inammissibile
+        \end{enumerate}
+        Questo porta a nove possibili combinazioni per il primale e il duale:
+        \begin{table}[ht]
+            \centering
+            \begin{tabular}{llll}
+                & Ottimo finito & Illimitato & Inammissibile \\
+                Ottimo finito & Possibile & Impossibile & Impossibile \\
+                Illimitato & Impossibile & Impossibile & Possibile \\
+                Inammissibile & Impossibile & Possibile & Possibile \\
+            \end{tabular}
+            \caption{Le diverse possibilità per il primale (righe) e il duale (colonne)}
+        \end{table}
+        
+        \section*{Entrambi i problemi sono inammissibili - esempio}
+        Considera il primale inammissibile
+        \begin{align*}
+            \min x_1 + 2x_2 \\
+            x_1 + x_2 = 1 \\
+            2x_1 + 2x_2 = 3 \\
+            x_1, x_2 \text{ libera }
+        \end{align*}
+        Il suo duale è
+        \begin{align*}
+            \max \pi_1 + 3\pi_2 \\
+            \pi_1 + 2\pi_2 = 1 \\
+            \pi_1 + 2\pi_2 = 2 \\
+            \pi_1, \pi_2 \text{ libera }
+        \end{align*}
+        che è anche inammissibile.
+        
+        \section*{Relazioni tra Primale e Duale}
+        \textbf{Complementarietà}
+        \begin{itemize}
+            \item Siano $x$ e $\pi$ soluzioni ammissibili per il problema primale e il problema duale, rispettivamente. I vettori $x$ e $\pi$ sono soluzioni ottime per i due rispettivi problemi se e solo se
+            \begin{align*}
+                \pi_i(b_i - a^T_i x) &= 0 \quad \forall i \\
+                (\pi^T A_j - c_j)x_j &= 0 \quad \forall j,
+            \end{align*}
+            dove $A_j$ è la $j$-esima colonna e $a_i$ è la $i$-esima riga della matrice A.
+        \end{itemize}
+        
+        \section*{Complementarietà - Dimostrazione}
+        \textbf{se (x, $\pi$) sono ottimi} I vincoli dei problemi impongono che $\pi^T b \geq \pi^T A x \geq c^T x$.
+        Poiché $x$ e $\pi$ sono ottimi $\pi^T b = c^T x$, quindi $\pi^T b = \pi^T A x$ e pertanto
+        $\pi(b^T - Ax) = 0$. Allo stesso modo, ne consegue che $(\pi^T A - c^T)x = 0$. Infine, poiché $\pi \geq 0$,
+        $b^T - Ax \geq 0$, $\pi^T A - c^T \geq 0$, $x \geq 0$, ne consegue che ogni termine dei prodotti scalari deve essere uguale a zero, cioè, $\pi_i(a^T_i x - b_i) = 0 \quad \forall i$ e
+        $(c_j - \pi^T A_j)x_j = 0 \quad \forall j$.
+        \newline
+        \textbf{se le equazioni valgono} Scrivendo le equazioni in forma compatta e per la coppia
+        (x, $\pi$) tale che
+        \begin{align*}
+            \pi(b^T - Ax) = 0 \Rightarrow \pi b^T = \pi Ax
+        \end{align*}
+        e
+        \begin{align*}
+            (\pi^T A - c^T)x = 0 \Rightarrow \pi Ax = c^T x
+        \end{align*}
+        poiché $\pi^T b = \pi^T Ax = c^T x$, allora (x, $\pi$) è ottimo.
+        
+        \section*{Complementarietà - Commenti}
+        \begin{itemize}
+            \item il teorema della complementarità può essere riformulato affermando che se un vincolo primale non è stretto (cioè, è $<$) allora la variabile duale associata deve essere nulla, viceversa se una variabile duale è non nulla il vincolo primale associato deve essere stretto (cioè, $=$).
+            \item può accadere che il vincolo sia stretto e la variabile duale associata sia nulla.
+        \end{itemize}
+        
+        \section*{Esercizio}
+        Scrivere il duale dei seguenti problemi
+        \newline
+        \textbf{Es. 1}
+        \begin{align*}
+            \max 5x_1 + 2x_2 + 3x_3 \\
+            x_1 - 2x_2 + 5x_3 = 4 \\
+            2x_1 + 7x_2 + 2x_3 \geq 10 \\
+            2x_1 + 4x_3 \leq 5 \\
+            x_1, x_2, x_3 \geq 0
+        \end{align*}
+        \textbf{Es. 2}
+        \begin{align*}
+            \max 0 \\
+            3x_1 - 2x_2 + 8x_3 \leq 4 \\
+            7x_1 + 7x_2 + 9x_3 \leq 10 \\
+            x_1 + 10x_3 \leq 5 \\
+            x_1, x_2, x_3 \text{ libera }
+        \end{align*}
+        
+        \section*{Soluzioni}
+        \textbf{Es. 1}
+        \begin{align*}
+            \min 4\pi_1 + 10\pi_2 + 5\pi_3 \\
+            \pi_1 + 2\pi_2 + 2\pi_3 \geq 5 \\
+            -2\pi_1 + 7\pi_2 \geq 2 \\
+            5\pi_1 + 2\pi_2 + 4\pi_3 \geq 3 \\
+            \pi_1 \text{ libera }, \pi_2 \leq 0, \pi_3 \geq 0
+        \end{align*}
+        \textbf{Es. 2}
+        \begin{align*}
+            \min 4\pi_1 + 10\pi_2 + 5\pi_3 \\
+            3\pi_1 + 7\pi_2 + \pi_3 = 0 \\
+            -2\pi_1 + 7\pi_2 = 0 \\
+            8\pi_1 + 9\pi_2 + 10\pi_3 = 0 \\
+            \pi_1, \pi_2, \pi_3 \geq 0
+        \end{align*}
+        
 \end{document}
