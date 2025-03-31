@@ -2247,31 +2247,19 @@
             \lim_{k \to +\infty} |e_k| = 0.
         \]
 
-        \paragraph{Oss: } si noti l'ordine di convergenza e la costante asintotica: il metodo di bisezione ha come costanti $p = 1 e \quad c = \frac{1}{2}$, ma se si calcola 
+        \paragraph{Oss: } si noti l'ordine di convergenza e la costante asintotica: il metodo di bisezione ha come costanti $p = 1$ e $c = \frac{1}{2}$, ma se si calcola 
 
         \[
-            \lim_{k \to +\infty} \frac{|e_{k+1}|}{|e_k|} \text{ NON esiste}
+            \lim_{k \to +\infty} \frac{|e_{k+1}|}{|e_k|}
         \]
+        NON esiste per il comportamento
+
+        \subsubsection{Criterio di arresto}
+        \paragraph{}
+        \textbf{Test di arresto sul residuo}: Per arrestare le iterazioni, nel metodo della bisezione, posso considerare la semilunghezza dell'intervallo al passo k. 
 
         \paragraph{}
-        In realazione all'errore al passo $k$ è possibile stimare il numero minimo di iterazioni k che mi permette di avere un errore  minore di una certa tolleranza che stabilisco:
-        
-        \begin{align*}
-            |e_k| \le \frac{b-a}{2^{k+1}} &< tol \\
-            \log \left (\frac{b-a}{2^{k+1}} \right ) &< \log(tol) \\
-            \log(b-a) - (k+1)\log_2 &< \log(tol) \\
-            \log(b-a) - \log(tol) &< (k+1)\log_2 \\
-            (k+1) &> \frac{\log(b-a)-\log(tol)}{\log_2} \\
-            k &>  \frac{\log(b-a)-\log(tol)}{\log_2} -1 \\
-        \end{align*}
-
-
-        \subsection{Criterio di arresto}
-        \paragraph{}
-        \textbf{Test di arresto sul residuo}: sia $e_k = a-x_k$ l'errore alla k-esima iterazione e $f(\alpha) - f(x_k)$ il residuo. 
-
-        Allora posso usare come criterio di arresto del programma quando ritengo che il valore di $f$ sia sufficientemente vicino a 0
-
+        Un criterio di arresto importante è quello basato sul \textbf{test di arresto sul residuo}: sia $e_k = \alpha - x_k$ l'errore al passo k, $f(\alpha) - f(x_k)$ è il residuo
         \paragraph{}
         \textbf{OSS: } problemi di arresto sul residuo:
 
@@ -2292,30 +2280,32 @@
 
         \paragraph{}
         \textbf{Soluzione: RESIDUO PESATO }
-        si utilizza la quantità:
+        si utilizza la quantità chiamata residuo pesato:
 
         \[
-            \frac{f(x_k)}{f'(x_k)}
+            \frac{f(x_k)}{f'(x_k)} \approx e_k + O(e_k^2) 
         \]
-        
-        Approssimazione di ordine 1 dell'errore, ovvero $|\frac{f(x_k)}{f'(x_k)}| \approx |e_k|$
 
-
-        $e_k = \alpha - x_k$; \quad $\alpha = x_k + e_k$
+        Il residuzo pesato è una buona approssimazione di ordine 1 dell'errore
         
+        \paragraph{Dim. } $e_k = \alpha - x_k$; \quad $\alpha = x_k + e_k$ 
+        
+        Scrivo lo sviluppo di Tyalor (utilizzando il resto di Lagrange): 
 
         \[
-            0 = f(\alpha) = f(x_k + e_k) = f(x_k) + f'(x_k)e_k +O(e_k)^2
+            0 = f(\alpha) = f(x_k + e_k) = f(x_k) + f'(x_k)e_k + O(e_k^2) 
         \]
 
-        Assumendo che $f'(x_k) \ne 0$
+        Assumendo che $f'(\alpha) \ne 0$ e che quindi $\alpha$ sia uno zero semplice
         
         \[
-            \frac{f(x_k)}{f'(x_k)} \approx e_k + O(e_k^2)
+            \frac{-f(x_k)}{f'(x_k)} \approx e_k + O(e_k^2) \text{ dove $O(e_k^2)$ è trascurabile}
         \]
 
+        \paragraph{Oss. } Si puà approssimare la derivata con il rapporto incrementale, perchè non si richiede che la fz. sia continua, quindi non è detto che la derivata esista. 
 
-        \subsection{Numero Minimo di iterazioni}
+
+        \subsubsection{Numero Minimo di iterazioni}
         Il numero minimo di iterazioni per avere un errore inferiore a tol è:
 
         \[
@@ -2339,7 +2329,7 @@
         \]
 
         \[
-            k > \frac{\log(b-a)-\log_(tol)}{\log_2} -1
+            k > \frac{\log(b-a)-\log(tol)}{\log_2} -1
         \]
     
 
@@ -2371,8 +2361,6 @@
             & e^{-\frac{x}{4}} - x = 0 \quad
         \end{align*}
 
-    
-
         \subsection{Metodo Newton-Raphson}
         Applicabilità:
         \begin{itemize}
@@ -2380,58 +2368,57 @@
             \item \( \alpha \in [a,b] \mid f(\alpha) = 0 \)
         \end{itemize}
 
+        \paragraph{}
         Funzionamento:
-        --------------
 
-        Interpretazione:
-        due modi diversi 
+        Dato $x_0$ punto iniziale, il metodo di Newton approssima $f$ comn la retta tangente al $f$ in $(x_0, f(x_0))$, interseca la tangente con l'asse x. Il punto di intersezione è la nuova approssimazione dello zero. Poi si ripete la procedura.
+
+        \paragraph{}
+        Scehma iterativo: 
+        Ci sono due modi per ricavarlo:
+    
         \begin{enumerate}
             \item Traduzione matematica:
             suppongo di essere in \( x_k \):
             \[
+            x_k = 
             \begin{cases}
-            y = f(x_k)+f'(x_k)(x-x_k) \\
-            y = 0
+                y = f(x_k)+f'(x_k)(x-x_k) \text{ (eq retta tangente)}\\
+                y = 0
             \end{cases}
             \]
 
             \[
             \begin{aligned}
-            0 &= f(x_k)+f'(x_k)(x-x_k) \\
-            \frac{-f(x_k)}{f'(x_k)} &= x-x_k \\
-            x &= x_k - \frac{f(x_k)}{f'(x_k)} \\
-            x_{k+1} &= x_k -\frac{f(x_k)}{f'(x_k)}, \quad k \geq 0
+                0 = f(x_k) &+ f'(x_k)(x-x_k) \rightarrow \frac{-f(x_k)}{f'(x_k)} = x-x_k \rightarrow x = x_k - \frac{f(x_k)}{f'(x_k)} \\
+                &x_{k+1} = x_k -\frac{f(x_k)}{f'(x_k)}, \quad k \geq 0
             \end{aligned}
             \]
 
-            \item Modo di ricavare lo schema iterativo:
+            \item considero: $x_{k+1} = x_k + S$, dove $x_{k+1}$ è lo zero e $S$ è la differenza tra lo zero e il termine precedente
+
+            utilizzo l'approssiazione di Tylor di $f$ attorno a $x_k$
             \[
-            x_{k+1} = x_k + S
+                0 = f(x_{k+1}) = f(x_k+S) = f(x_k) + f'(x_k) S \quad \rightarrow -\frac{f(x_k)}{f'(x_k)} = S
             \]
 
             \[
-            0 = f(x_{k+1}) = f(x_k+S) = f(x_k) + f'(x_k) S
-            \]
-
-            \[
-            -\frac{f(x_k)}{f'(x_k)} = S
-            \]
-
-            \[
-            x_{k+1} = x_k + S = x_k-\frac{f(x_k)}{f'(x_k)}, \quad k \geq 0
+                \rightarrow x_{k+1} = x_k + S = x_k-\frac{f(x_k)}{f'(x_k)}, \quad k \geq 0
             \]
         \end{enumerate}
 
         \paragraph{}
         \textbf{Th. di convergenza locale del Metodo di Newton-Raphson}: Sia \( f \in C^2([a,b]) \), con \( \alpha \in [a,b] \mid f(\alpha) = 0 \).
-        Sia \( f'(x) \neq 0 \, \forall x \in [a,b] \), allora esiste \( \delta > 0 \) tale che \( \forall x_0 \in B(\alpha, \delta) \):
+        Se \( f'(x) \neq 0 \, \forall x \in [a,b] \) (garantisce che lo zero sia semplice perchè $f'(\alpha) \neq 0$), allora esiste \( \delta > 0 \) tale che \( \forall x_0 \in B(\alpha, \delta) \):
+
         \begin{enumerate}
-            \item il metodo è ben definito, \( \{x_k\}_{k \geq 0} \subset B(\alpha, \delta) \)
-            \item \( \frac{|e_{k+1}|}{|e_k|^2} < M \); (e quindi il limite \( k \to \infty \, x_k = \alpha \))
+            \item il metodo è ben definito, \( \{x_k\}_{k \geq 0} \subset B(\alpha, \delta) \) $\rightarrow$ (la successione delle iterate è inclusa nella palla aperta di centro $\alpha$ e raggio $\delta$) 
+            \item \( \frac{|e_{k+1}|}{|e_k|^2} < M \); (e quindi il limite \( k \to \infty \, x_k = \alpha \)) $\rightarrow$ (il rapporot tra errori è maggiorato da una costante) 
         \end{enumerate}
-        Inoltre si ha che:
+
+        Inoltre si ha convergenza quadrata:
         \[
-        \lim_{k \to \infty} \frac{|e_{k+1}|}{|e_k|^2} = \frac{1}{2} \left| \frac{f''(\alpha)}{f'(\alpha)} \right|
+            \lim_{k \to \infty} \frac{|e_{k+1}|}{|e_k|^2} = \frac{1}{2} \left| \frac{f''(\alpha)}{f'(\alpha)} \right|
         \]
 
         \paragraph{}
@@ -2440,71 +2427,205 @@
         e_k = \alpha - x_k; \quad \alpha = x_k + e_k;
         \]
 
+        Utilizzando il resto di Lagrange: 
         \[
         0 = f(\alpha) = f(x_k + e_k) = f(x_k) + f'(x_k) e_k + \frac{1}{2} f''(\xi_k)e_k^2, \quad \xi_k \in \text{int}(x_k,\alpha)
         \]
 
+        
         \[
-        -\frac{f(x_k)}{f'(x_k)} = e_k + \frac{1}{2} \frac{f''(\xi_k)}{f'(x_k)} e_k^2
+            \text{Sapendo per ipotesi che $f'(x_k) \neq 0 \rightarrow$}-\frac{f(x_k)}{f'(x_k)} = e_k + \frac{1}{2} \frac{f''(\xi_k)}{f'(x_k)} e_k^2
         \]
 
         \[
-        -\frac{f(x_k)}{f'(x_k)} = x_{k+1} - x_k
+            -\frac{f(x_k)}{f'(x_k)} = x_{k+1} - x_k =  e_k + \frac{1}{2} \frac{f''(\xi_k)}{f'(x_k)} e_k^2
         \]
 
+        Sapendo che:
         \[
-        x_{k+1} - x_k = e_k + \frac{1}{2} \frac{f''(\xi_k)}{f'(x_k)} e_k^2
+            x_{k+1} - \alpha + \alpha - x_k = e_k + \frac{1}{2} \frac{f''(\xi_k)}{f'(x_k)} e_k^2
         \]
 
+        e:
         \[
-        x_{k+1} - \alpha + \alpha - x_k = e_k + \frac{1}{2} \frac{f''(\xi_k)}{f'(x_k)} e_k^2
+            x_{k+1} - \alpha + \alpha - x_k = - e_{k+1} + e_k
         \]
 
-        \[
-        x_{k+1} - \alpha + \alpha - x_k = - e_{k+1} + e_k
-        \]
-
+        Divido per $e_k^2:$
         \[
         \frac{-e_{k+1}}{e_k^2} = \frac{1}{2} \frac{f''(\xi_k)}{f'(x_k)}
         \]
-
+        Trovo che:
         \[
-        \frac{|e_{k+1}|}{|e_k|^2} \leq \frac{1}{2} \frac{\max_x |f''(x)|}{\min_x |f'(x)|} = M
+            \frac{|e_{k+1}|}{|e_k|^2} \leq \frac{1}{2} \frac{\max_{x \in [a,b]} |f''(x)|}{\min_{x \in [a,b]}|f'(x)|} = M
         \]
 
-        Questo risultato ci permette di dimostrare la convergenza di \( x_k \) ad \( \alpha \) (ovvero che \( \lim_{k \to \infty} |e_k| = 0 \)).
+        Questo risultato ci permette di dimostrare la convergenza di \( x_k \) ad \( \alpha \) (ovvero che \(\lim_{k \to \infty} x_k = \alpha \iff \lim_{k \to \infty} |e_k| = 0\)).
 
         \[
-        |e_{k+1}| \leq M |e_k|^2; \quad |e_k| \leq M |e_{k-1}|^2
+            |e_{k+1}| \leq M |e_k|^2 \quad \rightarrow |e_k| \leq M |e_{k-1}|^2
+        \]
+        
+        Moltiplico e divido per M:
+
+        \[
+            M|e_k| \leq (M |e_{k-1}|)^2 \leq (M|e_{k-2}|)^{2^2} \leq \ldots \leq (M|e_0|)^{2^k}
+        \]
+
+        Quindi:
+        \[
+            M(e_k) \leq (M|e_0|)^{2^k} \quad \rightarrow \quad 0 \leq |e_k| \leq \frac{1}{M} (M |e_0|)^{2^k}
         \]
 
         \[
-        M|e_k| \leq M |e_{k-1}|^2 \leq (M|e_{k-2}|)^2 \leq \ldots \leq (M|e_0|)^{2^k}
+            \Rightarrow x_0 \in \left( \alpha - \frac{1}{M}, \alpha + \frac{1}{M} \right) = B(\alpha, \delta) \quad \text{con} \quad \delta = \frac{1}{M}
         \]
 
+        Partendo da $x_0 \in B(\alpha, \frac{1}{M})$, tutte le iterate restano dentro la palla $B \Rightarrow \{x_k\} \subset B(\alpha, \frac{1}{M})$
         \[
-        M(e_k) \leq (M|e_0|)^{2^k}; \quad |e_k| \leq \frac{1}{M}(M |e_0|)^{2^k}
+            x_k \in B(\alpha, \frac{1}{M}) \Rightarrow \underbrace{|\alpha - x_k|}_{e_k} < \frac{1}{M}
         \]
 
-        \[
-        0 \leq |e_k| \leq \frac{1}{M} (M |e_0|)^{2^k}
-        \]
-
-        DA COMPLETARE 
- 
- 
-
-        CRITERIO DI ARRESTO:
-        per newton si usa il residuo pesato che per newton è anche
+        Da $-\frac{e_{k+1}}{|e_k|^2} = \frac{1}{2} \frac{f''(\xi _k)}{f'(x_k)}$ passo al limite e ai valori assoluti:
 
         \begin{align*}
-            x_k+1 ... x_k sacrto al passo k+1\\
-            S_k+1 = x_k+1 ... x_k \\
-            if |S_k+1 | < tol \\
-            S_k+1 \approx e_k ottimo test di arresto 
+            \lim_{k \to \infty} \frac{|e_{k+1}|}{|e_k|^2} &= \frac{1}{2} \lim_{k \to \infty} \frac{|f''(xi_k)|}{f'(x_k)} = \frac{1}{2} \frac{f''(\lim_{k \to \infty} \xi_k)}{f'(\lim_{k \to \infty} x_k)} \text{ $\rightarrow$ (per continuità)} \\
+            &= \frac{1}{2} \frac{|f''(\alpha)|}{|f'(\alpha)|}
         \end{align*}
+            
+
+        So che $x_k \to \alpha$, $\xi_k \in \text{int}(x_k, \alpha)$, quindi per $k \to \infty$, $\xi_k \to \alpha$.
+                        
+        \paragraph{}
+        \text{Ordine di convergenza del metodo di Newton}
         
+        \begin{itemize}
+            \item se $f''(\alpha) \neq 0$, $c =\frac{1}{2} \left | \frac{f''(\alpha)}{f'(\alpha)} \right | \neq 0 \implies p = 2$
+            \item se $f''(\alpha) =  0$, $c = ? \implies p \ge 3$ (il metodo converge ancora più veloce perchè $\lim_k \frac{|e_{k+2|}}{|e_k|^2} = 0$)
+            \item se $f'(\alpha) = 0 \implies p = 1$; $c = 1 - \frac{1}{r}$ con r la molteplicità dello zero  
+        \end{itemize}
+
+
+                
+        \subsubsection{Criterio d'arresto}
+
+        Lo schema iterativo è:
+        \[
+            x_{k+1} = x_k - \frac{f(x_k)}{f'(x_k)}
+        \]
+
+        \textbf{Loop:}
+
+        \[
+        \begin{cases}
+            \text{1. } f(x_k), f'(x_k) \neq 0 \quad \rightarrow \quad \text{se è = 0 mi arresto}\\
+            \text{2. } S_{k+1} = - \frac{f(x_k)}{f'(x_k)} \rightarrow (\text{ scarto al passo } k+1) \\
+            \text{3. } x_{k+1} = x_k + S_{k+1}
+        \end{cases}
+        \]
+
+        Un buon criterio d'arresto è il \textbf{residuo pesato}, che corrisponde allo scarto al passo $k+1$ ($S_{k+1}$). Per Newton è $x_{k+1} - x_k = S_{k+1}$.
+        \paragraph{}
+
+        \textbf{test}: if $|S_{k+1}| < \text{tol}$ $\quad \quad$ (visto che $S_{k+1} \approx e_k \rightarrow$ è un ottimo test d'arresto)
+
+        \paragraph{Esempio: } k = 3; $|S_4  \le 10^{-7}| \rightarrow x_4 = x_3+x_4$. Lo scarto 4 è una approssimazione id $e_3$ $\implies$ al passo 3 l'errore è già $< 10{-7}$
+
+        \paragraph{ESERCIZIO SVOLTO}
+
+        -----------------------------------------------------
+
+
+
+        \subsection{Metodo di Newton in più variabili}
+
+        sia $F: \mathbb{R}^n \rightarrow \mathbb{R}^n$, $F(X) = F(x_1, ..., x_n) = [f_1(x_1, ..., x_n), f_2(x_1, ..., x_n), ..., f_n(x_1, ..., x_n)]$
+
+        \[
+        F(X) = 0 \Leftrightarrow \begin{cases}
+        f_1(x_1, ..., x_n) = 0 \\
+        f_2(x_1, ..., x_n) = 0 \\
+        \vdots \\
+        f_n(x_1, ..., x_n) = 0
+        \end{cases}
+        \]
+
+        Nel caso scalare, lo schema iterativo del metodo di Newton è $x_{k+1} = x_k - \frac{f(x_k)}{f'(x_k)}$ dove lo scarto è $S_{k+1} = x_{k+1} - x_k = - \frac{f(x_k)}{f'(x_k)} \Rightarrow S_{k+1} = - f'(x_k)^{-1} \cdot f(x_k)$
+
+        Nel caso di più variabili: $S_{k+1} = - F'(x_k)^{-1} F(x_k)$ con $x_{k+1} = x_k + S_{k+1}$, dove $F'(x_k)^{-1}$ è l'inversa della matrice Jacobiana.
+
+        A livello computazionale richiede, per ogni iterazione, di creare una matrice $n \times n$ con tutte le derivate parziali.
+
+        \paragraph{}
+        Nella realtà, invertire una matrice ha un costo computazionale molto alto, quindi la formula $S_{k+1} = -F'(x_k)^{-1} \cdot F(x_k)$ viene premoltiplicata per $F'(x_k)$, ottenendo $F'(x_k) S_{k+1} = -F(x_k)$. Ad ogni iterazione si dovrà quindi risolvere questo sistema lineare $n \times n$ ($Ax = b$ con $A = F'(x_k)$, $b = -F(x_k)$).
+
+        \paragraph{}
+        Nel teorema di convergenza locale del metodo di Newton si erano richieste determinate condizioni, vediamo come cambiano nel caso a più variabili:
+
+        \begin{itemize}
+            \item $f \in C^2([a, b]) \longrightarrow f'$ sia Lipschitziana
+            \item $f'(x) \neq 0 \quad \forall x \in (a, b) \longrightarrow F(x_k)$ dev'essere invertibile, ovvero il determinante della Jacobiana è $\neq 0$
+        \end{itemize}
+
+
+        \subsection{Varianti del metodo di Newton}
+
+        \subsubsection{Metodo della tangente fissa}
+
+        SCHEMA ITERATIVO: $x_{k+1} = x_k - \frac{f(x_k)}{f'(x_0)}$ \quad (\textit{il coefficiente angolare di ogni iterazione è quello della tangente tracciata alla 1ª iterata.})
+
+        \paragraph{}
+        Questo metodo ha un costo computazionale minore (calcolo $f'(\alpha)$ solo una volta per $x=x_0$) ma è molto più lento del metodo di Newton normale.
+
+        Il metodo della tangente fissa ha convergenza lineare $p=1$ con $c = \left| 1 - \frac{f'(x)}{f'(x_0)} \right|$.
+
+        Con $p=1$ la costante $c$ dev'essere $<1$ per avere convergenza, quindi, se $\alpha$ non è zero semplice, vale $f'(x) = 0 \Rightarrow c = 1 \Rightarrow$ NON C'È convergenza $\Rightarrow$ il metodo NON converge per zeri multipli.
+
+
+        \subsubsection{Metodo delle secanti variabili (o delle secanti)}
+
+        SCHEMA ITERATIVO: $x_{k+1} = x_k - \frac{f(x_k)}{q_k}$ \quad \textit{per $k \geq 1$} \quad \textit{con $q_k = \frac{f(x_k) - f(x_{k-1})}{x_k - x_{k-1}}$} \quad (\textit{RAPP. INCREM.})
+        
+        \paragraph{}
+        \textbf{Oss: }{per partire servono 2 p.ti iniziali $x_0$ e $x_1$}
+        
+        \paragraph{}
+        La convergenza è super lineare $p > 1$, se $f \in C^2([a, b])$ e $f''(x) \neq 0$ si dimostra che $p = \frac{1 + \sqrt{5}}{2} \approx 1,618$ (sezione aurea) con costante asintotica $c = \left| \frac{f''(x)}{f'(x)} \right|^{0,618} \cdot \left| \frac{1}{f'(x)} \right|^{1 - 0,618}$
+
        
+        Questo metodo ha comunque una forte riduzione dell'errore, poiché $\lim_{k \to \infty} \frac{|e_{k+1}|}{|e_k|^p} = c$ \quad $\Rightarrow |e_{k+1}| \approx c \cdot |e_k|^p$ \quad $\Rightarrow |e_{k+1}| \approx c \cdot |e_k|^{1,618}$
+        
+        In più variabili questo metodo è chiamato \textit{QUASI NEWTON}
+
+        \subsubsection{Metodo di punto fisso (o iterazione funzionale)}
+
+        \textbf{Def.} $\alpha$ è un punto fisso di $g: [a, b] \rightarrow \mathbb{R}$ se $g(\alpha) = \alpha$
+
+        \paragraph{}
+        Riscrivo il problema $f(x) = 0$ nella forma $g(x) = x$ tc. $f(x) = 0 \iff g(x) = x$
+
+        Per farlo, ho due modi:
+
+        \begin{itemize}
+            \item da $f(x) = 0$, sommo $x$ da entrambe le parti e ottengo $x + f(x) = x$;
+            \item ricavo $x$ da $f(x)$ esplicitandola rispetto al resto della funzione.
+        \end{itemize}
+
+        \textbf{Esempio: } $f(x) = e^x - \cos x + 3x^2 = 0$ 
+        
+        posso scriverlo come: $e^x = \cos x - 3x^2 \rightarrow x = -\log(\cos x - 3x^2)$
+
+        oppure: $\cos x = e^x + 3x^2 \rightarrow x = \arccos(e^x + 3x^2)$
+        
+        oppure: $3x^2 = \cos x - e^x \rightarrow x = \sqrt{\frac{1}{3} \cos x - e^x}$
+
+        \paragraph{}
+        SCHEMA ITERATIVO: $x_{k+1} = g(x_k), \quad k \geq 0$ 
+        (La convergenza dipende dalla g)
+
+        \paragraph{}
+        La derivata prima di $g$ attorno ad $x$ determina la convergenza del metodo: $|g'(x)| < 1$ e $|g'(x)| \leq m < 1 \quad \forall x \in I_x$, dove 1 è il coefficiente angolar e della retta bisettroce del primo e terzo quadrante.
+
 
  
  \end{document}

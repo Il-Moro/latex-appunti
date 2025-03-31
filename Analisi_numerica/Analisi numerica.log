@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.2) (preloaded format=pdflatex 2025.3.8)  26 MAR 2025 10:00
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.2) (preloaded format=pdflatex 2025.3.8)  31 MAR 2025 14:02
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**"c:/Users/Filippo/OneDrive/Desktop/a.Uni/git/latex-appunti/Analisi_numerica/Analisi numerica.tex"
-(c:/Users/Filippo/OneDrive/Desktop/a.Uni/git/latex-appunti/Analisi_numerica/Analisi numerica.tex
+**"c:/Users/Filippo/OneDrive/Desktop/a.Uni/git_appunti/latex-appunti/Analisi_numerica/Analisi numerica.tex"
+(c:/Users/Filippo/OneDrive/Desktop/a.Uni/git_appunti/latex-appunti/Analisi_numerica/Analisi numerica.tex
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-01-18>
 (C:\Users\Filippo\AppData\Local\Programs\MiKTeX\tex/latex/base\article.cls
@@ -878,24 +878,28 @@ Package pdftex.def Info: graph2.png  used on input line 1895.
 
 [31]
 
-[32] (Analisi numerica.aux)
+[32]
+
+[33]
+
+[34] (Analisi numerica.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-01-18>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 9760 strings out of 473523
- 162112 string characters out of 5713663
+ 9783 strings out of 473523
+ 162485 string characters out of 5713663
  590761 words of memory out of 5000000
- 32635 multiletter control sequences out of 15000+600000
- 626916 words of font info for 171 fonts, out of 8000000 for 9000
+ 32639 multiletter control sequences out of 15000+600000
+ 628217 words of font info for 181 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 57i,13n,65p,1090b,338s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 57i,13n,65p,1098b,338s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/Filippo/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx10.pfb><C:/Users/Filippo/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx12.pfb><C:/Users/Filippo/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmex10.pfb><C:/Users/Filippo/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi10.pfb><C:/Users/Filippo/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi6.pfb><C:/Users/Filippo/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi8.pfb><C:/Users/Filippo/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr10.pfb><C:/Users/Filippo/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr12.pfb><C:/Users/Filippo/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr6.pfb><C:/Users/Filippo/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr8.pfb><C:/Users/Filippo/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr9.pfb><C:/Users/Filippo/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmri10.pfb><C:/Users/Filippo/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmri12.pfb><C:/Users/Filippo/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy10.pfb><C:/Users/Filippo/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy6.pfb><C:/Users/Filippo/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy8.pfb><C:/Users/Filippo/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmtt10.pfb><C:/Users/Filippo/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msam10.pfb><C:/Users/Filippo/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on "Analisi numerica.pdf" (33 pages, 477114 bytes).
+Output written on "Analisi numerica.pdf" (35 pages, 500281 bytes).
 PDF statistics:
- 222 PDF objects out of 1000 (max. 8388607)
+ 231 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 37392 words of extra memory for PDF output out of 42996 (max. 10000000)
+ 39440 words of extra memory for PDF output out of 42996 (max. 10000000)
 

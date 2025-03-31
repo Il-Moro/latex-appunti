@@ -1,6 +1,6 @@
-PWD c:\Users\Filippo\OneDrive\Desktop\a.Uni\git\latex-appunti\Analisi_numerica
+PWD c:\Users\Filippo\OneDrive\Desktop\a.Uni\git_appunti\latex-appunti\Analisi_numerica
 INPUT C:\Users\Filippo\AppData\Local\MiKTeX\miktex\data\le\pdftex\pdflatex.fmt
-INPUT c:\Users\Filippo\OneDrive\Desktop\a.Uni\git\latex-appunti\Analisi_numerica\Analisi numerica.tex
+INPUT c:\Users\Filippo\OneDrive\Desktop\a.Uni\git_appunti\latex-appunti\Analisi_numerica\Analisi numerica.tex
 OUTPUT Analisi numerica.log
 INPUT C:\Users\Filippo\AppData\Local\Programs\MiKTeX\tex\latex\base\article.cls
 INPUT C:\Users\Filippo\AppData\Local\Programs\MiKTeX\tex\latex\base\article.cls
@@ -225,6 +225,7 @@ INPUT C:\Users\Filippo\AppData\Local\Programs\MiKTeX\fonts\tfm\public\lm\lmsy5.t
 INPUT C:\Users\Filippo\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\symbols\msam5.tfm
 INPUT C:\Users\Filippo\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\symbols\msbm5.tfm
 INPUT C:\Users\Filippo\AppData\Local\Programs\MiKTeX\fonts\tfm\public\lm\ec-lmr9.tfm
+INPUT C:\Users\Filippo\AppData\Local\Programs\MiKTeX\fonts\tfm\public\lm\ts1-lmri10.tfm
 INPUT Analisi numerica.aux
 INPUT C:\Users\Filippo\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmbx10.pfb
 INPUT C:\Users\Filippo\AppData\Local\Programs\MiKTeX\fonts\type1\public\lm\lmbx10.pfb
