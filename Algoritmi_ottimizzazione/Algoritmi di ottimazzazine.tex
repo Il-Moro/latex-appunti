@@ -1615,26 +1615,10 @@
              & libere & $=$ & \\
             \hline
             \end{tabular}
-            \caption{Tabella 1: Relazione tra variabili e vincoli primali e duali}
         \end{table}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-        \section*{Problemi primali e duali - esempio}
+        \paragraph{}
+        \textbf{Esempi}
         Problema primale (P)
         \begin{align*}
             \max z &= 2x_1 + 3x_2 - x_3 + 7x_4 \\
@@ -1654,61 +1638,60 @@
             \pi_1 \geq 0, \pi_2 \text{ libera }, \pi_3 &\leq 0
         \end{align*}
         
-        \section*{Il teorema della dualità (debole)}
-        \textbf{Dualità debole}
-        \begin{itemize}
-            \item Se $x$ è una soluzione ammissibile per il problema primale e $\pi$ è una soluzione ammissibile per il problema duale allora
-            \begin{equation*}
-                c^T x \leq b^T \pi
-            \end{equation*}
-        \end{itemize}
-        \textbf{Dimostrazione} Infatti,
+        \subsection{Risultati importanti: }
+        \textbf{Th. della dualità (debole):} se $x$ è una soluzione ammissibile per il problema primale e $\pi$ è una soluzione ammissibile per il problema duale allora
+        
+        \begin{equation*}
+            c^T x \leq b^T \pi
+        \end{equation*}
+        
+        \textbf{Dim. } Infatti,
+
         \begin{equation*}
             c^T x \leq (A^T \pi)^T x = \pi^T A x \leq \pi^T b = b^T \pi
         \end{equation*}
-        
-        \section*{Problemi primali e duali}
-        \textbf{Corollari}
+    
+        \textbf{Corollari: }
         \begin{enumerate}
             \item Se il valore ottimo nel primale è $+\infty$, allora il problema duale deve essere inammissibile
             \item Se il valore ottimo nel duale è $-\infty$, allora il problema primale deve essere inammissibile
         \end{enumerate}
-        \textbf{Dimostrazione} Supponiamo che il valore ottimo nel problema primale sia $+\infty$ e che il problema duale abbia una soluzione ammissibile $\pi$. Per dualità debole, $\pi$ soddisfa $b^T \pi \geq c^T x$ per ogni primale ammissibile $x$. Prendendo il massimo su tutti gli $x$ ammissibili, concludiamo $b^T \pi \geq +\infty$. Questo è impossibile e mostra che il duale non può avere una soluzione ammissibile, stabilendo così la parte (a). La parte (b) segue da un argomento simmetrico.
+
+        \textbf{Dim.} Supponiamo che il valore ottimo nel problema primale sia $+\infty$ e che il problema duale abbia una soluzione ammissibile $\pi$. Per dualità debole, $\pi$ soddisfa $b^T \pi \geq c^T x$ per ogni primale ammissibile $x$. Prendendo il massimo su tutti gli $x$ ammissibili, concludiamo $b^T \pi \geq +\infty$. Questo è impossibile e mostra che il duale non può avere una soluzione ammissibile, stabilendo così la parte (a). La parte (b) segue da un argomento simmetrico.
         
-        \section*{Problemi primali e duali}
-        \textbf{Corollario}
-        \begin{itemize}
-            \item Siano $x$ e $\pi$ soluzioni ammissibili per il primale e il duale, rispettivamente, e supponiamo che $c^T x = b^T \pi$. Allora $x$ e $\pi$ sono soluzioni ottime per il primale e il duale, rispettivamente.
-        \end{itemize}
-        \textbf{Dimostrazione} Siano $x$ e $\pi$ come nell'enunciato del corollario. Per ogni soluzione ammissibile primale $y$, il teorema della dualità debole produce $c^T x = b^T \pi \geq c^T y$, il che dimostra che $x$ è ottimo. La dimostrazione dell'ottimalità di $\pi$ è simile.
+        \paragraph{}
+        \textbf{Corollario: } siano $x$ e $\pi$ soluzioni ammissibili per il primale e il duale, rispettivamente, e supponiamo che $c^T x = b^T \pi$. Allora $x$ e $\pi$ sono soluzioni ottime per il primale e il duale, rispettivamente.
+
+        \paragraph{}
+        \textbf{Dim.} Siano $x$ e $\pi$ come nell'enunciato del corollario. Per ogni soluzione ammissibile primale $y$, il teorema della dualità debole produce $c^T x = b^T \pi \geq c^T y$, il che dimostra che $x$ è ottimo. La dimostrazione dell'ottimalità di $\pi$ è simile.
         
-        \section*{Il teorema della dualità (forte)}
-        \textbf{Dualità forte}
-        \begin{itemize}
-            \item Se un problema di programmazione lineare ha una soluzione ottima, allora anche il suo duale ce l'ha, e i rispettivi valori ottimi sono uguali.
-        \end{itemize}
+        \paragraph{}
+        \textbf{Th. dualità forte:} se un problema di programmazione lineare ha una soluzione ottima, allora anche il suo duale ce l'ha, e i rispettivi valori ottimi sono uguali.
+        
+        \paragraph{}
         In altre parole, se $x^*$ è una soluzione ottima finita per il primale, anche il duale ha una soluzione ottima finita $\pi^*$ ed è sempre vero che $c^T x^* = b^T \pi^*$.
         
-        \section*{Relazioni tra Primale e Duale}
+        \subsubsection*{Relazioni tra Primale e Duale}
         Ricordiamo che in un problema di programmazione lineare, si verificherà esattamente una delle seguenti tre possibilità
         \begin{enumerate}
             \item Esiste una soluzione ottima
             \item Il problema è "illimitato", cioè il valore ottimo è $+\infty$ (per i problemi di massimizzazione) o $-\infty$ (per i problemi di minimizzazione)
             \item Il problema è inammissibile
         \end{enumerate}
+
         Questo porta a nove possibili combinazioni per il primale e il duale:
+
         \begin{table}[ht]
             \centering
-            \begin{tabular}{llll}
+            \begin{tabular}{c|c|c|c}
                 & Ottimo finito & Illimitato & Inammissibile \\
                 Ottimo finito & Possibile & Impossibile & Impossibile \\
                 Illimitato & Impossibile & Impossibile & Possibile \\
                 Inammissibile & Impossibile & Possibile & Possibile \\
             \end{tabular}
-            \caption{Le diverse possibilità per il primale (righe) e il duale (colonne)}
         \end{table}
-        
-        \section*{Entrambi i problemi sono inammissibili - esempio}
+        \paragraph{}
+        \textbf{Esempio: due problemi inammissibili (si D che P)}
         Considera il primale inammissibile
         \begin{align*}
             \min x_1 + 2x_2 \\
@@ -1725,25 +1708,24 @@
         \end{align*}
         che è anche inammissibile.
         
-        \section*{Relazioni tra Primale e Duale}
-        \textbf{Complementarietà}
-        \begin{itemize}
-            \item Siano $x$ e $\pi$ soluzioni ammissibili per il problema primale e il problema duale, rispettivamente. I vettori $x$ e $\pi$ sono soluzioni ottime per i due rispettivi problemi se e solo se
-            \begin{align*}
-                \pi_i(b_i - a^T_i x) &= 0 \quad \forall i \\
-                (\pi^T A_j - c_j)x_j &= 0 \quad \forall j,
-            \end{align*}
-            dove $A_j$ è la $j$-esima colonna e $a_i$ è la $i$-esima riga della matrice A.
-        \end{itemize}
+        \paragraph{}
+        \textbf{Complementarietà: } siano $x$ e $\pi$ soluzioni ammissibili per il problema primale e il problema duale, rispettivamente. I vettori $x$ e $\pi$ sono soluzioni ottime per i due rispettivi problemi se e solo se
+
+        \begin{align*}
+            \pi_i(b_i - a^T_i x) &= 0 \quad \forall i \\
+            (\pi^T A_j - c_j)x_j &= 0 \quad \forall j,
+        \end{align*}
+        dove $A_j$ è la $j$-esima colonna e $a_i$ è la $i$-esima riga della matrice A.
         
-        \section*{Complementarietà - Dimostrazione}
-        \textbf{se (x, $\pi$) sono ottimi} I vincoli dei problemi impongono che $\pi^T b \geq \pi^T A x \geq c^T x$.
+        \paragraph{}
+        \textbf{Dim. }
+        \textbf{se (x, $\pi$) sono ottimi: } I vincoli dei problemi impongono che $\pi^T b \geq \pi^T A x \geq c^T x$.
         Poiché $x$ e $\pi$ sono ottimi $\pi^T b = c^T x$, quindi $\pi^T b = \pi^T A x$ e pertanto
         $\pi(b^T - Ax) = 0$. Allo stesso modo, ne consegue che $(\pi^T A - c^T)x = 0$. Infine, poiché $\pi \geq 0$,
         $b^T - Ax \geq 0$, $\pi^T A - c^T \geq 0$, $x \geq 0$, ne consegue che ogni termine dei prodotti scalari deve essere uguale a zero, cioè, $\pi_i(a^T_i x - b_i) = 0 \quad \forall i$ e
         $(c_j - \pi^T A_j)x_j = 0 \quad \forall j$.
         \newline
-        \textbf{se le equazioni valgono} Scrivendo le equazioni in forma compatta e per la coppia
+        \textbf{se le equazioni valgono:  } Scrivendo le equazioni in forma compatta e per la coppia
         (x, $\pi$) tale che
         \begin{align*}
             \pi(b^T - Ax) = 0 \Rightarrow \pi b^T = \pi Ax
@@ -1754,48 +1736,500 @@
         \end{align*}
         poiché $\pi^T b = \pi^T Ax = c^T x$, allora (x, $\pi$) è ottimo.
         
-        \section*{Complementarietà - Commenti}
+        \paragraph{}
+        \textbf{Osservazioni sulla complementarità}
+
         \begin{itemize}
             \item il teorema della complementarità può essere riformulato affermando che se un vincolo primale non è stretto (cioè, è $<$) allora la variabile duale associata deve essere nulla, viceversa se una variabile duale è non nulla il vincolo primale associato deve essere stretto (cioè, $=$).
             \item può accadere che il vincolo sia stretto e la variabile duale associata sia nulla.
         \end{itemize}
         
-        \section*{Esercizio}
-        Scrivere il duale dei seguenti problemi
-        \newline
-        \textbf{Es. 1}
-        \begin{align*}
-            \max 5x_1 + 2x_2 + 3x_3 \\
-            x_1 - 2x_2 + 5x_3 = 4 \\
-            2x_1 + 7x_2 + 2x_3 \geq 10 \\
-            2x_1 + 4x_3 \leq 5 \\
-            x_1, x_2, x_3 \geq 0
-        \end{align*}
-        \textbf{Es. 2}
-        \begin{align*}
-            \max 0 \\
-            3x_1 - 2x_2 + 8x_3 \leq 4 \\
-            7x_1 + 7x_2 + 9x_3 \leq 10 \\
-            x_1 + 10x_3 \leq 5 \\
-            x_1, x_2, x_3 \text{ libera }
-        \end{align*}
+        \paragraph{}
+        \textbf{Esercizi:} scrivere il duale dei seguenti problemi 
+        
+        \begin{alignat*}{3}
+            &\textbf{Es. 1} &\qquad\qquad &\textbf{Es. 2} \\
+            &\max 5x_1 + 2x_2 + 3x_3 &\qquad\qquad &\max 0 \\
+            &x_1 - 2x_2 + 5x_3 = 4 &\qquad\qquad &3x_1 - 2x_2 + 8x_3 \leq 4 \\
+            &2x_1 + 7x_2 + 2x_3 \geq 10 &\qquad\qquad &7x_1 + 7x_2 + 9x_3 \leq 10 \\
+            &2x_1 + 4x_3 \leq 5 &\qquad\qquad &x_1 + 10x_3 \leq 5 \\
+            &x_1, x_2, x_3 \geq 0 &\qquad\qquad &x_1, x_2, x_3 \text{ libera }
+        \end{alignat*}
         
         \section*{Soluzioni}
-        \textbf{Es. 1}
+        
+        \begin{alignat*}{3}
+            &\textbf{Es. 1} &\qquad\qquad &\textbf{Es. 2} \\
+            &\min 4\pi_1 + 10\pi_2 + 5\pi_3 &\qquad\qquad &\min 4\pi_1 + 10\pi_2 + 5\pi_3\\
+            &\pi_1 + 2\pi_2 + 2\pi_3 \geq 5 &\qquad\qquad &3\pi_1 + 7\pi_2 + \pi_3 = 0\\
+            &-2\pi_1 + 7\pi_2 \geq 2 &\qquad\qquad &-2\pi_1 + 7\pi_2 = 0 \\
+            &5\pi_1 + 2\pi_2 + 4\pi_3 \geq 3 &\qquad\qquad &8\pi_1 + 9\pi_2 + 10\pi_3 = 0\\
+            &\pi_1 \text{ libera }, \pi_2 \leq 0, \pi_3 \geq 0 &\qquad\qquad &\pi_1, \pi_2, \pi_3 \geq 0
+        \end{alignat*}
+
+
+    \section{Dualità e analisi di sensitività}
+
+        \subsection{Un problema rilassato}
+        Considera il problema in forma standard
+
         \begin{align*}
-            \min 4\pi_1 + 10\pi_2 + 5\pi_3 \\
-            \pi_1 + 2\pi_2 + 2\pi_3 \geq 5 \\
-            -2\pi_1 + 7\pi_2 \geq 2 \\
-            5\pi_1 + 2\pi_2 + 4\pi_3 \geq 3 \\
-            \pi_1 \text{ libera }, \pi_2 \leq 0, \pi_3 \geq 0
+            &\min c^T x \\
+            & Ax = b \\
+            & x \geq 0
         \end{align*}
-        \textbf{Es. 2}
+
+        che chiamiamo il problema \textbf{primale}, e sia $x^*$ una soluzione ottima, supposta esistere. Introduciamo un problema \textbf{rilassato} in cui il vincolo $Ax = b$ è sostituito da una penalità $p^T (b - Ax)$, dove $p$ è un vettore della stessa dimensione di $b$. Ci troviamo quindi di fronte al problema
+
+        
         \begin{align*}
-            \min 4\pi_1 + 10\pi_2 + 5\pi_3 \\
-            3\pi_1 + 7\pi_2 + \pi_3 = 0 \\
-            -2\pi_1 + 7\pi_2 = 0 \\
-            8\pi_1 + 9\pi_2 + 10\pi_3 = 0 \\
-            \pi_1, \pi_2, \pi_3 \geq 0
+            & \min c^T x + p^T (b - Ax) \\
+            & x \geq 0.
         \end{align*}
+        
+
+        Sia $g(p)$ il costo ottimale per il problema rilassato, in funzione del vettore $p$. Il problema rilassato consente più opzioni di quelle presenti nel problema primale, e ci aspettiamo che $g(p)$ non sia maggiore del costo ottimale $c^T x^*$. Infatti,
+
+        \[
+            g(p) = \min_{x \geq 0} [c^T x + p^T (b - Ax)] \leq c^T x^* + p^T (b - Ax^*) = c^T x^*
+        \]
+
+        dove l'ultima uguaglianza segue dal fatto che $x^*$ è una soluzione ammissibile per il problema primale, e soddisfa $Ax^* = b$. Quindi, ogni $p$ porta a un limite inferiore $g(p)$ per il costo ottimale $c^T x^*$.
+
+
+
+        \subsection{Uno stretto Bound}
+        Il problema
+
+        \[
+        \begin{aligned}
+            &\max g(p) \\
+            & \text{nessun vincolo}
+        \end{aligned}
+        \]
+
+        può essere interpretato come una ricerca del limite inferiore più stretto possibile di questo tipo, ed è noto come il problema \textbf{duale}.
+
+        \subsection{Il problema duale}
+        Usando la definizione di $g(p)$, abbiamo
+
+        \[
+        g(p) = \min_{x \geq 0} [c^T x + p^T (b - Ax)] = p^T b + \min_{x \geq 0} (c^T - p^T A)x
+        \]
+
+        Nota che
+
+        \[
+        \min_{x \geq 0} (c^T - p^T A)x = \begin{cases}
+        0 & \text{se } c^T - p^T A \geq 0 \\
+        -\infty & \text{altrimenti (x -> +inf)}
+        \end{cases}
+        \]
+
+        Nel massimizzare $g(p)$ dobbiamo considerare solo quei valori di $p$ per cui $g(p)$ non è uguale a $-\infty$. Concludiamo quindi che il problema duale è lo stesso di
+
+        \[
+        \begin{aligned}
+            & \max p^T b \\
+            & p^T A \leq c^T
+        \end{aligned}
+        \]
+
+        (se cerchiamo il max $g(p)$ allora $c^T - p^T A \geq 0$)
+
+        \paragraph{}
+        Nell'esempio, abbiamo iniziato con vincoli di uguaglianza $Ax = b$ e abbiamo finito senza vincoli sul segno del vettore $p$. Se il problema primale avesse invece vincoli di disuguaglianza della forma $Ax \geq b$, potrebbero essere sostituiti da $Ax - s = b$, $s \geq 0$. I vincoli di uguaglianza possono essere scritti nella forma
+
+        \[
+            [A | -I] \begin{bmatrix} x \\ s \end{bmatrix} = b,
+        \]
+
+        il che porta ai vincoli duali
+
+        \[
+            p^T [a | -I] \leq [c^T | 0^T],
+        \]
+
+        o equivalentemente,
+
+        \[
+            p^T A \leq c^T, p \geq 0.
+        \]
+
+        Se il vettore $x$ è libero piuttosto che vincolato nel segno, usiamo il fatto
+
+        \[
+        \min_{x} (c^T - p^T A)x = 
+        \begin{cases}
+            0 & \text{se } c^T - p^T A = 0 \\
+            -\infty & \text{altrimenti}
+        \end{cases}
+        \]
+
+        per finire con i vincoli $p^T A = c^T$ nel problema duale. Queste considerazioni motivano le relazioni primale-duale.
+
+        \begin{table}[h!]
+            \centering
+            \begin{tabular}{|c|c||c|c|}
+            \hline
+            PRIMALE & massimizzare & minimizzare & DUALE \\
+            \hline
+            vincoli & $\leq b_i$ & $\geq 0$ & variabili \\
+             & $\geq b_i$ & $\leq 0$ & \\
+             & $= b_i$ & libere & \\
+            \hline
+            variabili & $\geq 0$ & $\geq c_j$ & vincoli \\
+             & $\leq 0$ & $\leq c_j$ & \\
+             & libere & $=$ & \\
+            \hline
+            \end{tabular}
+        \end{table}
+
+
+
+        \subsection{L'analisi di sensitività}
+
+        Lo scopo principale dell'analisi di sensitività è identificare i parametri sensibili (cioè, quelli che non possono essere cambiati senza cambiare la soluzione ottima). I parametri sensibili sono i parametri che devono essere stimati con particolare attenzione per minimizzare il rischio di ottenere una soluzione ottima errata.
+
+        I parametri del modello in esame sono gli $a_{ij}$, $b_i$, $c_j$ per $i = 1, \dots, m$ e $j = 1, \dots, n$.
+
+        
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+
+        \begin{itemize}
+            \item I problemi di programmazione lineare spesso possono essere interpretati come allocazione di risorse alle attività.
+            \item Quando i vincoli sono nella forma $\leq$, interpretiamo i $b_i$ (i lati destri) come le quantità delle rispettive risorse rese disponibili per le attività in esame.
+            \item In molti casi, i valori $b_i$ utilizzati nel modello iniziale possono effettivamente rappresentare la decisione iniziale provvisoria della direzione su quanta parte delle risorse dell'organizzazione sarà fornita alle attività considerate nel modello.
+            \item Da questa prospettiva più ampia, alcuni dei valori $b_i$ possono essere aumentati in un modello rivisto, ma solo se si può presentare alla direzione un caso sufficientemente forte che questa revisione sarebbe vantaggiosa.
+        \end{itemize}
+
+
+
+
+        \textbf{prezzo ombra}
+
+        \textbf{Definizione}
+
+        Il \textit{prezzo ombra} per la risorsa $i$ (denotato da $y_i^*$) misura il valore marginale di questa risorsa, cioè, il tasso al quale $Z$ potrebbe essere aumentato aumentando (di poco) la quantità di questa risorsa ($b_i$) resa disponibile.
+
+
+
+
+
+        Il grafico mostra che il prezzo ombra è $y_2^* = \frac{3}{2}$ per la risorsa 2. I due punti sono le soluzioni ottimali per $b_2 = 12$ o $b_2 = 13$, e inserendo queste soluzioni nella funzione obiettivo si rivela che aumentare $b_2$ di 1 aumenta $Z$ di $\frac{3}{2}$.
+
+        Dimostra che $y_2^* = \frac{3}{2}$ è il tasso al quale $Z$ potrebbe essere aumentato aumentando $b_2$ "leggermente". Tuttavia, dimostra anche il fenomeno comune che questa interpretazione vale solo per un piccolo aumento di $b_2$. Una volta che $b_2$ viene aumentato oltre 18, la soluzione ottima rimane a $(0, 9)$ senza ulteriori aumenti di $Z$.
+
+        In altre parole, $Z = 45$ per qualsiasi $b_2$ tale che $b_2 \geq 18$ perché il vincolo $2x_2 = b_2$ diventa ridondante.
+
+
+
+        Nota che $y_1^* = 0$. Poiché il vincolo sulla risorsa 1, $x_1 \leq 4$, non è vincolante sulla soluzione ottima $(2, 6)$, c'è un surplus di questa risorsa. Pertanto, aumentare $b_1$ oltre 4 non può produrre una nuova soluzione ottima con un valore maggiore di $Z$.
+
+        Al contrario, i vincoli sulle risorse 2 e 3, $2x_2 \leq 12$ e $3x_1 + 2x_2 \leq 18$, sono \textit{vincoli vincolanti} (vincoli che valgono con l'uguaglianza alla soluzione ottima). Poiché la fornitura limitata di queste risorse ($b_2 = 12$, $b_3 = 18$) impedisce a $Z$ di essere ulteriormente aumentato, hanno prezzi ombra positivi. Possiamo facilmente dimostrare che $y_3^* = 1$.
+
+        Gli economisti si riferiscono a tali risorse come \textit{beni scarsi}, mentre le risorse disponibili in surplus (come la risorsa 1) sono \textit{beni liberi} (risorse con un prezzo ombra zero).
+
+
+
+        Nota che $y_1^* = 0$. Poiché il vincolo sulla risorsa 1, $x_1 \leq 4$, non è vincolante sulla soluzione ottima $(2, 6)$, c'è un surplus di questa risorsa. Pertanto, aumentare $b_1$ oltre 4 non può produrre una nuova soluzione ottima con un valore maggiore di $Z$.
+
+        Al contrario, i vincoli sulle risorse 2 e 3, $2x_2 \leq 12$ e $3x_1 + 2x_2 \leq 18$, sono \textit{vincoli vincolanti} (vincoli che valgono con l'uguaglianza alla soluzione ottima). Poiché la fornitura limitata di queste risorse ($b_2 = 12$, $b_3 = 18$) impedisce a $Z$ di essere ulteriormente aumentato, hanno prezzi ombra positivi. Possiamo facilmente dimostrare che $y_3^* = 1$.
+
+        Gli economisti si riferiscono a tali risorse come \textit{beni scarsi}, mentre le risorse disponibili in surplus (come la risorsa 1) sono \textit{beni liberi} (risorse con un prezzo ombra zero).
+
+
+
+        Le condizioni di complementarità sono
+
+        \[
+        \begin{aligned}
+        \pi_i (b_i - a_i^T x^*) &= 0 \quad \forall i \\
+        (\pi^T A_j - c_j)x_j^* &= 0 \quad \forall j,
+        \end{aligned}
+        \]
+
+        che nel nostro caso diventano
+
+        \[
+        \begin{aligned}
+        \pi_1 (4 - x_1^*) &= 0 \\
+        \pi_2 (12 - 2x_2^*) &= 0 \\
+        \pi_3 (18 - 3x_1^* - 2x_2^*) &= 0 \\
+        (\pi_1^* + 3\pi_3 - 3) x_1^* &= 0 \\
+        (2\pi_2^* + 2\pi_3 - 5) x_2^* &= 0
+        \end{aligned}
+        \]
+
+        Poiché $x_1^* = 2$, $x_2^* = 6$ allora
+
+        \[
+        \begin{aligned}
+        2 \times \pi_1^* &= 0 \\
+        0 \times \pi_2^* &= 0 \\
+        0 \times \pi_3^* &= 0 \\
+        2 \times (\pi_1^* + 3\pi_3 - 3) &= 0 \\
+        6 \times (2\pi_2^* + 2\pi_3 - 5) &= 0
+        \end{aligned}
+        \]
+
+
+        Ne consegue che
+
+        \[
+        \begin{aligned}
+        \pi_1^* &= 0 \\
+        (\pi_1^* + 3\pi_3^* - 3) &= 0 \\
+        (2\pi_2^* + 2\pi_3^* - 5) &= 0
+        \end{aligned}
+        \]
+
+        Cioè
+
+        \[
+        \begin{aligned}
+        \pi_1^* &= 0 \\
+        \pi_3^* &= 1 \\
+        \pi_2^* &= \frac{3}{2}
+        \end{aligned}
+        \]
+
+        Infatti, $w^* = 4 \times 0 + 12 \times \frac{3}{2} + 18 \times 1 = 36$. Inoltre, notiamo che
+
+        \[
+        y_i^* = \pi_i^* \quad \text{per} \quad i = 1, 2, 3.
+        \]
+
+        Le variabili duali ottimali sono (uguali a) i prezzi ombra.
+
+
+
+
+
+        Abbiamo dimostrato che ogni variabile duale ottima rappresenta il tasso al quale $Z$ varia variando il corrispondente valore del lato destro.
+
+        Se variamo un lato destro, il valore delle variabili duali ottimali rimane costante fintanto che la soluzione ottima si trova sull'intersezione degli stessi confini dei vincoli.
+
+        Nel nostro esempio,
+
+        \begin{itemize}
+            \item se $b_2 > 18$ la soluzione ottima è sempre $(0, 9)$. Le variabili duali ottimali sono $(0, 0, 5/2)$
+            \item se $b_2$ varia nell'intervallo $6 < b_2 < 18$ la soluzione ottima si trova sull'intersezione tra $2x_2 = b_2$ e $3x_1 + 2x_2 = 18$ e le variabili duali ottimali sono $(0, 3/2, 1)$.
+            \item se $0 < b_2 < 6$ la soluzione ottima si trova sull'intersezione tra $2x_2 = b_2$ e $x_1 = 4$. Le variabili duali ottimali sono $(3, 5/2, 0)$.
+            \item se $b_2 = 6$ o $b_2 = 18$ la soluzione è chiamata \textbf{degenere}.
+        \end{itemize}
+
+
+        Il grafico dimostra l'analisi di sensitività di $c_1$ e $c_2$ per il nostro problema. A partire dalla linea della funzione obiettivo originale [dove $c_1 = 3$, $c_2 = 5$, e la soluzione ottima è $(2, 6)$], le altre due linee nere mostrano gli estremi di quanto può cambiare la pendenza della linea della funzione obiettivo e conservare comunque $(2, 6)$ come soluzione ottima. Pertanto,
+
+        \begin{itemize}
+            \item con $c_2 = 5$, l'intervallo ammissibile per $c_1$ è $0 \leq c_1 \leq 7.5$,
+            \item con $c_1 = 3$, l'intervallo ammissibile per $c_2$ è $c_2 \geq 2$.
+        \end{itemize}
+
+
+
+        \section*{Come risolvere un IP?}
+
+        Enumerazione. Tutte le soluzioni ammissibili sono identificate e la migliore è selezionata. Potrebbe non essere praticamente fattibile. Ad esempio, per risolvere il TSP in un grafo completo con n nodi ci sono $(n-1)!$ tour ammissibili. Quindi,
+
+        Sono necessarie idee migliori.
+
+        \begin{center}
+        \begin{tabular}{cc}
+        n & n! \\
+        10 & $3.6\times10^{6}$ \\
+        100 & $9.33\times10^{157}$ \\
+        1000 & $4.02\times10^{2567}$
+        \end{tabular}
+        \end{center}
+
+        \section*{Il problema del commesso viaggiatore}
+
+        Ci viene dato un insieme di nodi $V=\{1,...,n\}$ (ad esempio, città) e un insieme di archi A.
+
+        Gli archi rappresentano coppie ordinate di città tra le quali è possibile il viaggio diretto.
+
+        Per $(i,j)\in\mathcal{A}$, $c_{ij}$ è il tempo di viaggio diretto dalla città i alla città j.
+        Il TSP mira a trovare un tour, a partire dalla città 1, che
+
+        a) visita ogni altra città esattamente una volta e poi ritorna alla città 1
+        b) richiede il minor tempo di viaggio totale
+
+        Il problema del commesso viaggiatore (TSP)
+
+        Un tour che visita tutti i nodi esattamente una volta è chiamato tour Hamiltoniano.
+        Il TSP identifica il tour Hamiltoniano di costo minimo.
+
+        \section*{TSP - sembra facile}
+
+
+        Tre tour: A-B-D-C-A: 11; A-D-B-C-A: 23; A-D-C-A: 18.
+
+        \section*{TSP - forse non troppo facile}
+
+
+        \section*{TSP - è difficile!!}
+
+
+        \begin{verbatim}
+        "10
+        ","20
+        ","50
+        ","100
+        ","200
+
+        500
+        ","30 k
+        ","5.736
+        ",,"39
+        ","Pause
+        ","Cont.
+        ","Plot
+        "
+
+        ,"Iterazioni: 24938
+        ",,,"Min. Tour
+        ","Lunghezza: 86.624
+        ",,"Iterazioni:
+        ","30188
+        ","Min. Tour Lunghezza:
+        ","15.102
+        ",
+        \end{verbatim}
+
+        \section*{TSP - Formulazione}
+
+        Variabili di decisione
+
+        $x_{ij}=\begin{cases}1 & \text{se j segue immediatamente i nel tour} \\ 0 & \text{altrimenti}\end{cases}$
+
+        Quindi $x\in\{0,1\}^{|\mathcal{A}|}$
+        Funzione obiettivo
+
+        $min\sum_{(i,j)\in\mathcal{A}}c_{ij}x_{ij}$
+
+        \section*{TSP - Formulazione dei vincoli}
+
+        Ogni città è visitata e lasciata esattamente una volta
+
+        $\sum_{i:(i,j)\in\mathcal{A}}x_{ij}=1$ per $j\in V$ (1)
+
+        $\sum_{j:(i,j)\in\mathcal{A}}x_{ij}=1$ per $i\in V$ (2)
+
+        Tuttavia, i vincoli (1) e (2) non sono sufficienti per definire i tour poiché sono soddisfatti anche dai sottotour.
+
+        \section*{TSP - Sottotour}
+
+        \section*{TSP - Eliminazione dei sottotour (i)}
+
+        In ogni tour deve esserci un arco che va da \{1,2,3\} a \{4,5,6\}
+        e un arco che va da \{4,5,6\} a \{1,2,3\}. In generale, per ogni
+        $U\subset V$ con $2\le|U|\le|V|-2,$ i vincoli
+
+        $\sum_{\{(i,j)\in\mathcal{A}:i\in U,j\in V\backslash U\}}x_{ij}\ge1$ (3)
+
+        sono soddisfatti da tutti i tour, ma ogni sottotour viola almeno uno di essi.
+
+        \section*{TSP - Eliminazione dei sottotour}
+
+        \section*{TSP - Sottotour}
+
+        (a) 5 nodi (b) 9 nodi
+
+        \section*{TSP - Sottotour}
+
+        \section*{TSP - Troppi modi per scegliere U}
+
+        \section*{TSP - Eliminazione dei sottotour (ii)}
+
+        Un modo alternativo per eliminare i sottotour è introdurre i vincoli
+
+        $\sum_{\{(i,j)\in\mathcal{A}:i\in U,j\in U\}}x_{ij} \le |U| - 1 \quad \forall U \subset V : 2 \le |U| \le |V| - 2$ (4)
+
+        Ma ancora una volta abbiamo bisogno di un vincolo per ogni $U \subset V$ tale che
+        $2 \le |U| \le |V| - 2$.
+        In entrambi (3) e (4) il numero di vincoli è quasi $2^{|V|}$ !!!
+
+        $\frac{1}{2} \left[ \binom{|V|}{2} + \binom{|V|}{3} + \cdots + \binom{|V|}{|V| - 2} \right]$
+
+        \section*{TSP - Formulazione}
+
+        \begin{align*}
+        \min \sum_{(i,j)\in\mathcal{A}} c_{ij}x_{ij} \\
+        \sum_{i:(i,j)\in\mathcal{A}} x_{ij} = 1 \quad \text{per } j \in V \\
+        \sum_{j:(i,j)\in\mathcal{A}} x_{ij} = 1 \quad \text{per } i \in V \\
+        \sum_{\{(i,j)\in\mathcal{A}:i\in U,j\in V \backslash U\}} x_{ij} \ge 1 \quad \forall U \subset V : 2 \le |U| \le |V| - 2 \\
+        \text{OR} \\
+        \sum_{\{(i,j)\in\mathcal{A}:i\in U,j\in U\}} x_{ij} \le |U| - 1 \quad \forall U \subset V : 2 \le |U| \le |V| - 2 \\
+        x \in \{0, 1\}^{|\mathcal{A}|}
+        \end{align*}
+
+        \section*{Come risolvere un IP?}
+
+        Trascurando i vincoli di integralità delle variabili. Considera il seguente problema:
+
+        \begin{align*}
+        \max Z &= 1.00x_1 + 0.64x_2 \\
+        50x_1 + 31x_2 &\le 250 \\
+        3x_1 - 2x_2 &\ge -4 \\
+        x_1, x_2 &\ge 0 \text{ e intero}.
+        \end{align*}
+
+        - La soluzione intera ottima è (5, 0)
+        - La soluzione ottima senza considerare i vincoli di integralità delle variabili è (376/193, 950/193) = (1.948, 4.922)
+
+        \section*{Come risolvere un IP?}
+
+        \section*{Come risolvere un IP?}
+
+        Trascurando i vincoli di integralità delle variabili. Perché non arrotondare per eccesso e/o per difetto la soluzione lineare?
+
+        - La parte intera superiore ($\lceil 1.948 \rceil$, $\lceil 4.922 \rceil$) = (2, 5) NON È AMMISSIBILE (il primo vincolo è violato).
+        - La parte intera inferiore ($\lfloor 1.948 \rfloor$, $\lfloor 4.922 \rfloor$) = (1, 4) NON È AMMISSIBILE (il secondo vincolo è violato).
+        - La scelta mista ($\lfloor 1.948 \rfloor$, $\lceil 4.922 \rceil$) = (1, 5) NON È AMMISSIBILE (il secondo vincolo è violato).
+        - La scelta mista ($\lceil 1.948 \rceil$, $\lfloor 4.922 \rfloor$) = (2, 4) è ammissibile ma NON OTTIMA:
+        $Z(2, 4) = 4.56$, mentre $Z(5, 0) = 5$.
+        Inoltre, nessun arrotondamento dà i valori (5, 0).
+        In conclusione, la soluzione lineare sembra essere inutile per trovare la soluzione intera.
+
         
 \end{document}

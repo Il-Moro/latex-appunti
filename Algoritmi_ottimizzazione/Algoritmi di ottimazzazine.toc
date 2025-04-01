@@ -120,3 +120,20 @@
 \contentsline {paragraph}{}{25}{}%
 \contentsline {paragraph}{}{26}{}%
 \contentsline {subsection}{\numberline {6.4}Primal-Dual Relationship}{26}{}%
+\contentsline {paragraph}{}{26}{}%
+\contentsline {subsection}{\numberline {6.5}Risultati importanti: }{26}{}%
+\contentsline {paragraph}{}{27}{}%
+\contentsline {paragraph}{}{27}{}%
+\contentsline {paragraph}{}{27}{}%
+\contentsline {paragraph}{}{27}{}%
+\contentsline {paragraph}{}{27}{}%
+\contentsline {paragraph}{}{28}{}%
+\contentsline {paragraph}{}{28}{}%
+\contentsline {paragraph}{}{28}{}%
+\contentsline {paragraph}{}{28}{}%
+\contentsline {section}{\numberline {7}Dualità e analisi di sensitività}{29}{}%
+\contentsline {subsection}{\numberline {7.1}Un problema rilassato}{29}{}%
+\contentsline {subsection}{\numberline {7.2}Uno stretto Bound}{29}{}%
+\contentsline {subsection}{\numberline {7.3}Il problema duale}{29}{}%
+\contentsline {paragraph}{}{30}{}%
+\contentsline {subsection}{\numberline {7.4}L'analisi di sensitività}{30}{}%
