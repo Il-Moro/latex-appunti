@@ -2572,7 +2572,9 @@
 
         \subsubsection{Metodo della tangente fissa}
 
-        SCHEMA ITERATIVO: $x_{k+1} = x_k - \frac{f(x_k)}{f'(x_0)}$ \quad (\textit{il coefficiente angolare di ogni iterazione è quello della tangente tracciata alla 1ª iterata.})
+        
+        \paragraph{}
+        \textbf{Schema iterativo}: $x_{k+1} = x_k - \frac{f(x_k)}{f'(x_0)}$ \quad (\textit{il coefficiente angolare di ogni iterazione è quello della tangente tracciata alla 1ª iterata.})
 
         \paragraph{}
         Questo metodo ha un costo computazionale minore (calcolo $f'(\alpha)$ solo una volta per $x=x_0$) ma è molto più lento del metodo di Newton normale.
@@ -2584,7 +2586,8 @@
 
         \subsubsection{Metodo delle secanti variabili (o delle secanti)}
 
-        SCHEMA ITERATIVO: $x_{k+1} = x_k - \frac{f(x_k)}{q_k}$ \quad \textit{per $k \geq 1$} \quad \textit{con $q_k = \frac{f(x_k) - f(x_{k-1})}{x_k - x_{k-1}}$} \quad (\textit{RAPP. INCREM.})
+        \paragraph{}
+        \textbf{Schema iterativo}: $x_{k+1} = x_k - \frac{f(x_k)}{q_k}$ \quad \textit{per $k \geq 1$} \quad \textit{con $q_k = \frac{f(x_k) - f(x_{k-1})}{x_k - x_{k-1}}$} \quad (\textit{RAPP. INCREM.})
         
         \paragraph{}
         \textbf{Oss: }{per partire servono 2 p.ti iniziali $x_0$ e $x_1$}
@@ -2620,15 +2623,237 @@
         oppure: $3x^2 = \cos x - e^x \rightarrow x = \sqrt{\frac{1}{3} \cos x - e^x}$
 
         \paragraph{}
-        SCHEMA ITERATIVO: $x_{k+1} = g(x_k), \quad k \geq 0$ 
+        \textbf{Schema iterativo}: $x_{k+1} = g(x_k), \quad k \geq 0$ 
         (La convergenza dipende dalla g)
 
         \paragraph{}
-        La derivata prima di $g$ attorno ad $x$ determina la convergenza del metodo: $|g'(x)| < 1$ e $|g'(x)| \leq m < 1 \quad \forall x \in I_x$, dove 1 è il coefficiente angolar e della retta bisettroce del primo e terzo quadrante.
+        La derivata prima di $g$ attorno ad $x$ determina la convergenza del metodo: 
+        
+        $|g'(x)| < 1$ e $|g'(x)| \leq m < 1 \quad \forall x \in I_x$, dove 1 è il coefficiente angolare della retta bisettrice del primo e terzo quadrante.
+
+        \paragraph{}
+        \textbf{Th. di convergenaz globale del metodo di punto fisso }: sia g una funzione continua in $[a,b]$ e derivabile in $(a,b)$ tale che $g(x) \in [a,b]$ per ogni $x$ in $[a,b]$, $(g([a,b])$ $\subseteq$ $[a,b]$, ovvero $g$ è una contrazione in $[a,b]$).
+
+        Se $g \in C([a,b])$ e $g([a,b]) \subseteq [a,b]$, allora esiste $\alpha \in [a,b]$ tale che $g(\alpha) = \alpha$.
+
+        Se inoltre $|g'(x)| \le m < 1$ per ogni $x \in [a,b]$, allora il punto fisso $\alpha$ è unico e $\lim_{k \to \infty} |e_k| = 0$ per ogni $x_0 \in [a,b]$.
+
+        \paragraph{}
+        \textbf{Dimostrazione:} Dimostriamo che g è una contrazione in $I = [a,b] \implies \exists \alpha$
+
+        Definisco la funzione $\phi(x) := g(x) - x$; noto che $\phi ha 0 \iff g ha p.f$
+
+        \[
+        \begin{cases}
+            \phi(a) = g(a) - a \ge 0  \implies g(a) > 0\\
+            \phi(b) = g(b) - b \le 0 \implies g(b) < 0
+        \end{cases}
+        \]
+
+        Per il teorema degli zeri di funzioni continue, esiste $\alpha \in [a,b]$ tale che $\phi(\alpha) = 0 \iff g(\alpha) = \alpha$.
+
+        \paragraph{}
+        \textbf{Unicità del punto fisso:} Proviuamo che $|g'(\alpha)| \leq m le 1 \implies \alpha !$
+
+        Supponiamo che esistano $\alpha_1$ e $\alpha_2$ tali che $g(\alpha_1) = \alpha_1$ e $g(\alpha_2) = \alpha_2$ con $\alpha_1 \neq \alpha_2$.
+
+        $$
+            |\alpha_1 - \alpha_2| = |g(\alpha_1) - g(\alpha_2)|
+        $$
+        
+        Per Lagrange ho che $\exists \xi \in (\alpha_1, \alpha) \subseteq [a,b]$
+        
+        $$
+            |g'(\xi)| |\alpha_1 - \alpha_2| = |g(\alpha_1) - g(\alpha_2)|
+        $$
+
+        Abbiamo che $|g'(\xi)| \le m < 1$ per cui
+
+        $$
+            |g'(\xi)| |\alpha_1 - \alpha_2| < |\alpha_1 - \alpha_2| \rightarrow \text{contraddizione}
+        $$
+
+        \paragraph{}
+        \textbf{Convergenza:} proviamo che $\lim_{k} |e_k| = 0$
+        
+        Ricordiamo che $e_{k+1} = \alpha - x_{k+1} = g(\alpha) - g(x_k)$
+
+        Per Lagrange $\exists (\xi_k)_k \in Int(\alpha, x_k) \subseteq [a,b]$
+
+        $$
+            g(\alpha) - g(x_k) = g'(\xi_k) (\alpha - x_k) = g'(\xi_k) e_k
+        $$
+
+        $\implies |e_k| \rightarrow 0$, infatti $\forall k, |g'(\xi_k)| \leq m < 1$, per cui
+        
+        $$
+            |e_{k+1}| = |g'(\xi_k)| |e_k| \le m |e_k| \le m^2 |e_{k-1}| \le \ldots \le m^{k+1} |e_0|
+        $$
+        
+        $$
+            0 \le |e_{k+1}| \le m^{k+1} |e_0|, \quad \lim_{k \to \infty} m^{k+1} |e_0| = 0 \quad \forall e_0 = \alpha - x_0, \forall x_0 \in [a,b]
+        $$
+        
+        Per il teorema dei carabinieri, $\lim_{k \to \infty} |e_k| = 0 \quad \forall x_0 \in [a,b]$. 
+
+        \paragraph{Oss:} Notiamo che è indipendente $\forall |e_0|$, garantendo la globalità. 
+
+        \paragraph{}
+        \textbf{Teorema di convergenza locale del metodo di punto fisso}
+
+        Sia $g \in C^1([a,b])$ e sia $\alpha$ un punto fisso di $g$ in $[a,b]$.
+        Se $|g'(\alpha)| < 1$, allora esiste $\delta > 0$ tale che per ogni $x_0 \in B(\alpha, \delta) = (\alpha - \delta, \alpha + \delta)$, lo schema iterativo di punto fisso converge ad $\alpha$.
+        Si ha anche che
+        $$
+            \lim_{k \to \infty} \frac{e_{k+1}}{e_k} = g'(\alpha)
+        $$
+
+        \paragraph{}
+        \textbf{Dimostrazione:}
+        (Utilizzeremo le ipotesi del teorema precedente)
+        Sappiamo che $|g'(\alpha)| < 1$ e che $g'$ è continua ($g \in C^0$)
+
+        \paragraph{}
+        \textbf{Prima condizione:}
+        Per la continuità di $g'$, esiste $\delta > 0$ tale che $|g'(x)| < 1$ per ogni $x \in (\alpha - \delta, \alpha + \delta) = I_\alpha$.
+
+        \paragraph{}
+        \textbf{Seconda condizione }(sulla contrazione):
+        Dobbiamo dimostrare che $g$ è una contrazione in $I_\alpha$, ovvero che $g(x) \in B(\alpha, \delta)$ per ogni $x \in B(\alpha, \delta)$.
+        $$
+        |g(x) - \alpha| = |g(x) - g(\alpha)| = |g'(\xi)| |x - \alpha| < \delta
+        $$
+        Questo perché $\xi \in (\alpha, x) \subseteq B(\alpha, \delta)$, quindi $|g'(\xi)| < 1$.
+        Quindi, in $B(\alpha, \delta)$ siamo nelle ipotesi di convergenza globale e lo schema $x_{k+1} = g(x_k)$ converge per ogni $x_0 \in (\alpha - \delta, \alpha + \delta)$.
+
+        \paragraph{}
+        \textbf{Ultima parte del teorema:}
+        Per dimostrare l'ultima parte, da $e_{k+1} = g'(\xi_k) e_k$, passando al limite dopo aver diviso per $e_k$:
+
+        $$
+            \lim_{k \to \infty} \frac{e_{k+1}}{e_k} = \lim_{k \to \infty} g'(\xi_k) = g'(\lim_{k \to \infty} \xi_k) = g'(\alpha)
+        $$
+
+        (La definizione di ordine di convergenza è $\lim_{k \to \infty} \frac{|e_{k+1}|}{|e_k|} = |g'(\alpha)|$).
+
+        Se $|g'(\alpha)| \neq 0$, allora l'ordine di convergenza è $p = 1$ e la costante asintotica è $c = |g'(\alpha)|$.
+        Se $g'(\alpha) = 0$, allora l'ordine di convergenza è $p \ge 2$.
 
 
-    
+        \paragraph{}
+        \textbf{Proposizione:} Sia $g \in C^2([a,b])$ e $\alpha \in [a,b]$ un punto fisso di $g$. Se $g'(\alpha) = 0$ e $g''(\alpha) \neq 0$, allora
+
+        $$
+            \lim_{k \to \infty} \frac{x_{k+1} - \alpha}{(x_k - \alpha)^2} = \frac{g''(\alpha)}{2}
+        $$
+
+        \paragraph{}
+        \textbf{Dimostrazione:}
+        Per esercizio (Taylor di ordine fino a 2).
+
+        Questa proposizione ci dice che se la derivata seconda è diversa da zero in $\alpha$, l'ordine di convergenza è 2.
+
+        \paragraph{}
+        \textbf{Proposizione:} sia $g \in C^s([a,b])$ e $\alpha$ un punto fisso di $g$ in $[a,b]$. Se $g'(\alpha) = g''(\alpha) = \ldots = g^{(s-1)}(\alpha) = 0$ e $g^{(s)}(\alpha) \neq 0$, allora
+
+        $$
+            \lim_{k \to \infty} \frac{x_{k+1} - \alpha}{(x_k - \alpha)^s} = \frac{g^{(s)}(\alpha)}{s!}
+        $$
+
+        \paragraph{}
+        \textbf{Criterio di arresto: }
+
+        Conludiamo la teoria considerando un cirterio di arresto. Come otteniamo lo scarto? 
+        \begin{itemize}
+            \item Per Newton era  $S_{k+1} = x_{k+1} - x_k = -\frac{f(x_k)}{f'(x_k)} \approx e_k$
+            \item Per questo, invce?
+            
+            $$
+                S_{k+1} = x_{k+1}-x_k \rightarrow |S_{k+1}| < tol \\
+                = g(x_k) - g(x_{k+1})
+            $$
+
+            Questo è un buon surrogati dell'errore? Cerchiamo di relazionare $S_k$ con $e_k$
+        \end{itemize}
+
+        \paragraph{}
+        \textbf{Relazione errore-scarto nel metodo di punto fisso:}
+
+        Sia
+        \begin{align*}
+            e_{k+1} &= \alpha - x_{k+1} \\
+            &= g(\alpha) - g(x_k) \\
+            &= g'(\xi_k)(\alpha - x_k) \\
+            &= g'(\xi_k)(\alpha - x_{k+1} + x_{k+1} - x_k) \\
+            &= g'(\xi_k)(e_{k+1} + S_{k+1}) \text{, dove $S_{k+1} = x_{k+1} - x_k$} 
+        \end{align*}
+
+        Allora $(1-g'(\xi_k))e_{k+1} = g'(\xi_k)S_{k+1}$
+
+        \begin{align*}
+            \implies e_{k+1} &= g'(\xi_k)e_{k+1} + g'(\xi_k) S_{k+1} \\
+            &= \frac{g'(\xi_k)}{1 - g'(\xi_k)} S_{k+1}
+        \end{align*}
+        
+        Al limite (asintoticamente), $\xi_k \to \alpha$, ottengo:
+        $$
+            \lim_{k} \frac{g'(\xi_k)}{1-g'(\xi_k)} = \frac{g'(\alpha)}{1-g'(\alpha)}
+        $$
+
+        Allora ho la stima:
 
 
- 
+        $$
+            e_{k+1} \approx \frac{g'(\alpha)}{1 - g'(\alpha)} S_{k+1}
+        $$
+
+        \paragraph{Oss. } Quanto è affidabile? se $g'\alpha \rightarrow 0$ diventa lento
+
+
+        \paragraph{Esempio:} $g(x) = \sin\left(\frac{\pi}{2} x\right) + x^2 - 2$
+
+        a) Verificare che $\alpha = 1$ è punto fisso di $g$:
+        $$
+        g(1) = \sin\left(\frac{\pi}{2}\right) + 1^2 - 2 = 1 + 1 - 2 = 0
+        $$
+        
+        b) $x_{k+1} = g(x_k)$. Determinare l'ordine di convergenza e la costante asintotica.
+        
+        $$
+        \lim_{k \to \infty} \frac{|e_{k+1}|}{|e_k|} = |g'(\alpha)|
+        $$
+        Se $g'(\alpha) \neq 0$, allora $p = 1$.
+        
+        Se $g'(\alpha) = 0$:
+        $$
+        g'(x) = \frac{\pi}{2} \cos\left(\frac{\pi}{2} x\right) + 2x - 2 \rightarrow g'(1) = \frac{\pi}{2} \cos\left(\frac{\pi}{2}\right) + 2 - 2 = 0
+        $$
+        $$
+        g''(x) = -\left(\frac{\pi}{2}\right)^2 \sin\left(\frac{\pi}{2} x\right) + 2 \rightarrow g''(1) = -\left(\frac{\pi}{2}\right)^2 + 2 \neq 0
+        $$
+        Quindi $p = 2$ poiché $g'(1) = 0$ e $g''(1) \neq 0$.
+        
+        $$
+        c = \left|\frac{g''(1)}{2}\right| = \left|\frac{2 - \left(\frac{\pi}{2}\right)^2}{2}\right| = \left|\frac{8 - \pi^2}{8}\right| \approx 0.2398
+        $$
+        
+        \paragraph{Esercizio proposto:} Dato lo schema iterativo di punto fisso $x_{k+1} = \sqrt{\frac{1 - \ln(x_k)}{3}} = g(x_k)$ (1),
+        
+        1. Dimostrare esistenza e unicità di $\alpha$, punto fisso di $g$ in $[0.5, 1]$.
+        
+        2. Dire se il metodo converge.
+        
+        3. A partire da $x_0 = 0.8$, eseguire 5 iterazioni di (1).
+        
+        4. Stimare C e l'errore all'ultimo passo
+        
+        \paragraph{Esercizio:} (Precedente non so se c'è. Ok, trovato è sul quadernino) $f(x) = e^x + x^2 - 2 - \sin(x)$
+        
+
+
+
+
+
+
+
  \end{document}

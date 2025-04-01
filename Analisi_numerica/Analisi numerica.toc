@@ -142,10 +142,31 @@
 \contentsline {subsection}{\numberline {3.5}Varianti del metodo di Newton}{33}{}%
 \contentsline {subsubsection}{\numberline {3.5.1}Metodo della tangente fissa}{33}{}%
 \contentsline {paragraph}{}{33}{}%
+\contentsline {paragraph}{}{33}{}%
 \contentsline {subsubsection}{\numberline {3.5.2}Metodo delle secanti variabili (o delle secanti)}{33}{}%
+\contentsline {paragraph}{}{33}{}%
 \contentsline {paragraph}{}{33}{}%
 \contentsline {paragraph}{}{33}{}%
 \contentsline {subsubsection}{\numberline {3.5.3}Metodo di punto fisso (o iterazione funzionale)}{33}{}%
 \contentsline {paragraph}{}{34}{}%
 \contentsline {paragraph}{}{34}{}%
 \contentsline {paragraph}{}{34}{}%
+\contentsline {paragraph}{}{34}{}%
+\contentsline {paragraph}{}{34}{}%
+\contentsline {paragraph}{}{34}{}%
+\contentsline {paragraph}{}{34}{}%
+\contentsline {paragraph}{Oss:}{35}{}%
+\contentsline {paragraph}{}{35}{}%
+\contentsline {paragraph}{}{35}{}%
+\contentsline {paragraph}{}{35}{}%
+\contentsline {paragraph}{}{35}{}%
+\contentsline {paragraph}{}{35}{}%
+\contentsline {paragraph}{}{35}{}%
+\contentsline {paragraph}{}{35}{}%
+\contentsline {paragraph}{}{35}{}%
+\contentsline {paragraph}{}{35}{}%
+\contentsline {paragraph}{}{35}{}%
+\contentsline {paragraph}{Oss. }{36}{}%
+\contentsline {paragraph}{Esempio:}{36}{}%
+\contentsline {paragraph}{Esercizio proposto:}{36}{}%
+\contentsline {paragraph}{Esercizio:}{36}{}%
